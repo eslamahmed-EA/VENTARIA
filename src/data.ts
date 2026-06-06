@@ -211,15 +211,15 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+342% Direct Revenue",
       conversionRate: "4.12% CR (Up from 1.2%)",
-      averageOrderValue: "$285 Average Ticket",
+  averageOrderValue: "EGP 285 Average Ticket",
       loadTimeReduction: "0.9s Mobile Speed"
     },
-    challenge: "Aether sells outer-garment technical wear costing upwards of $500. Their old Shopify template felt generic, loaded slow (4.8 seconds), failed to communicate the extreme engineering behind their technical fabrics, and had massive drop-offs on product pages.",
+  challenge: "Aether sells outer-garment technical wear costing upwards of EGP 500. Their old Shopify template felt generic, loaded slow (4.8 seconds), failed to communicate the extreme engineering behind their technical fabrics, and had massive drop-offs on product pages.",
     research: "By researching high-wealth outdoor enthusiasts, we discovered that their primary purchase driver is materials validation. They need to understand the structural layers, thermal metrics, waterproof seals, and durability specs before pulling their cards.",
     designProcess: "We replaced their grid layout with an immersive, asymmetric, luxury interactive space that treats technical wear like architectural feats. We utilized minimalist typography paired with interactive hotspots highlighting technical fabric close-ups.",
     brandIdentity: "We refreshed their brand guidelines by introducing a stark technical color palette (Jet Charcoal, Matte Chromium, and a stark Neon Mint accent). High-contrast typography featuring bespoke, elegant sans-serif scales was enforced.",
     storeDevelopment: "Our technical team developed a custom theme from scratch on Shopify Plus. We custom-coded a 3D layering diagram of their jackets that dynamically updates as the user scroll, built with vanilla JS and optimized SVG layers to keep speeds exceptionally fast.",
-    results: "Within ninety days post-launch, mobile page speeds plummeted to 0.9s. The brand was positioned as a premium technical leader, yielding a monster conversion leap of +342% and raising total AOV by nearly $100 per basket.",
+  results: "Within ninety days post-launch, mobile page speeds plummeted to 0.9s. The brand was positioned as a premium technical leader, yielding a monster conversion leap of +342% and raising total AOV by nearly EGP 100 per basket.",
     image: "/assets/case-aether.jpg"
   },
   {
@@ -251,15 +251,15 @@ export const CASE_STUDIES_DATA: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+412% Conversion",
       conversionRate: "2.89% (High for High-Luxury)",
-      averageOrderValue: "$5,400 AOV",
+  averageOrderValue: "EGP 5,400 AOV",
       loadTimeReduction: "0.62s Time to Interactive"
     },
-    challenge: "With products averaging $5,000, Elysian Horology required their digital shop to perform like a real Swiss brick-and-mortar luxury showroom. Traditional page reloads and standard shopping carts felt low-end and detracted heavily from their heritage prestige.",
+  challenge: "With products averaging EGP 5,000, Elysian Horology required their digital shop to perform like a real Swiss brick-and-mortar luxury showroom. Traditional page reloads and standard shopping carts felt low-end and detracted heavily from their heritage prestige.",
     research: "High-net-worth collectors buy watches for the prestige and craftsmanship. We observed that collectors focus intently on micro-movements, watch dials, and the pure mechanical heritage. The digital experience had to breathe mathematical precision.",
     designProcess: "We created a fully cinematic web design featuring ultra-smooth parallax movements, dark carbon backgrounds, and luxurious, crisp typographic hierarchies (Playfair Display paired with crisp Space Grotesk labels).",
     brandIdentity: "Deep Champagne Gold accents, Rich Onyx Black backgrounds, and beautiful Ivory highlights. Logo mark optimized for luxury engravings.",
     storeDevelopment: "We constructed a cutting-edge headless e-commerce build built on React and Shopify Hydrogen. We implemented lazy-loaded custom animations, an interactive 360-degree watch crown rotate dialer, and an ultra-secure VIP global courier checkout module.",
-    results: "Elysian broken digital sales records in their Q1, capturing $4.5M in custom headless orders in the first 4 weeks, with pages loading in an astonishing 0.6 seconds worldwide.",
+  results: "Elysian broken digital sales records in their Q1, capturing EGP 4.5M in custom headless orders in the first 4 weeks, with pages loading in an astonishing 0.6 seconds worldwide.",
     image: "/assets/case-elysian.jpg"
   }
 ];
@@ -299,7 +299,7 @@ export const PORTFOLIO_DATA: PortfolioItem[] = [
     title: "Elysian Horology",
     subtitle: "Ultra-high-end watch manufacture",
     category: "Luxury",
-    metrics: "$5,400 Average Ticket Size",
+  metrics: "EGP 5,400 Average Ticket Size",
     tags: ["Shopify Headless", "React / Hydrogen", "360-Degree Custom Dial"],
     image: "luxury",
     caseStudyId: "elysian-luxury-watches"
@@ -320,7 +320,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: "starter",
     name: "Starter Launchpad",
     tagline: "For ambitious DTC brands aiming to establish an elite visual footprint.",
-    price: "$4,500",
+  price: "EGP 4,500",
     timeline: "3 - 4 Weeks",
     deliverables: [
       "Custom Shopify, Salla, or Zid Custom Design & Build",
@@ -344,7 +344,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: "growth",
     name: "Growth Engine",
     tagline: "Our flagship package engineered to aggressively scale revenue & maximize conversion rates.",
-    price: "$8,500",
+  price: "EGP 8,500",
     timeline: "5 - 6 Weeks",
     deliverables: [
       "Everything in Starter plus highly optimized sales features",
@@ -371,7 +371,7 @@ export const PRICING_PLANS: PricingPlan[] = [
     id: "premium",
     name: "Enterprise Headless",
     tagline: "Bespoke industry-redefining digital experiences built on ultra-fast headless tech.",
-    price: "$16,000",
+  price: "EGP 16,000",
     timeline: "8 - 10 Weeks",
     deliverables: [
       "Fully headless custom storefront (React/Hydrogen/Next.js)",
@@ -421,7 +421,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     name: "Sophia Alvarez",
     role: "Chief Operating Officer",
     company: "Elysian Swiss S.A. (Geneva)",
-    content: "We hired Nexora for our Shopify Plus Headless migration. They built a custom React/Hydrogen timepiece salon that loaded instantaneously. The conversion rate of 2.89% for products retailing over five thousand dollars is flat out unheard of in timepieces horology history.",
+  content: "We hired Nexora for our Shopify Plus Headless migration. They built a custom React/Hydrogen timepiece salon that loaded instantaneously. The conversion rate of 2.89% for products retailing over five thousand EGP is flat out unheard of in timepieces horology history.",
     avatar: "SA",
     rating: 5
   }
@@ -461,7 +461,7 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     id: "unboxing-tactile-magic",
     title: "Packaging Psychology: Turning the unboxing ceremony into your strongest retention loop",
-    excerpt: "Why spending an additional dollar on embossing, spot UV patterns, and custom boxes can reduce your cost per acquisition (CAC) and drive recurring sales.",
+  excerpt: "Why spending an additional EGP on embossing, spot UV patterns, and custom boxes can reduce your cost per acquisition (CAC) and drive recurring sales.",
     category: "Branding",
     readTime: "4 min read",
     date: "May 15, 2026",
@@ -506,7 +506,7 @@ export const FAQS_DATA: FAQItem[] = [
   {
     id: "faq-3",
     question: "How long is a typical project cycle, and what are the pricing parameters?",
-    answer: "Our project timelines run from 3 weeks for ambitious launches up to 10 weeks for highly integrated custom headless environments. Our structures are clear and flat-rate, starting at $4,500 and climbing to $16,000 for enterprise custom builds. We never hide costs.",
+  answer: "Our project timelines run from 3 weeks for ambitious launches up to 10 weeks for highly integrated custom headless environments. Our structures are clear and flat-rate, starting at EGP 4,500 and climbing to EGP 16,000 for enterprise custom builds. We never hide costs.",
     category: "Financial"
   },
   {

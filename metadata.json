@@ -1,6 +1,6 @@
 {
-  "name": "Ventaria Studio",
-  "description": "Ventaria Studio is a premium, high-end e-commerce design, branding, and development agency specializing in elite Shopify, Salla, and Zid storefronts and conversion rate optimization.",
+  "name": "Ventaria",
+  "description": "Ventaria is a premium, high-end e-commerce design, branding, and development agency specializing in elite Shopify, Salla, and Zid storefronts and conversion rate optimization.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

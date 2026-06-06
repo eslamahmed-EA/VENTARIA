@@ -261,7 +261,7 @@ export default function CaseStudies({ selectedCaseStudyId, setSelectedCaseStudyI
             <div className="p-6 bg-zinc-900 border border-zinc-800 rounded-3xl space-y-4 relative glass accent-glow text-left">
               <span className="text-[10px] font-mono text-accent uppercase block font-bold">{lang === "ar" ? "بيان تفويض وإقرار رياد الأعمال" : "FOUNDER ENDORSEMENT STATEMENT"}</span>
               <p className="text-xs text-zinc-400 leading-relaxed italic font-normal">
-                "{lang === "ar" ? "فينتاريا ستوديو أداة استثمارية مصقولة وفعالة للغاية. لقد استعدنا تكاليف التطوير البرمجي في غضون الشهر الأول بعد التدشين فقط." : "Ventaria Studio is a highly-tuned luxury asset. We secured our investment cost back in the first month post-deploy alone."}"
+                "{lang === "ar" ? "فينتاريا ستوديو أداة استثمارية مصقولة وفعالة للغاية. لقد استعدنا تكاليف التطوير البرمجي في غضون الشهر الأول بعد التدشين فقط." : "Ventaria is a highly-tuned luxury asset. We secured our investment cost back in the first month post-deploy alone."}"
               </p>
               <div className={`flex items-center space-x-3 border-t border-zinc-800 pt-4 ${spaceXRev}`}>
                 <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-[10px] font-bold text-accent font-mono select-none">CEO</div>
