@@ -38,7 +38,7 @@ export const UI_TRANSLATIONS = {
     genevaAddr: "Rue du Rhone 14,\nGeneva 1204, Switzerland",
     gpsSeeded: "GPS COORDINATES SEEDED",
     socialLinks: "SOCIAL LINKS",
-    allRights: "© 2026 VENTARIA STUDIO. ALL RIGHTS SEEDED UNDER GLOBAL NDA GUARANTEES.",
+  allRights: "© 2026 VENTARIA. ALL RIGHTS SEEDED UNDER GLOBAL NDA GUARANTEES.",
     compSpeeds: "95+ COMPILATION SPEEDS",
     accuracySecured: "SYSTEM ACCURACY SECURED",
     coreDisciplines: "CORE DISCIPLINES",
@@ -62,7 +62,7 @@ export const UI_TRANSLATIONS = {
     calcSub: "Simulate custom budget scaling potentials via scientific conversion optimization formulas.",
     monthlyTraffic: "ESTIMATED MONTHLY TRAFFIC (VISITS)",
     currentConversion: "CURRENT CONVERSION RATE (CR %)",
-    avgOrderVal: "AVERAGE ORDER VALUE (AOV $)",
+  avgOrderVal: "AVERAGE ORDER VALUE (AOV EGP)",
     withVentariaSpeed: "WITH VENTARIA OPTIMIZED ENGINE SPEED",
     projectedCr: "Projected Conversion Rate (+120% spike)",
     projectedPrice: "Projected AOV (Premium Brand-Value Boost)",
@@ -107,7 +107,7 @@ export const UI_TRANSLATIONS = {
     aboutHeroSub: "We are an elite, highly specialized squad of digital designers, interface engineers, and conversion scientists. We do not work for everyone; we collaborate only with ambitious leaders.",
     corporateChronicle: "01 // CORPORATE CHRONICLE",
     howBornTitle: "How Ventaria Was Born",
-    howBornP1: "Founded in 2021 by e-commerce designer Jean-Pierre Durand and system engineer Tariq Farooq, Ventaria Studio arose from a deep irritation with slow, generic themes holding back high-end DTC brands.",
+  howBornP1: "Founded in 2021 by e-commerce designer Jean-Pierre Durand and system engineer Tariq Farooq, Ventaria arose from a deep irritation with slow, generic themes holding back high-end DTC brands.",
     howBornP2: "We realized that premium brands were pouring massive capital into paid commercials to drive traffic to storefronts that looked like cheap duplicates of each other, loading sluggishly. Our absolute mandate is to combine world-class Swiss design aesthetics with lightning-fast custom coding.",
     theIntellectualMatrix: "THE INTELLECTUAL MATRIX",
     coreMissionTitle: "CORE MISSION STATEMENT",
@@ -137,7 +137,7 @@ export const UI_TRANSLATIONS = {
     readArchitecture: "READ ARCHITECTURE",
     literatureArchive: "LITERATURE READING ARCHIVE",
     keyTakeaway: "KEY TAKEAWAY: Prioritize visual performance budgets. High-luxury buyers choose speed and prestige layout. Templetization actively harms AOV.",
-    endDocument: "VENTARIA STUDIO DIRECT RESEARCH ARCHIVE // END OF DOCUMENT",
+  endDocument: "VENTARIA DIRECT RESEARCH ARCHIVE // END OF DOCUMENT",
     // Case studies
     caseStudiesTitle: "CASE STUDIES ARCHIVE",
     empiricalCaseStudies: "THE EMPIRICAL CHRONICLES.",
@@ -226,7 +226,7 @@ export const UI_TRANSLATIONS = {
     calcSub: "قم بمحاكاة إمكانات التوسع في الميزانية من خلال صيغ تحسين التحويل وسرعة التحميل العلمية.",
     monthlyTraffic: "متوسط الزيارات الشهرية للمتجر (زيارة)",
     currentConversion: "نسبة التحويل الحالية للمتجر (CR %)",
-    avgOrderVal: "متوسط قيمة الطلب الواحد (AOV $)",
+  avgOrderVal: "متوسط قيمة الطلب الواحد (AOV جنيه)",
     withVentariaSpeed: "مع استخدام محرك وسرعة فينتاريا المطورة",
     projectedCr: "معدل التحويل المتوقع الجديد (+120% قفزة)",
     projectedPrice: "قيمة متوسط الطلب المتوقع (تعزيز الفخامة والقيمة)",
@@ -714,7 +714,7 @@ export const PORTFOLIO_DATA_EN: PortfolioItem[] = [
     title: "Elysian Horology",
     subtitle: "Ultra-high-end watch manufacture",
     category: "Luxury",
-    metrics: "$5,400 Average Ticket Size",
+  metrics: "EGP 5,400 Average Ticket Size",
     tags: ["Shopify Headless", "React / Hydrogen", "360-Degree Custom Dial"],
     image: "luxury",
     caseStudyId: "elysian-luxury-watches"
@@ -765,7 +765,7 @@ export const PORTFOLIO_DATA_AR: PortfolioItem[] = [
     title: "إليسيان للساعات السويسرية",
     subtitle: "ساعات وقطع فنية فاخرة للمقتنيين",
     category: "المقتنيات الفاخرة",
-    metrics: "متوسط الطلبات $5,400 للعميل",
+  metrics: "متوسط الطلبات 5,400 جنيه للعميل",
     tags: ["شوبيفاي هيدليس Headless", "جافا سكريبت React / Hydrogen", "ميزة استعراض حواف الساعة تفاعلياً 360 درجة"],
     image: "luxury",
     caseStudyId: "elysian-luxury-watches"
@@ -786,7 +786,7 @@ export const PRICING_PLANS_EN: PricingPlan[] = [
     id: "starter",
     name: "Starter Launchpad",
     tagline: "For ambitious DTC brands aiming to establish an elite visual footprint.",
-    price: "$4,500",
+  price: "EGP 4,500",
     timeline: "3 - 4 Weeks",
     deliverables: [
       "Custom Shopify, Salla, or Zid Custom Design & Build",
@@ -810,7 +810,7 @@ export const PRICING_PLANS_EN: PricingPlan[] = [
     id: "growth",
     name: "Growth Engine",
     tagline: "Our flagship package engineered to aggressively scale revenue & maximize conversion rates.",
-    price: "$8,500",
+  price: "EGP 8,500",
     timeline: "5 - 6 Weeks",
     deliverables: [
       "Everything in Starter plus highly optimized sales features",
@@ -837,7 +837,7 @@ export const PRICING_PLANS_EN: PricingPlan[] = [
     id: "premium",
     name: "Enterprise Headless",
     tagline: "Bespoke industry-redefining digital experiences built on ultra-fast headless tech.",
-    price: "$16,000",
+  price: "EGP 16,000",
     timeline: "8 - 10 Weeks",
     deliverables: [
       "Fully headless custom storefront (React/Hydrogen/Next.js)",
@@ -868,7 +868,7 @@ export const PRICING_PLANS_AR: PricingPlan[] = [
     id: "starter",
     name: "مخطط الإطلاق الأساسي",
     tagline: "للعلامات الطموحة الصاعدة الساعية لبناء بصمة بصرية فاخرة ومتينة.",
-    price: "$4,500",
+  price: "4,500 جنيه",
     timeline: "3 - 4 أسابيع",
     deliverables: [
       "تصميم وبناء مخصص لمتجرك على شوبيفاي، سلة، أو زيد",
@@ -892,7 +892,7 @@ export const PRICING_PLANS_AR: PricingPlan[] = [
     id: "growth",
     name: "محرك وجامع الأرباح والنمو",
     tagline: "مستوانا وخطتنا الفخرية المهندسة لمضاعفة عوائدك وتحقيق أقصى معدلات التحويل المالي.",
-    price: "$8,500",
+  price: "8,500 جنيه",
     timeline: "5 - 6 أسابيع",
     deliverables: [
       "كافة الخدمات والضمانات السابقة بالإضافة لخصائص زيادة حجم المبيعات المبتكرة",
@@ -919,7 +919,7 @@ export const PRICING_PLANS_AR: PricingPlan[] = [
     id: "premium",
     name: "التوسع والـ Headless اللامحدود",
     tagline: "تأسيس تحول وتجارب بيع رقمية فائقة التقدم بالاعتماد على تصميم برمجي خارق السرعة والاستدامة كلياً.",
-    price: "$16,000",
+  price: "16,000 جنيه",
     timeline: "8 - 10 أسابيع",
     deliverables: [
       "تصميم وبناء متجر لا مركزي هيدليس 100% مبني بـ React / Hydrogen / Headless",
@@ -951,7 +951,7 @@ export const TESTIMONIALS_DATA_EN: Testimonial[] = [
     name: "Khalid Bin Suliman",
     role: "Founder & Creative Director",
     company: "Luna Gazing Cosmetics (Saudi Arabia)",
-    content: "Ventaria Studio completely transformed our online presence. By utilizing the Salla Twilight engine and designing a completely custom Arabic luxury layout, our average order value skyrocketed to SAR 340. They didn't just write theme code—they understood our regional luxury audience on a cellular level.",
+  content: "Ventaria completely transformed our online presence. By utilizing the Salla Twilight engine and designing a completely custom Arabic luxury layout, our average order value skyrocketed to SAR 340. They didn't just write theme code—they understood our regional luxury audience on a cellular level.",
     avatar: "KS",
     rating: 5
   },
@@ -969,7 +969,7 @@ export const TESTIMONIALS_DATA_EN: Testimonial[] = [
     name: "Sophia Alvarez",
     role: "Chief Operating Officer",
     company: "Elysian Swiss S.A. (Geneva)",
-    content: "We hired Ventaria for our Shopify Plus Headless migration. They built a custom React/Hydrogen timepiece salon that loaded instantaneously. The conversion rate of 2.89% for products retailing over five thousand dollars is flat out unheard of in timepieces horology history.",
+  content: "We hired Ventaria for our Shopify Plus Headless migration. They built a custom React/Hydrogen timepiece salon that loaded instantaneously. The conversion rate of 2.89% for products retailing over five thousand EGP is flat out unheard of in timepieces horology history.",
     avatar: "SA",
     rating: 5
   }
@@ -1135,7 +1135,7 @@ export const FAQS_DATA_EN: FAQItem[] = [
   {
     id: "faq-1",
     question: "Why should we hire Ventaria instead of a standard local web freelancer?",
-    answer: "Ventaria Studio does not compile raw websites; we engineer revenue-generating e-commerce machines with custom design and absolute styling discipline. Every line of code is handwritten for premium performance, and our team integrates elite regional localization (Saudi, GCC) alongside international luxury standard branding. Standard developers rarely understand average order value, conversion funnels, and unboxing logistics.",
+  answer: "Ventaria does not compile raw websites; we engineer revenue-generating e-commerce machines with custom design and absolute styling discipline. Every line of code is handwritten for premium performance, and our team integrates elite regional localization (Saudi, GCC) alongside international luxury standard branding. Standard developers rarely understand average order value, conversion funnels, and unboxing logistics.",
     category: "General"
   },
   {
@@ -1147,7 +1147,7 @@ export const FAQS_DATA_EN: FAQItem[] = [
   {
     id: "faq-3",
     question: "How long is a typical project cycle, and what are the pricing parameters?",
-    answer: "Our project timelines run from 3 weeks for ambitious launches up to 10 weeks for highly integrated custom headless environments. Our structures are clear and flat-rate, starting at $4,500 and climbing to $16,000 for enterprise custom builds. We never hide costs.",
+  answer: "Our project timelines run from 3 weeks for ambitious launches up to 10 weeks for highly integrated custom headless environments. Our structures are clear and flat-rate, starting at EGP 4,500 and climbing to EGP 16,000 for enterprise custom builds. We never hide costs.",
     category: "Financial"
   },
   {
@@ -1174,7 +1174,7 @@ export const FAQS_DATA_AR: FAQItem[] = [
   {
     id: "faq-3",
     question: "كـم متوسط الفترة المقدرة لإنجاز أعمال المتجر الهيكلية والميزانيات المعتمدة؟",
-    answer: "تتراوح فترات إحراز وتهيئة المتجر من 3 أسابيع للمتاجر المتميزة والجاهزة، وحتى 10 أسابيع للمشاريع اللامركزية هيدليس Headless المعقدة. خيارات وحسابات التسعير لدينا واضحة وبعقود ثابتة، تبدأ من $4,500 وتصل إلى $16,000 للمجموعات والواجهات الحصرية التامة لضمان الأمان البصري الكامل.",
+  answer: "تتراوح فترات إحراز وتهيئة المتجر من 3 أسابيع للمتاجر المتميزة والجاهزة، وحتى 10 أسابيع للمشاريع اللامركزية هيدليس Headless المعقدة. خيارات وحسابات التسعير لدينا واضحة وبعقود ثابتة، تبدأ من 4,500 جنيه وتصل إلى 16,000 جنيه للمجموعات والواجهات الحصرية التامة لضمان الأمان البصري الكامل.",
     category: "المالي"
   },
   {
@@ -1195,15 +1195,15 @@ export const CASE_STUDIES_DATA_EN: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+342% Direct Revenue",
       conversionRate: "4.12% CR (Up from 1.2%)",
-      averageOrderValue: "$285 Average Ticket",
+  averageOrderValue: "EGP 285 Average Ticket",
       loadTimeReduction: "0.9s Mobile Speed"
     },
-    challenge: "Aether sells outer-garment technical wear costing upwards of $500. Their old Shopify template felt generic, loaded slow (4.8 seconds), failed to communicate the extreme engineering behind their technical fabrics, and had massive drop-offs on product pages.",
+  challenge: "Aether sells outer-garment technical wear costing upwards of EGP 500. Their old Shopify template felt generic, loaded slow (4.8 seconds), failed to communicate the extreme engineering behind their technical fabrics, and had massive drop-offs on product pages.",
     research: "By researching high-wealth outdoor enthusiasts, we discovered that their primary purchase driver is materials validation. They need to understand the structural layers, thermal metrics, waterproof seals, and durability specs before pulling their cards.",
     designProcess: "We replaced their grid layout with an immersive, asymmetric, luxury interactive space that treats technical wear like architectural feats. We utilized minimalist typography paired with interactive hotspots highlighting technical fabric close-ups.",
     brandIdentity: "We refreshed their brand guidelines by introducing a stark technical color palette (Jet Charcoal, Matte Chromium, and a stark Neon Mint accent). High-contrast typography featuring bespoke, elegant sans-serif scales was enforced.",
     storeDevelopment: "Our technical team developed a custom theme from scratch on Shopify Plus. We custom-coded a 3D layering diagram of their jackets that dynamically updates as the user scrolls, built with vanilla JS and optimized SVG layers to keep speeds exceptionally fast.",
-    results: "Within ninety days post-launch, mobile page speeds plummeted to 0.9s. The brand was positioned as a premium technical leader, yielding a monster conversion leap of +342% and raising total AOV by nearly $100 per basket.",
+  results: "Within ninety days post-launch, mobile page speeds plummeted to 0.9s. The brand was positioned as a premium technical leader, yielding a monster conversion leap of +342% and raising total AOV by nearly EGP 100 per basket.",
     image: "/assets/case-aether.jpg"
   },
   {
@@ -1235,15 +1235,15 @@ export const CASE_STUDIES_DATA_EN: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+412% Conversion",
       conversionRate: "2.89% (High for High-Luxury)",
-      averageOrderValue: "$5,400 AOV",
+  averageOrderValue: "EGP 5,400 AOV",
       loadTimeReduction: "0.62s Time to Interactive"
     },
-    challenge: "With products averaging $5,000, Elysian Horology required their digital shop to perform like a real Swiss brick-and-mortar luxury showroom. Traditional page reloads and standard shopping carts felt low-end and detracted heavily from their heritage prestige.",
+  challenge: "With products averaging EGP 5,000, Elysian Horology required their digital shop to perform like a real Swiss brick-and-mortar luxury showroom. Traditional page reloads and standard shopping carts felt low-end and detracted heavily from their heritage prestige.",
     research: "High-net-worth collectors buy watches for the prestige and craftsmanship. We observed that collectors focus intently on micro-movements, watch dials, and the pure mechanical heritage. The digital experience had to breathe mathematical precision.",
     designProcess: "We created a fully cinematic web design featuring ultra-smooth parallax movements, dark carbon backgrounds, and luxurious, crisp typographic hierarchies (Playfair Display paired with crisp Space Grotesk labels).",
     brandIdentity: "Deep Champagne Gold accents, Rich Onyx Black backgrounds, and beautiful Ivory highlights. Logo mark optimized for luxury engravings.",
     storeDevelopment: "We constructed a cutting-edge headless e-commerce build built on React and Shopify Hydrogen. We implemented lazy-loaded custom animations, an interactive 360-degree watch crown rotate dialer, and an ultra-secure VIP global courier checkout module.",
-    results: "Elysian broke digital sales records in their Q1, capturing $4.5M in custom headless orders in the first 4 weeks, with pages loading in an astonishing 0.6 seconds worldwide.",
+  results: "Elysian broke digital sales records in their Q1, capturing EGP 4.5M in custom headless orders in the first 4 weeks, with pages loading in an astonishing 0.6 seconds worldwide.",
     image: "/assets/case-elysian.jpg"
   }
 ];
@@ -1258,15 +1258,15 @@ export const CASE_STUDIES_DATA_AR: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+342% إيرادات مباشرة",
       conversionRate: "4.12% معدل التحويل",
-      averageOrderValue: "متوسط السلة $285",
+  averageOrderValue: "متوسط السلة 285 جنيه",
       loadTimeReduction: "سرعة تحميل 0.9 ثانية"
     },
-    challenge: "تبيع أثير ملابس تقنية خارجية تفوق قيمتها 500 دولار. كان قالب شوبيفاي القديم الخاص بهم يبدو عادياً وبطيئاً (4.8 ثوانٍ)، وفشل في إيصال تفاصيل التجربة والهندسة العالية وراء أقمشتهم التقنية، مع تراجع في المبيعات.",
+  challenge: "تبيع أثير ملابس تقنية خارجية تفوق قيمتها 500 جنيه. كان قالب شوبيفاي القديم الخاص بهم يبدو عادياً وبطيئاً (4.8 ثوانٍ)، وفشل في إيصال تفاصيل التجربة والهندسة العالية وراء أقمشتهم التقنية، مع تراجع في المبيعات.",
     research: "من خلال دراسة سلوك عشاق المغامرات الأثرياء، وجدنا أن دافع الشراء الأول لديهم هو فحص المواد والأقمشة؛ حيث يحتاجون لفهم تفاصيل طبقات العزل الحراري، ومقاومة الماء، والمناعة والتحمل قبل الدفع.",
     designProcess: "استبدلنا تصميمهم الشبكي التقليدي بواجهة غير متماثلة وسلسة تجعل الملابس التقنية تحفاً معمارية. استخدمنا خطوطاً فاخرة مبسطة ومناطق تفاعلية تكشف عن مزايا الأقمشة الدقيقة بالتقريب البصري.",
     brandIdentity: "أعدنا صياغة هويتهم بإدخال لوحة ألوان تقنية قوية (الفحم النفاث، والكروم المطفي، والنعناع الفوسفوري المثير). وطبقنا خطوطاً واضحة مميزة للمستويات الهيكلية.",
     storeDevelopment: "طور فريقنا قالباً مخصصاً بالكامل على شوبيفاي بلس. وبنينا ميزة عرض الطبقات ثلاثية الأبعاد للسترات بشكل تفاعلي يتحدث أثناء تصفح المستخدم، مما يحافظ على سرعات عالية.",
-    results: "في غضون 90 يوماً فقط بعد الإطلاق، هبطت سرعة التحميل لـ 0.9 ثانية. وتموضع المتجر كمعيار فاخر محققاً قفزة مبيعات تاريخية بلغت +342% وبزيادة تقارب $100 في متوسط قيمة الطلب.",
+  results: "في غضون 90 يوماً فقط بعد الإطلاق، هبطت سرعة التحميل لـ 0.9 ثانية. وتموضع المتجر كمعيار فاخر محققاً قفزة مبيعات تاريخية بلغت +342% وبزيادة تقارب 100 جنيه في متوسط قيمة الطلب.",
     image: "/assets/case-aether.jpg"
   },
   {
@@ -1298,15 +1298,15 @@ export const CASE_STUDIES_DATA_AR: CaseStudy[] = [
     metrics: {
       revenueIncrease: "+412% معدل التحويل",
       conversionRate: "2.89% معدل تحويل ريادي",
-      averageOrderValue: "متوسط السلة $5,400",
+  averageOrderValue: "متوسط السلة 5,400 جنيه",
       loadTimeReduction: "تفاعل فوري خلال 0.62 ثانية"
     },
-    challenge: "بمنتجات متميزة يبلغ متوسط سعرها 5000 دولار، احتاجت إليسيان لتجربة ويب رقمية توازي هيبة صالات العرض السويسرية الحقيقية؛ حيث بدت خيارات التحميل والصفحات التقليدية متواضعة وبطيئة وسحبت من رمزية العلامة.",
+  challenge: "بمنتجات متميزة يبلغ متوسط سعرها 5000 جنيه، احتاجت إليسيان لتجربة ويب رقمية توازي هيبة صالات العرض السويسرية الحقيقية؛ حيث بدت خيارات التحميل والصفحات التقليدية متواضعة وبطيئة وسحبت من رمزية العلامة.",
     research: "مقتنو الساعات الفخمة يبحثون عن إثباتات الدقة والحرفة الفريدة؛ حيث يركزون بقوة على الحركة الداخلية والتفاصيل الميكانيكية المعقدة، وعليه يجب أن يعبر التصميم عن الدقة والبراعة المطلقة.",
     designProcess: "ابتكرنا مسار ويب مذهل وسلس، بحركات بارالاكس تفاعلية مذهلة، وخلفيات كربون سوداء داكنة مع خطوط رافية مثل Playfair Display تتداخل بسلاسة مع Space Grotesk الحديثة.",
     brandIdentity: "تناسق رائع للذهب الشامباني الدافئ مع خلفيات الأونيكس والمؤشرات العاجية الأنيقة، مع شعار مصقول خصيصاً للنقوش الميكانيكية للقطع.",
     storeDevelopment: "بنينا هيكلية هيدليس (منفصلة) مذهلة معتمدين على Hydrogen و React. وأدرجنا ميزة الدوران الدائري 360 درجة لتاج الساعة والمؤشرات، وضبطنا بوابات حجز VIP للخدمة والشحن الدولي المؤمن.",
-    results: "سجلت إليسيان مبيعات تاريخية كسر الأرقام القياسية بالربع الأول، مستحوذة على طلبات تزيد عن 4.5 ملايين دولار في أول 4 أسابيع بفضل صفحات تفتح فوراً خلال 0.6 ثانية عالمياً.",
+  results: "سجلت إليسيان مبيعات تاريخية كسر الأرقام القياسية بالربع الأول، مستحوذة على طلبات تزيد عن 4.5 ملايين جنيه في أول 4 أسابيع بفضل صفحات تفتح فوراً خلال 0.6 ثانية عالمياً.",
     image: "/assets/case-elysian.jpg"
   }
 ];

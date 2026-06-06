@@ -126,7 +126,7 @@ export default function About({ setCurrentPage, lang }: AboutProps) {
               {UI_TRANSLATIONS[lang].howBornTitle}
             </h2>
             <p className="text-sm md:text-base text-zinc-400 leading-relaxed font-normal">
-              {lang === "ar" ? UI_TRANSLATIONS[lang].howBornP1 : "Founded in 2021 by e-commerce designer Jean-Pierre Durand and system engineer Tariq Farooq, Ventaria Studio arose from a deep irritation with slow, generic themes holding back high-end DTC brands."}
+              {lang === "ar" ? UI_TRANSLATIONS[lang].howBornP1 : "Founded in 2021 by e-commerce designer Jean-Pierre Durand and system engineer Tariq Farooq, Ventaria arose from a deep irritation with slow, generic themes holding back high-end DTC brands."}
             </p>
             <p className="text-sm md:text-base text-zinc-400 leading-relaxed font-normal">
               {lang === "ar" ? UI_TRANSLATIONS[lang].howBornP2 : "We realized that premium brands were pouring massive capital into paid commercials to drive traffic to storefronts that looked like cheap duplicates of each other, loading sluggishly. Our absolute mandate is to combine world-class Swiss design aesthetics with lightning-fast custom coding."}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { formatCurrency } from "../utils/formatCurrency";
 import { ArrowRight, TrendingUp, Zap, ArrowUpRight, Award, Flame, Quote, Sparkles } from "lucide-react";
 import {
   UI_TRANSLATIONS,
@@ -65,12 +66,12 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
   const statMetrics = lang === "ar" ? [
     { value: "+280%", label: "متوسط تسريع وزيادة أداء المتجر", sub: "تحميل فوري في أقل من 1.2 ثانية تعاقدياً" },
     { value: "4.85%", label: "متوسط معدل تحويل الواجهات والمتاجر", sub: "متوسط التحويل للتجارة التقليدية بالخليج هو 1.1%" },
-    { value: "$48M+", label: "أرباح وعوائد عملائنا بعد الإطلاق", sub: "رصد وتوثيق دقيق عبر أنظمة تحليلات GA4" },
+    { value: formatCurrency("48M+", 'ar'), label: "أرباح وعوائد عملائنا بعد الإطلاق", sub: "رصد وتوثيق دقيق عبر أنظمة تحليلات GA4" },
     { value: "98+", label: "متوسط تقييم ومؤشر أداء Google Lighthouse", sub: "برمجة وبناء مخصص خفيف وبلا استنزاف ثواني" }
   ] : [
     { value: "+280%", label: "Average Shopify/Salla Web Speed Boost", sub: "Under 1.2s average load time" },
     { value: "4.85%", label: "Average Storefront Conversion Rate", sub: "GCC e-commerce average is 1.1%" },
-    { value: "$48M+", label: "Client Revenue Generated Since Launch", sub: "Tracking via certified GA4 pixels" },
+    { value: formatCurrency("48M+", 'en'), label: "Client Revenue Generated Since Launch", sub: "Tracking via certified GA4 pixels" },
     { value: "98+", label: "Average Google Lighthouse Audit Score", sub: "Zero-bloat customized programming" }
   ];
 
@@ -155,7 +156,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                 <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">{UI_TRANSLATIONS[lang].storesLaunched}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-bold tracking-tight text-white">$250M+</span>
+                <span className="text-2xl font-bold tracking-tight text-white">{formatCurrency("250M+", lang)}</span>
                 <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">{UI_TRANSLATIONS[lang].clientRev}</span>
               </div>
               <div className="flex flex-col">
@@ -221,7 +222,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                             <h4 className="text-sm font-bold text-white font-sans">{UI_TRANSLATIONS[lang].vanguardShopify.split(" ")[0]}</h4>
                           </div>
                         </div>
-                        <span className="text-xs font-mono text-text-secondary py-1 px-2 bg-black rounded">$499.00</span>
+                        <span className="text-xs font-mono text-text-secondary py-1 px-2 bg-black rounded">{formatCurrency(499, lang)}</span>
                       </div>
 
                       {/* Interactive buy module simulator */}
@@ -269,7 +270,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                       <div className="grid grid-cols-2 gap-4">
                         <div className="p-3 bg-white/5 border border-white/5 rounded-lg">
                           <span className="text-[10px] text-text-secondary font-mono uppercase block">{lang === "ar" ? "إجمالي المبيعات" : "Total Sales"}</span>
-                          <span className="text-lg font-bold font-mono text-white">$142,500.00</span>
+                          <span className="text-lg font-bold font-mono text-white">{formatCurrency(142500, lang)}</span>
                           <div className="text-[10px] text-accent font-mono mt-1 flex items-center">
                             <TrendingUp className="w-3 h-3 mr-1" /> +342%
                           </div>
@@ -417,7 +418,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                 <div className="space-y-2">
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-text-secondary uppercase">{UI_TRANSLATIONS[lang].avgOrderVal}</span>
-                    <span className="text-white font-bold">${aov}</span>
+                    <span className="text-white font-bold">{formatCurrency(aov, lang)}</span>
                   </div>
                   <input
                     type="range"
@@ -439,18 +440,18 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                 <div className="grid grid-cols-2 gap-4">
                   <div className="border border-white/5 p-4 rounded bg-white/5 text-left">
                     <span className="text-[10px] text-text-secondary font-mono block uppercase">{lang === "ar" ? "المدخول الحالي" : "Current Revenue"}</span>
-                    <span className="text-lg font-bold font-mono text-white opacity-80">${Math.round(currentMonthlyRevenue).toLocaleString()}/mo</span>
+                    <span className="text-lg font-bold font-mono text-white opacity-80">{formatCurrency(Math.round(currentMonthlyRevenue), lang)}/mo</span>
                   </div>
                   <div className="border border-accent/20 p-4 rounded bg-accent/5 text-left">
                     <span className="text-[10px] text-accent font-mono block uppercase">{UI_TRANSLATIONS[lang].projectedCr}</span>
-                    <span className="text-lg font-bold font-mono text-accent">${Math.round(targetMonthlyRevenue).toLocaleString()}/mo</span>
+                    <span className="text-lg font-bold font-mono text-accent">{formatCurrency(Math.round(targetMonthlyRevenue), lang)}/mo</span>
                   </div>
                 </div>
 
                 <div className="pt-4 border-t border-white/5 text-left">
                   <span className="text-xs text-text-secondary font-mono block uppercase mb-1">{UI_TRANSLATIONS[lang].estRevIncrease}</span>
                   <div className="flex items-baseline space-x-2">
-                    <span className="text-4xl lg:text-5xl font-extrabold text-accent font-mono">${Math.round(rawRevSpike).toLocaleString()}</span>
+                    <span className="text-4xl lg:text-5xl font-extrabold text-accent font-mono">{formatCurrency(Math.round(rawRevSpike), lang)}</span>
                     <span className="text-xs text-text-secondary font-mono">{lang === "ar" ? "ريال / شهرياً إضافي" : "/ Month Extra"}</span>
                   </div>
                 </div>
@@ -460,7 +461,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
                 <TrendingUp className="w-8 h-8 text-accent shrink-0" />
                 <div className="text-left">
                   <h4 className="text-sm font-bold text-white font-mono">{UI_TRANSLATIONS[lang].annualRevIncrease}</h4>
-                  <p className="text-lg font-extrabold text-accent font-mono">+${Math.round(annualRevSpike).toLocaleString()}</p>
+                  <p className="text-lg font-extrabold text-accent font-mono">+{formatCurrency(Math.round(annualRevSpike), lang)}</p>
                 </div>
               </div>
 
@@ -805,7 +806,7 @@ export default function Home({ setCurrentPage, setSelectedServiceId, setSelected
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-accent/10 blur-3xl" />
           
           <div className="relative z-10 space-y-6 max-w-2xl mx-auto">
-            <span className="text-xs font-mono tracking-[0.3em] text-accent uppercase font-bold block">{lang === "ar" ? "ارتق بمتجرك مع فينتاريا اليوم" : "ENGAGE VENTARIA STUDIO TODAY"}</span>
+            <span className="text-xs font-mono tracking-[0.3em] text-accent uppercase font-bold block">{lang === "ar" ? "ارتق بمتجرك مع فينتاريا اليوم" : "ENGAGE VENTARIA TODAY"}</span>
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
               {lang === "ar" ? "هل أنت مستعد لمضاعفة أرباحك؟" : "Ready to double your store sales?"}
             </h2>

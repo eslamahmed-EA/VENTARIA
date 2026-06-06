@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Check, X, Shield, Clock, ArrowRight } from "lucide-react";
 import { PRICING_PLANS_EN, PRICING_PLANS_AR, UI_TRANSLATIONS } from "../translations";
+import { formatCurrency } from "../utils/formatCurrency";
 
 interface PricingProps {
   setCurrentPage: (page: string) => void;
@@ -70,7 +71,7 @@ export default function Pricing({ setCurrentPage, lang }: PricingProps) {
                   {/* Pricing metrics */}
                   <div className="py-4 border-y border-zinc-800">
                     <div className={`flex items-baseline space-x-1.5 ${spaceXRev}`}>
-                      <span className="text-4xl lg:text-5xl font-extrabold text-white font-mono">{plan.price}</span>
+                      <span className="text-4xl lg:text-5xl font-extrabold text-white font-mono">{typeof plan.price === 'number' ? formatCurrency(plan.price, lang) : plan.price.includes('EGP') || plan.price.includes('جنيه') ? plan.price : formatCurrency(plan.price, lang)}</span>
                       <span className="text-xs text-zinc-400 uppercase tracking-widest font-mono font-sans mt-1">/{lang === "ar" ? "سعر مسطح ثابت" : " PROJECT FLAT"}</span>
                     </div>
                     <div className={`flex items-center space-x-2 mt-2 text-xs font-mono text-zinc-400 ${spaceXRev}`}>

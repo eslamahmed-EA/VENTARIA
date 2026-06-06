@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight, TrendingUp, Filter, Compass } from "lucide-react";
 import { PORTFOLIO_DATA_EN, PORTFOLIO_DATA_AR, UI_TRANSLATIONS } from "../translations";
+import { formatCurrency } from "../utils/formatCurrency";
 
 interface PortfolioProps {
   setCurrentPage: (page: string) => void;
@@ -57,8 +58,8 @@ export default function Portfolio({ setCurrentPage, setSelectedCaseStudyId, lang
               <span className="w-4 h-4 rounded-full bg-white/20 inline-block" />
             </div>
           </div>
-          <div className="flex justify-between items-center text-xs font-mono border-t border-white/5 pt-3">
-            <span>AOV: $285</span>
+            <div className="flex justify-between items-center text-xs font-mono border-t border-white/5 pt-3">
+            <span>AOV: {formatCurrency(285, lang)}</span>
             <span className="text-accent underline font-bold">ADD TO CART</span>
           </div>
         </div>
@@ -121,7 +122,7 @@ export default function Portfolio({ setCurrentPage, setSelectedCaseStudyId, lang
             </div>
           </div>
           <div className="flex justify-between text-xs font-mono leading-none">
-            <span className="text-white">AOV: $5,400</span>
+            <span className="text-white">AOV: {formatCurrency(5400, lang)}</span>
             <span className="text-accent underline font-bold">VIEW GALLERY</span>
           </div>
         </div>

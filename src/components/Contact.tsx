@@ -167,9 +167,9 @@ export default function Contact({ lang }: ContactProps) {
                       onChange={handleFormInputChange}
                       className={`w-full bg-zinc-950 border border-zinc-800 rounded-lg h-12 px-4 text-sm focus:border-accent focus:outline-none text-zinc-300 font-mono uppercase ${lang === "ar" ? "text-right" : "text-left"}`}
                     >
-                      <option value="4500">{lang === "ar" ? "إعداد ونمو أساسي مسطح ($4,500 - $6,000)" : "Starter Setup Flat ($4,500 - $6,000)"}</option>
-                      <option value="8500">{lang === "ar" ? "إطار نموذج مضاعفة التحويلات ($8,500 - $12,000)" : "Growth Engine Framework Flat ($8,500 - $12,000)"}</option>
-                      <option value="16000">{lang === "ar" ? "برمجة وبناء ميكرو-عقد مخصص ($16,000+)" : "Enterprise Headless Bespoke Flat ($16,000+)"}</option>
+                      <option value="4500">{lang === "ar" ? "إعداد ونمو أساسي مسطح (4,500 - 6,000 جنيه)" : "Starter Setup Flat (EGP 4,500 - EGP 6,000)"}</option>
+                      <option value="8500">{lang === "ar" ? "إطار نموذج مضاعفة التحويلات (8,500 - 12,000 جنيه)" : "Growth Engine Framework Flat (EGP 8,500 - EGP 12,000)"}</option>
+                      <option value="16000">{lang === "ar" ? "برمجة وبناء ميكرو-عقد مخصص (16,000+ جنيه)" : "Enterprise Headless Bespoke Flat (EGP 16,000+)"}</option>
                     </select>
                   </div>
 

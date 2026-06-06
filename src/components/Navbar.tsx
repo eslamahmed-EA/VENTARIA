@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { UI_TRANSLATIONS } from "../translations";
-import logo from "../assets/logo.png";
 
 interface NavbarProps {
   currentPage: string;
@@ -12,6 +11,7 @@ interface NavbarProps {
 
 export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const logoUrl = new URL('../../assets/ventaria-logo.png', import.meta.url).href;
 
   const navLinks = lang === "ar" ? [
     { label: "الرئيسية", value: "home" },
@@ -49,7 +49,7 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             className="flex items-center gap-3 text-left focus:outline-none cursor-pointer group"
             id="nav-logo-btn"
           >
-            <img src={logo} alt={UI_TRANSLATIONS[lang].brandName + " logo"} className="w-8 h-8 object-contain" />
+            <img src={logoUrl} alt="Ventaria logo" className="w-6 h-6 object-contain transform rotate-45 transition-transform duration-500 group-hover:rotate-180" />
             <span className="text-2xl font-extrabold tracking-tighter text-white">
               {UI_TRANSLATIONS[lang].brandName}
             </span>
