@@ -36,6 +36,7 @@ import {
 import { SERVICES, PORTFOLIO, TESTIMONIALS, FAQS, SAUDI_PRESETS } from './data';
 import { CalculatorInputs, CalculatorOutputs, Recommendation } from './types';
 import PortfolioShowcase from './components/PortfolioShowcase';
+import FreeTools from './components/FreeTools';
 
 // Multi-color beautiful Vector Logo for Ventaria (Majestic Bird + Waterdrop)
 function VentariaLogo({ className = "w-9 h-9" }: { className?: string }) {
@@ -80,6 +81,36 @@ function IconComponent({ name, className }: { name: string; className: string })
 export default function App() {
   // Mobile menu
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Active page state: 'home' | 'tools'
+  const [activePage, setActivePage] = useState<'home' | 'tools'>('home');
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash === '#tools') {
+        setActivePage('tools');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '' || hash.startsWith('#')) {
+        // If it is a home section hash
+        if (hash && hash !== '#tools') {
+          setActivePage('home');
+          setTimeout(() => {
+            const element = document.querySelector(hash);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        } else if (!hash) {
+          setActivePage('home');
+        }
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   // Active showcase mockup tab
   const [activeMockupTab, setActiveMockupTab] = useState<'corporate' | 'salla' | 'dashboard'>('corporate');
@@ -354,9 +385,21 @@ export default function App() {
     if (formServiceId) {
       setSelectedServiceForForm(formServiceId);
     }
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (activePage === 'tools') {
+      setActivePage('home');
+      window.location.hash = id;
+      setTimeout(() => {
+        const element = document.querySelector(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.location.hash = id;
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -391,6 +434,10 @@ export default function App() {
               <a href="#calculator" onClick={(e) => { e.preventDefault(); navigateToSection('#calculator'); }} className="hover:text-primary transition-colors flex items-center gap-1">
                 حاسبة الأرباح
                 <span className="inline-block bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">مجاناً</span>
+              </a>
+              <a href="#tools" onClick={(e) => { e.preventDefault(); setActivePage('tools'); window.location.hash = '#tools'; }} className={`${activePage === 'tools' ? 'text-primary font-bold' : 'hover:text-primary'} transition-colors flex items-center gap-1`}>
+                الأدوات المجانية
+                <span className="inline-block bg-emerald-500 text-white text-[9px] px-1.5 py-0.5 rounded-full font-black">جديد</span>
               </a>
               <a href="#faqs" onClick={(e) => { e.preventDefault(); navigateToSection('#faqs'); }} className="hover:text-primary transition-colors">الأسئلة الشائعة</a>
             </nav>
@@ -461,6 +508,14 @@ export default function App() {
                 <span className="bg-primary/15 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">مجاناً</span>
               </a>
               <a 
+                href="#tools" 
+                onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); setActivePage('tools'); window.location.hash = '#tools'; }} 
+                className="py-2 text-[15px] font-bold text-[#00bc7d] border-b border-zinc-100 flex items-center justify-between hover:text-primary"
+              >
+                <span>الأدوات المجانية</span>
+                <span className="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full font-bold">جديد</span>
+              </a>
+              <a 
                 href="#faqs" 
                 onClick={(e) => { e.preventDefault(); navigateToSection('#faqs'); }} 
                 className="py-2 text-[15px] font-bold text-zinc-800 border-b border-zinc-100 hover:text-primary"
@@ -492,8 +547,10 @@ export default function App() {
       {/* SPACE FILLER FOR FIXED NAVBAR */}
       <div className="h-20"></div>
 
-      {/* HERO SECTION */}
-      <section id="hero" className="relative py-12 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-zinc-50/70 via-white to-white">
+      {activePage === 'home' ? (
+        <>
+          {/* HERO SECTION */}
+          <section id="hero" className="relative py-12 md:py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-zinc-50/70 via-white to-white">
         
         {/* Subtle decorative background spots */}
         <div id="hero-spot-1" className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl pointer-events-none"></div>
@@ -1756,6 +1813,18 @@ export default function App() {
           </div>
         </div>
       </section>
+        </>
+      ) : (
+        <FreeTools 
+          onNavigateHome={() => {
+            setActivePage('home');
+            window.location.hash = '';
+          }}
+          onContactClick={() => {
+            navigateToSection('#contact');
+          }}
+        />
+      )}
 
       {/* FOOTER SECTION */}
       <footer id="ventaria-footer" className="bg-[#111111] text-zinc-400 pt-16 pb-8 border-t border-zinc-800 text-right">

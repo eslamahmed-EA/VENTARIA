@@ -82,8 +82,26 @@ export default function PortfolioShowcase({
   };
 
   return (
-    <div className="space-y-20">
+    <div className="space-y-12">
       
+      {/* 💡 Information Banner on Portfolio Status */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-emerald-50/40 border border-[#00bc7d]/20 rounded-2xl p-5 sm:p-6 text-right max-w-7xl mx-auto flex sm:flex-row flex-col items-start sm:items-center gap-4 shadow-sm"
+        id="portfolio-disclaimer-banner"
+      >
+        <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+          <Sparkles className="w-5.5 h-5.5 text-primary" />
+        </div>
+        <div className="space-y-1">
+          <h4 className="font-display font-extrabold text-xs sm:text-sm text-zinc-900 leading-snug">هل ترغب في امتلاك متجر أو موقع إلكتروني فاخر يضاهي هذه الأعمال؟</h4>
+          <p className="text-zinc-600 text-[10px] sm:text-xs leading-relaxed">
+            جميع ما تراه بالمعرض هي نماذج حقيقية وتصاميم صقلناها لأعمال سابقة؛ ونحن مجهزون بالكامل في <strong className="text-zinc-900 font-extrabold">فينتاريا</strong> لتصميم وبرمجة مشروع خاص مماثل ومخصص لك تماماً وفق تطلعاتك!
+          </p>
+        </div>
+      </motion.div>
+
       {/* 1. FEATURED PROJECT SECTION (Awwwards / Webflow Agency Style) */}
       {featuredProject && (
         <section id="featured-project-showcase" className="relative bg-zinc-950 text-white rounded-3xl p-6 sm:p-10 lg:p-16 overflow-hidden border border-zinc-800 shadow-2xl">
@@ -316,10 +334,15 @@ export default function PortfolioShowcase({
                   ))}
                 </div>
 
+                {/* Replica Callout Notice */}
+                <div className="bg-emerald-50/20 border border-[#00bc7d]/15 rounded-xl px-3 py-2 text-center text-[10px] text-zinc-650 font-bold mt-2">
+                  💡 تواصل معنا لطلب متجر/موقع ومثيل له تماماً
+                </div>
+
                 {/* Case Study Entry Click link */}
                 <button 
                   onClick={() => handleOpenDetails(item)}
-                  className="w-full mt-4 text-center bg-zinc-50 hover:bg-zinc-100 text-zinc-800 text-xs font-black py-2.5 rounded-xl transition-all duration-200 border border-zinc-200/50 flex items-center justify-center gap-1.5"
+                  className="w-full mt-3 text-center bg-zinc-50 hover:bg-zinc-100 text-zinc-800 text-xs font-black py-2.5 rounded-xl transition-all duration-200 border border-zinc-200/50 flex items-center justify-center gap-1.5"
                 >
                   استعرض الحل والمشكلة والسرعة
                   <ArrowUpRight className="w-3.5 h-3.5 text-zinc-500" />
