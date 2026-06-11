@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "Alexandria", system-ui, sans-serif;
+  --font-display: "Alexandria", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --color-primary: #00bc7d;
+  --color-primary-hover: #009e68;
+  --color-secondary: #111111;
+  --color-brand-bg: #ffffff;
+  --color-brand-text: #111111;
+  --color-brand-card: #f8f9fa;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbars and styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
