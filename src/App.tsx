@@ -37,6 +37,7 @@ import { SERVICES, PORTFOLIO, TESTIMONIALS, FAQS, SAUDI_PRESETS } from './data';
 import { CalculatorInputs, CalculatorOutputs, Recommendation } from './types';
 import PortfolioShowcase from './components/PortfolioShowcase';
 import FreeTools from './components/FreeTools';
+import logo from './Photo/logo.png';
 
 // Multi-color beautiful Vector Logo for Ventaria (Majestic Bird + Waterdrop)
 function VentariaLogo({ className = "w-9 h-9" }: { className?: string }) {
@@ -418,7 +419,7 @@ export default function App() {
               className="flex items-center gap-3 group"
               id="brand-logo-link"
             >
-              <VentariaLogo className="w-10 h-10 text-primary" />
+              <img src={logo} alt="Ventaria Logo" className="w-10 h-10 object-contain" />
               <div className="flex flex-col items-start leading-none" id="brand-text">
                 <span className="font-display font-extrabold text-xl tracking-tight text-[#111111] group-hover:text-primary transition-colors">Ventaria</span>
                 <span className="text-[10px] text-zinc-400 font-medium tracking-widest mt-1">فينتاريا الرقمية</span>
