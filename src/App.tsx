@@ -1789,7 +1789,7 @@ export default function App() {
             {/* Column 1: Brand Info */}
             <div className="space-y-4" id="footer-col-1">
               <div className="flex items-center gap-3">
-                <VentariaLogo className="w-8 h-8 text-primary" />
+                <img src={logo} alt="Ventaria Logo" className="w-8 h-8 object-contain" />
                 <span className="font-display font-extrabold text-xl text-white">Ventaria</span>
               </div>
               <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
