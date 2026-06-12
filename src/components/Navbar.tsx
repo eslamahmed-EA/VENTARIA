@@ -20,8 +20,7 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
     { label: "دراسات الحالة", value: "case-studies" },
     { label: "من نحن", value: "about" },
     { label: "الأسعار", value: "pricing" },
-    { label: "المدونة", value: "blog" },
-    { label: "تواصل معنا", value: "contact" }
+    { label: "المدونة", value: "blog" }
   ] : [
     { label: "Home", value: "home" },
     { label: "Services", value: "services" },
@@ -29,8 +28,7 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
     { label: "Case Studies", value: "case-studies" },
     { label: "About", value: "about" },
     { label: "Pricing", value: "pricing" },
-    { label: "Blog", value: "blog" },
-    { label: "Contact", value: "contact" }
+    { label: "Blog", value: "blog" }
   ];
 
   const handleNavClick = (value: string) => {
@@ -75,6 +73,14 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
                 </button>
               );
             })}
+            {/* Contact Button */}
+            <button
+              onClick={() => handleNavClick("contact")}
+              className="px-4 py-2 bg-accent hover:bg-accent-hover text-black font-bold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-105 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
+              id="nav-contact-btn"
+            >
+              {lang === "ar" ? "تواصل معنا" : "Contact"}
+            </button>
           </div>
 
           {/* Desktop Right CTA */}
