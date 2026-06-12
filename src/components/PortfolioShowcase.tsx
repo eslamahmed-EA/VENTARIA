@@ -335,8 +335,15 @@ export default function PortfolioShowcase({
                 </div>
 
                 {/* Replica Callout Notice */}
-                <div className="bg-emerald-50/20 border border-[#00bc7d]/15 rounded-xl px-3 py-2 text-center text-[10px] text-zinc-650 font-bold mt-2">
-                  💡 تواصل معنا لطلب متجر/موقع ومثيل له تماماً
+                <div className="mt-2">
+                  <button
+                    onClick={() => onContactTrigger && onContactTrigger(item.id)}
+                    className="w-full text-center bg-primary hover:bg-[#009e68] text-white text-xs font-black py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
+                    aria-label="تواصل معنا"
+                  >
+                    تواصل معنا
+                    <ArrowUpRight className="w-3.5 h-3.5 text-zinc-950" />
+                  </button>
                 </div>
 
                 {/* Case Study Entry Click link */}
