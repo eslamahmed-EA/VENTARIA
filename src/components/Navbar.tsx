@@ -75,9 +75,12 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             })}
             {/* Contact Button */}
             <button
+              type="button"
               onClick={() => handleNavClick("contact")}
               className="px-4 py-2 bg-accent hover:bg-accent-hover text-black font-bold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-105 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
               id="nav-contact-btn"
+              aria-label={lang === "ar" ? "تواصل معنا" : "Contact"}
+              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
               {lang === "ar" ? "تواصل معنا" : "Contact"}
             </button>
@@ -96,9 +99,12 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
               {lang === "en" ? "العربية" : "English"}
             </button>
             <button
+              type="button"
               onClick={() => handleNavClick("contact")}
               className="px-6 py-2.5 bg-accent hover:bg-accent-hover text-black font-extrabold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-102 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
               id="desktop-cta-btn"
+              aria-label={UI_TRANSLATIONS[lang].bookCall}
+              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
               {UI_TRANSLATIONS[lang].bookCall}
             </button>
