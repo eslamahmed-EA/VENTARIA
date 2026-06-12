@@ -1,518 +1,524 @@
-import { ServiceDetail, CaseStudy, PortfolioItem, PricingPlan, Testimonial, BlogPost, FAQItem } from "./types";
+import { ServiceItem, PortfolioItem, TestimonialItem, FAQItem } from './types';
+import { PORTFOLIO_IMAGES, TESTIMONIAL_AVATARS } from './images';
 
-export const SERVICES_DATA: ServiceDetail[] = [
+export const SERVICES: ServiceItem[] = [
   {
-    id: "shopify-development",
-    title: "Shopify Store Development",
-    shortDescription: "Custom, enterprise-grade Shopify & Shopify Plus architectures engineered for high volume, unmatched speed, and seamless integrations.",
-    fullDescription: "We build custom-coded, high-performance Shopify storefronts that combine gorgeous aesthetics with enterprise-grade stability. No slow templates, no bloated apps—just custom-tailored solutions designed to convert cold traffic into loyal brand advocates.",
-    benefits: [
-      "Ultra-fast loading times (under 1.5s mobile average) scoring 95+ on Lighthouse.",
-      "Completely bespoke headless or custom Liquid layouts suited perfectly to your brand.",
-      "Seamless integrations with ERPs, advanced inventory management, CRM, and custom APIs.",
-      "Fully optimized mobile-first checkout flows that drastically reduce cart abandonment.",
-      "Complete autonomy to manage content easily with custom drag-and-drop metaobject blocks."
-    ],
-    process: [
-      { step: "01", title: "Information Architecture", description: "Analyzing your user journeys and mapping conversion pathways before writing code." },
-      { step: "02", title: "UI/UX High-Fidelity Design", description: "Crafting a bespoke digital interface that elevates your brand and streamlines the path-to-purchase." },
-      { step: "03", title: "Custom Development", description: "Bespoke Clean Liquid or Headless (Hydrogen/Oxygen) coding following elite standards." },
-      { step: "04", title: "Optimization & QA", description: "Rigorous testing on 15+ device-screen-browser combinations with pixel-perfect refinement." }
-    ],
-    deliverables: [
-      "Custom Shopify/Shopify Plus Live Storefront",
-      "Seamless Custom Pixel & GA4 Setup",
-      "Tailored Metaobjects & Custom Fields Customizer",
-      "Product Customization Flow Architecture",
-      "1 Month of Dedicated Launch Hypercare & Support"
-    ],
-    faq: [
-      { question: "Do you design custom elements or use standard templates?", answer: "We never use pre-made themes. Every Shopify storefront we build is designed completely custom in Figma from a blank canvas and developed from scratch in ultra-clean Liquid theme code or Headless React." },
-      { question: "Can you migrate our current store from WooCommerce, Magento, or custom code?", answer: "Yes, we specialize in high-stakes migrations. We securely move customer records, historical orders, product catalogs, and collections while preserving your SEO ranking and URL structures." }
-    ]
-  },
-  {
-    id: "salla-development",
-    title: "Salla Store Development",
-    shortDescription: "Unlocking the GCC market with high-converting, premium Salla custom themes tailored to regional shopper behaviors.",
-    fullDescription: "Salla is the powerhouse of e-commerce in the Gulf region. We push Salla to its absolute design limits using their advanced Salla Developer platform (Twilight engine) to construct world-class storefronts that drive massive regional engagement.",
-    benefits: [
-      "Bespoke Salla Twilight layouts configured specifically for premium Arabic & English dual-language markets.",
-      "Optimized native integrations with local GCC payment gateways like Mada, Apple Pay, and STC Pay.",
-      "Custom Javascript & CSS injects to transcend Salla theme limitations.",
-      "Full localization mapping, currency routing, and hyper-reliable local shipping rules integration."
-    ],
-    process: [
-      { step: "01", title: "Localization Alignment", description: "Designing typography and layouts matching both Arabic (RTL) and English (LTR) visual structures." },
-      { step: "02", title: "Tailored Prototype", description: "Designing modern mockups adapted perfectly to local GCC luxury consumer demographics." },
-      { step: "03", title: "Twilight Theme Coding", description: "Writing professional code on the Salla Developer Platform with custom blocks." },
-      { step: "04", title: "Integration & Launch", description: "Configuring hyper-local warehouses, Mada payment endpoints, and regional logistics." }
-    ],
-    deliverables: [
-      "Custom Salla Twilight Theme Codebase",
-      "Perfect Dual-Language Localization Integration",
-      "Mada & Apple Pay Optimization Layouts",
-      "Wholesale & Loyalty Program Integrations",
-      "Admin Dashboard Training & Operations Blueprint"
-    ],
-    faq: [
-      { question: "What is the Salla Twilight engine, and how does it help?", answer: "Twilight is Salla's developer ecosystem that lets us write custom code. Instead of sticking inside standard Salla templates, we can create custom layouts, interactive widgets, and brand experiences that look completely distinctive, like a bespoke platform." },
-      { question: "Can we support both Arabic and English perfectly?", answer: "Absolutely. We specialize in pixel-perfect dual typography, ensuring that RTL (Right-to-Left) and LTR layout structures look exceptionally balanced, utilizing custom GCC-optimized fonts." }
-    ]
-  },
-  {
-    id: "zid-development",
-    title: "Zid Store Development",
-    shortDescription: "Enterprise-level Zid store setups tailored for massive scale and streamlined retail operations throughout Saudi Arabia.",
-    fullDescription: "Zid is a premier choice for major retail brands transitioning to online powerhouses. We leverage Zid’s API and developer SDKs to deliver fully responsive, highly-branded Saudi e-commerce spaces built for high transactional volume.",
-    benefits: [
-      "Custom Zid theme designs supporting comprehensive retail omnichannel systems.",
-      "GCC payment gateway configurations coupled with multi-branch regional inventory synchronization.",
-      "Fluid local logistics integrations & automated billing architectures custom-built.",
-      "Enhanced local SEO architectures configured directly to target high-intent regional keywords."
-    ],
-    process: [
-      { step: "01", title: "Operational Audit", description: "Analyzing brick-and-mortar or multi-warehouse configurations to map product flows." },
-      { step: "02", title: "Brand Customization", description: "Styling layouts that match regional high-fashion and enterprise retail expectations." },
-      { step: "03", title: "Theme Engineering", description: "Developing custom modules using clean coding frameworks mapped to the Zid core." },
-      { step: "04", title: "Inventory & POS Launch", description: "Enabling direct API connections into physical retail stores and regional delivery hubs." }
-    ],
-    deliverables: [
-      "Enterprise Custom Zid Store Environment",
-      "Multi-Branch Stock Synchronization Settings",
-      "Custom GCC Logistics & Courier Integrations",
-      "Advanced Arabized Typography Suite Integration",
-      "Dynamic Promotional & Upsell Modules Custom Layout"
-    ],
-    faq: [
-      { question: "Why choose Zid over other platforms?", answer: "Zid offers a highly optimized, localized retail management system perfectly aligned with Saudi business regulations, VAT requirements, and retail networks, making it superb for brick-and-mortar brands scaling online." }
-    ]
-  },
-  {
-    id: "branding",
-    title: "Branding & Visual Identity",
-    shortDescription: "Forging elite brand identity guidelines, visual systems, and luxury standards that stand proudly on an international stage.",
-    fullDescription: "True value lies in brand equity. We design iconic visual systems that instantly communicate premium quality, authority, and status. From custom logomarks to strict, comprehensive brand manuals, we convert business missions into visual poetry.",
-    benefits: [
-      "Bespoke professional logo marks designed with mathematical geometry and elegant balance.",
-      "Complete, scalable typography systems and intentional color boards that command premium pricing.",
-      "Thorough style templates for digital, retail, social media, and internal communications.",
-      "Direct positioning guides that separate your e-commerce brand from sea of competitors."
-    ],
-    process: [
-      { step: "01", title: "Positioning & Strategy", description: "Deep competitor audting, clarifying core messaging, values, and distinct target customer avatars." },
-      { step: "02", title: "Visual Exploration", description: "Presenting diverse conceptual directions, color theories, and geometry grids." },
-      { step: "03", title: "Refinement", description: "Perfecting the chosen route down to a single pixel and kerning block." },
-      { step: "04", title: "Brand Guidelines Guide", description: "Assembling a massive, highly detailed digital brand book detailing every system rule." }
-    ],
-    deliverables: [
-      "Primary, Secondary, and Monogram Custom Logomarks",
-      "Official Interactive Digital Brand Book (PDF & Figma)",
-      "Strict Font Pairings & Custom Palette Tokens",
-      "E-commerce Grid Layouts and Social Media Assets Kit",
-      "Creative Art Direction Guide for future photography sessions"
-    ],
-    faq: [
-      { question: "What is included in the brand guide?", answer: "It includes logo usage rules (spacing, forbidden alignments), typography scales, official brand color palettes (HEX, RGB, CMYK, Pantone), stationary design, social-media layouts, and creative photographic templates defining the lighting and mood of future product shoots." }
-    ]
-  },
-  {
-    id: "packaging-design",
-    title: "Packaging & Unboxing Experience",
-    shortDescription: "Designing tactile, high-end packaging blueprints that make the physical opening act a core customer retention channel.",
-    fullDescription: "For modern e-commerce, the product delivery is your only certain physical touchpoint with your customer. We craft luxurious, highly engineered custom packaging blueprints that elevate the perceived product value instantly, turning unboxing into an absolute ceremony.",
-    benefits: [
-      "Custom structural blueprinting and die-line layout files ready for direct manufacturer printing.",
-      "Focus on sustainable, premium luxury materials, unique paper weights, foils, and premium embossing.",
-      "3D volumetric mockup generation allowing you to visualize layouts from every possible angle.",
-      "Engineered interior compartments to keep items secure while presenting them with stunning visual staging."
-    ],
-    process: [
-      { step: "01", title: "Structural Conceptualization", description: "Mapping volumetric requirements and selecting custom materials (uncoated paper, rigid boards, gold hot foil)." },
-      { step: "02", title: "Vector Die-line Design", description: "Crafting microscopic-precision flat layouts conforming to international printing machinery guidelines." },
-      { step: "03", title: "Interactive 3D Renderings", description: "Building realistic 3D models with true texture, lighting, and shadow reflections." },
-      { step: "04", title: "Production Consultation", description: "Providing detailed manufacturing instructions, material sheets, and coordinating directly with factory reps." }
-    ],
-    deliverables: [
-      "Production-Ready Custom Die-Line Vector files (AI, PDF, DXF)",
-      "Photorealistic Custom 3D Volumetric Package Renders",
-      "Direct Manufacturer Material Tech Specification Sheet",
-      "Interior Insert Staging Framework Blueprints",
-      "Supplier Sourcing & Cost Optimization Cheat Sheet"
-    ],
-    faq: [
-      { question: "Do you supply the packaging physically?", answer: "We serve as the design architects, engineers, and brand directors. We deliver industrial-grade files and introduce you directly to elite global and local premium-grade suppliers and factories that execute the prints to perfection." }
-    ]
-  },
-  {
-    id: "cro",
-    title: "Conversion Rate Optimization (CRO)",
-    shortDescription: "Scientific, data-guided storefront improvements that permanently double or triple your revenue from existing traffic flow.",
-    fullDescription: "Stop pouring capital into paid ads that dump users into a leaky bucket. Our CRO service is an ongoing scientific engine that leverages quantitative behavioral recordings, heatmaps, and psychological visual triggers to maximize user payout.",
-    benefits: [
-      "Deep-dive session replay auditing, custom funnel tracking, and drop-off user isolation.",
-      "Fast layout tweaks (A/B testing) that eliminate friction and boost purchase security.",
-      "Data-backed checkout streamlining, micro-interaction modifications, and high-impact trust signals.",
-      "Drastic reductions in cart abandonment rates and boosts in average order value (AOV)."
-    ],
-    process: [
-      { step: "01", title: "Data Harvesting", description: "Installing heatmaps, session recording software, and setting advanced custom conversion trackers." },
-      { step: "02", title: "Friction Point Isolation", description: "Finding the exact form fields, slow pages, or visual layouts where clients get confused." },
-      { step: "03", title: "A/B Testing Framework", description: "Deploying rapid parallel landing tests to verify exactly which design generates more revenue." },
-      { step: "04", title: "Systemic Implementation", description: "Hardcoding the winning variants directly into your Shopify/Salla/Zid theme." }
-    ],
-    deliverables: [
-      "Comprehensive Store Performance & UX Audit PDF",
-      "A/B Testing Implementation Blueprint & Analytics Setup",
-      "Optimized Interactive Checkout & Product Page Layouts",
-      "Micro-copy Adjustments and Value Proposition Matrices",
-      "AOV Boosting Custom Bundling & Upsell Flow Designs"
-    ],
-    faq: [
-      { question: "How long does it take to see positive results?", answer: "Initial insights. and quick-win layout optimizations are implemented in week 2, which typically trigger 15-30% conversion upgrades. Comprehensive A/B tests deliver rock-solid, mathematically proven revenue increases inside 30 to 45 days." }
-    ]
-  },
-  {
-    id: "ui-ux-design",
-    title: "UI/UX & Interactive Design",
-    shortDescription: "Ultra-sleek, minimalist web layouts engineered for modern aesthetic appeal, fluid motion, and flawless accessibility.",
-    fullDescription: "Before a single line of code is written, our state-of-the-art UI/UX laboratory styles responsive, custom-fitted digital assets. We design with absolute layout discipline, gorgeous negative space, micro-animations, and striking visual balance.",
-    benefits: [
-      "Modern, futuristic grids drawing heavy inspiration from world-class high-end tech and luxury brands.",
-      "Complete design components library matching international accessibility rules (WCAGAA).",
-      "Interactive high-fidelity prototypes built in Figma demonstrating transitions, slideouts, and hover actions.",
-      "Tailored layout patterns that keep users engaged longer, reinforcing brand status."
-    ],
-    process: [
-      { step: "01", title: "Moodboard Direction", description: "Curating luxury aesthetic themes, font weights, and dark/light dynamic styling guidelines." },
-      { step: "02", title: "Wireframe Mapping", description: "Mapping page flows and content priorities with clean structural mockups." },
-      { step: "03", title: "High-Fidelity Rendering", description: "Flesh-out design prototypes looking exactly like the final, premium internet product." },
-      { step: "04", title: "Developer Handoff", description: "Detailed styling guides, auto-layouts, custom measurements, and structural code markers ready for development." }
-    ],
-    deliverables: [
-      "Interactive High-Fidelity Figma Prototypes (Mobile + Desktop)",
-      "Complete Custom Design Tokens & UI Kit Library",
-      "High-Resolution Custom Icon Packages & vector graphics",
-      "Dynamic Page Flow Specifications & Interactive blueprints"
-    ],
-    faq: [
-      { question: "What software do you use for design?", answer: "Our layout laboratory operates entirely inside the highest tier of Figma, using native enterprise libraries, auto-layout 4.0 systems, custom variables, and components ready to scale infinitely." }
-    ]
-  }
-];
-
-export const CASE_STUDIES_DATA: CaseStudy[] = [
-  {
-    id: "aether-apparel",
-    title: "AETHER Apparel",
-    client: "Aether Lifestyle Ltd",
-    industry: "High-End Technical Fashion",
-    platform: "Shopify Plus (Custom Coded Developer Liquid Store)",
-    metrics: {
-      revenueIncrease: "+342% Direct Revenue",
-      conversionRate: "4.12% CR (Up from 1.2%)",
-  averageOrderValue: "EGP 285 Average Ticket",
-      loadTimeReduction: "0.9s Mobile Speed"
-    },
-  challenge: "Aether sells outer-garment technical wear costing upwards of EGP 500. Their old Shopify template felt generic, loaded slow (4.8 seconds), failed to communicate the extreme engineering behind their technical fabrics, and had massive drop-offs on product pages.",
-    research: "By researching high-wealth outdoor enthusiasts, we discovered that their primary purchase driver is materials validation. They need to understand the structural layers, thermal metrics, waterproof seals, and durability specs before pulling their cards.",
-    designProcess: "We replaced their grid layout with an immersive, asymmetric, luxury interactive space that treats technical wear like architectural feats. We utilized minimalist typography paired with interactive hotspots highlighting technical fabric close-ups.",
-    brandIdentity: "We refreshed their brand guidelines by introducing a stark technical color palette (Jet Charcoal, Matte Chromium, and a stark Neon Mint accent). High-contrast typography featuring bespoke, elegant sans-serif scales was enforced.",
-    storeDevelopment: "Our technical team developed a custom theme from scratch on Shopify Plus. We custom-coded a 3D layering diagram of their jackets that dynamically updates as the user scroll, built with vanilla JS and optimized SVG layers to keep speeds exceptionally fast.",
-  results: "Within ninety days post-launch, mobile page speeds plummeted to 0.9s. The brand was positioned as a premium technical leader, yielding a monster conversion leap of +342% and raising total AOV by nearly EGP 100 per basket.",
-    image: "/assets/case-aether.jpg"
-  },
-  {
-    id: "luna-gazing-cosmetics",
-    title: "Luna Gazing Cosmetics",
-    client: "Luna Beauty Co",
-    industry: "Luxury Clean Cosmetics",
-    platform: "Salla Custom twilight Theme",
-    metrics: {
-      revenueIncrease: "+280% Sales Growth",
-      conversionRate: "5.85% Mobile CR",
-      averageOrderValue: "SAR 340 AOV",
-      loadTimeReduction: "1.1s Page Boot"
-    },
-    challenge: "Luna Beauty is an upscale organic makeup brand based in Riyadh. Their generic store failed to capture the luxury, pristine, botanical essence of their formulas. High-value Arab luxury shoppers abandoned their Salla cart because of a lack of premium local localized layouts.",
-    research: "We analyzed premium Middle Eastern beauty and fragrance demographics. Our qualitative testing revealed that Saudi audience members demanded ultra-premium localization, smooth Mada auto-payments, elegant Arabic script curves, and packaging transparency on mobile devices.",
-    designProcess: "We completely redesigned the user experience, treating each cosmetics tube like a work of raw organic art. Generous margins, pristine product shots, and interactive dual-language typography created an elegant layout reminiscent of French couture.",
-    brandIdentity: "Prstine Rose Quartz background color paired with deep Forest Onyx. Clean, custom-crafted Arabized typography using specialized modern high-end geometric letterings that align smoothly with premium Latin weights.",
-    storeDevelopment: "We designed a bespoke Salla theme and compiled it using the sophisticated Salla Twilight Developer system. We custom-coded interactive shade-selectors, high-performance local Mada custom fields, and an automated regional shipping calculator.",
-    results: "Luna transformed into one of Riyadh's top emerging cosmetic platforms, achieving an explosive SAR 340 average order value, reducing cart drop-off by 60%, and establishing absolute local luxury domain dominance.",
-    image: "/assets/case-luna.jpg"
-  },
-  {
-    id: "elysian-luxury-watches",
-    title: "Elysian Horology",
-    client: "Elysian Swiss S.A.",
-    industry: "Luxury Timepieces",
-    platform: "Shopify Plus Headless (Hydrogen & React)",
-    metrics: {
-      revenueIncrease: "+412% Conversion",
-      conversionRate: "2.89% (High for High-Luxury)",
-  averageOrderValue: "EGP 5,400 AOV",
-      loadTimeReduction: "0.62s Time to Interactive"
-    },
-  challenge: "With products averaging EGP 5,000, Elysian Horology required their digital shop to perform like a real Swiss brick-and-mortar luxury showroom. Traditional page reloads and standard shopping carts felt low-end and detracted heavily from their heritage prestige.",
-    research: "High-net-worth collectors buy watches for the prestige and craftsmanship. We observed that collectors focus intently on micro-movements, watch dials, and the pure mechanical heritage. The digital experience had to breathe mathematical precision.",
-    designProcess: "We created a fully cinematic web design featuring ultra-smooth parallax movements, dark carbon backgrounds, and luxurious, crisp typographic hierarchies (Playfair Display paired with crisp Space Grotesk labels).",
-    brandIdentity: "Deep Champagne Gold accents, Rich Onyx Black backgrounds, and beautiful Ivory highlights. Logo mark optimized for luxury engravings.",
-    storeDevelopment: "We constructed a cutting-edge headless e-commerce build built on React and Shopify Hydrogen. We implemented lazy-loaded custom animations, an interactive 360-degree watch crown rotate dialer, and an ultra-secure VIP global courier checkout module.",
-  results: "Elysian broken digital sales records in their Q1, capturing EGP 4.5M in custom headless orders in the first 4 weeks, with pages loading in an astonishing 0.6 seconds worldwide.",
-    image: "/assets/case-elysian.jpg"
-  }
-];
-
-export const PORTFOLIO_DATA: PortfolioItem[] = [
-  {
-    id: "vanguard-outerwear",
-    title: "Vanguard Outerwear",
-    subtitle: "High-Performance Technical Shells",
-    category: "Fashion",
-    metrics: "+342% Revenue Growth",
-    tags: ["Shopify Plus", "Tailored Liquid", "3D Interactive Layout"],
-    image: "fashion",
-    caseStudyId: "aether-apparel"
-  },
-  {
-    id: "luna-cosmetics",
-    title: "Luna Gazing Beauty",
-    subtitle: "Organic luxury skincare and lipsticks",
-    category: "Cosmetics",
-    metrics: "5.85% Mobile CR • +280% Sales",
-    tags: ["Salla Twilight Code", "GCC Optimization", "Arabic Dual-Language"],
-    image: "cosmetics",
-    caseStudyId: "luna-gazing-cosmetics"
-  },
-  {
-    id: "le-bistrot-digital",
-    title: "Le Bistrot & Co.",
-    subtitle: "Immersive Michelin-Starred Dining Store",
-    category: "Restaurants",
-    metrics: "+190% Direct Reservations",
-    tags: ["UI/UX Design", "Custom Delivery Grid", "Branding system"],
-    image: "restaurant",
-  },
-  {
-    id: "elysian-timepieces",
-    title: "Elysian Horology",
-    subtitle: "Ultra-high-end watch manufacture",
-    category: "Luxury",
-  metrics: "EGP 5,400 Average Ticket Size",
-    tags: ["Shopify Headless", "React / Hydrogen", "360-Degree Custom Dial"],
-    image: "luxury",
-    caseStudyId: "elysian-luxury-watches"
-  },
-  {
-    id: "voltaic-sound",
-    title: "Voltaic Sound Labs",
-    subtitle: "Audiophile electrostatic headphones",
-    category: "Electronics",
-    metrics: "4.8% CR • +155% Checkout Success",
-    tags: ["Zid Enterprise", "Custom Checkout Layout", "CRO Audit"],
-    image: "electronics",
-  }
-];
-
-export const PRICING_PLANS: PricingPlan[] = [
-  {
-    id: "starter",
-    name: "Starter Launchpad",
-    tagline: "For ambitious DTC brands aiming to establish an elite visual footprint.",
-  price: "EGP 4,500",
-    timeline: "3 - 4 Weeks",
-    deliverables: [
-      "Custom Shopify, Salla, or Zid Custom Design & Build",
-      "Up to 10 Custom-designed structural components",
-      "Complete Brand Identity system (Logo suite & Typography)",
-      "Standard GA4 & Local Pixel tracking scripts config",
-      "2 Weeks post-launch hypercare bug-fixing support"
-    ],
+    id: 'corporate-web',
+    title: 'تصميم وتطوير المواقع التعريفية للشركات',
+    subtitle: 'انطباع أول يدوم وفخامة تليق بك',
+    description: 'نبني مواقع تعريفية مخصصة ومبتكرة تعكس هيبة ومكانة شركتك الاستراتيجية، مجهزة بأحدث التقنيات وأفضل معايير تجربة المستخدم والسرعة للتصدر في السوق.',
+    badge: 'الخدمة الرئيسية ✨',
+    iconName: 'Building',
+    platformColor: 'text-[#00bc7d]',
     features: [
-      { text: "Bespoke UI/UX Design (No templates)", included: true },
-      { text: "Shopify / Salla / Zid Theme Development", included: true },
-      { text: "Brand Logo & Typographic Identity System", included: true },
-      { text: "Full Mobile Optimization Certification", included: true },
-      { text: "Localized Dual-Language Alignment", included: true },
-      { text: "Advanced Headless custom integrations", included: false },
-      { text: "A/B Testing & dedicated CRO analysis", included: false },
-      { text: "Bespoke 3D Graphics / Interactive Models", included: false }
+      'برمجة وتصميم واجهات حصرية 100% غير مكررة',
+      'لوحة تحكم مرنة وسهلة لإدارة المحتوى الإخباري والخدمي',
+      'توافق ثوري كامل مع جميع مقاسات الشاشات والهواتف',
+      'سرعة تحميل فائقة ومتوافقة مع معايير Google Core Web Vitals',
+      'هيكلة مخصصة متوافقة 100% مع محركات البحث SEO',
+      'حماية وأمان مع شهادات SSL وربط البريد الرسمي للشركة'
+    ],
+    duration: '١٠ - ١٥ يوم عمل'
+  },
+  {
+    id: 'business-sites',
+    title: 'تصميم مواقع الخدمات والأعمال التجارية',
+    subtitle: 'تسهيل رحلة عميلك لطلب الخدمة',
+    description: 'مواقع مخصصة للشركات الخدمية، والمكاتب الاستشارية، والعيادات والمؤسسات، تسهل حجز المواعيد وعرض الخدمات وتلقي المدفوعات والطلبات المباشرة.',
+    badge: 'فعّال ومثمر 💼',
+    iconName: 'Briefcase',
+    platformColor: 'text-primary',
+    features: [
+      'أنظمة متكاملة لجدولة وحجز المواعيد والاستشارات',
+      'بوابات دفع إلكترونية آمنة لفوترة الخدمات مباشرة',
+      'صفحات تفصيلية لكل خدمة مع كتابة تسويقية مقنعة للعميل',
+      'لوحات لمتابعة طلبات واستفسارات العملاء بديناميكية',
+      'تكامل أدوات الدردشة الفورية وخدمة العملاء (WhatsApp AI)',
+      'صفحة خاصة لنماذج أعمال سابقة وحالات دراسية موثقة'
+    ],
+    duration: '٨ - ١٢ يوم عمل'
+  },
+  {
+    id: 'landing-pages',
+    title: 'تصميم صفحات الهبوط عالية التحويل',
+    subtitle: 'ضاعف نتائج حملاتك الإعلانية',
+    description: 'صفحات هبوط (Landing Pages) مجهزة بأعلى تكتيكات علم النفس الإقناعي وتجربة المستخدم لتوجيه الزوار من إعلاناتك مباشرة إلى إجراء الشراء أو التسجيل.',
+    badge: 'أعلى معدل تحويل 📈',
+    iconName: 'Target',
+    platformColor: 'text-emerald-500',
+    features: [
+      'هندسة واجهات تركز بالكامل على زر اتخاذ الإجراء (CTA)',
+      'صياغة نصوص وعناوين بأسلوب تسويقي يلامس رغبة العميل بدقة',
+      'ربط وتحليل بكسل تتبع الإعلانات (سناب، تيك توك، ميتا، جوجل)',
+      'سرعة تحميل خارقة تقلل من نسب خروج الزوار قبل التحويل',
+      'تكامل نماذج تسجيل سريعة وربطها بأنظمة CRM',
+      'تحديثات واختبارات A/B Testing لرفع فاعلية الصفحة'
+    ],
+    duration: '٣ - ٥ أيام عمل'
+  },
+  {
+    id: 'salla',
+    title: 'تأسيس متاجر سلة (Salla)',
+    subtitle: 'المنصة الأولى محلياً بالتجارة الإلكترونية',
+    description: 'بناء متجر احترافي متكامل على منصة سلة، وتجهيز كافة الإعدادات والخيارات التي تدفع مشروعك للانطلاق فورا بنجاح وحصد المبيعات.',
+    badge: 'الأكثر طلباً 🇸🇦',
+    iconName: 'ShoppingBag',
+    platformColor: 'text-[#00bc7d]',
+    features: [
+      'ربط الدومين الخاص وحسابات مطوري جوجل وميتا',
+      'تفعيل بوابات الدفع بالكامل (مدى، فيزا، Apple Pay)',
+      'ربط شركات الشحن والتوصيل التلقائي لراحة تامة',
+      'تصميم وتخصيص ثيم سلة بلمسة وتفاصيل براند فخم',
+      'إدخال وتنسيق أول ٢٠ منتج بوصف تسويقي وصور جذابة',
+      'إعدادات سلة برو والربط مع تحليلات Google Analytics'
+    ],
+    duration: '٥ - ٧ أيام عمل'
+  },
+  {
+    id: 'zid',
+    title: 'تأسيس متاجر زد (Zid)',
+    subtitle: 'منظومة تفاعلية وتجزئة حديثة',
+    description: 'بناء متجرك على منصة زد وتفعيل قنوات التجزئة الحديثة لربط مبيعات متجرك ومخازنك تحت منظومة إدارية وتحليلة واحدة وبلمسة جمالية.',
+    badge: 'نمو متكامل 🚀',
+    iconName: 'Store',
+    platformColor: 'text-[#ff4522]',
+    features: [
+      'تهيئة المتجر وحساب التاجر بالكامل دون أخطاء',
+      'تفعيل وتكامل منظومة زد شب وزد باي بأفضل العمولات',
+      'تخصيص ثيم وسيمتري المتجر ليعكس هوية علامتك التجارية',
+      'ربط بيكسل الإعلانات وتتبع جودة الإعلانات التلقائية',
+      'تجهيز وتسعير خيارات الشحن السريع والذكي للمحافظات',
+      'تفعيل ميزة الفواتير الفورية وإدارتها محاسبياً'
+    ],
+    duration: '٦ - ٨ أيام عمل'
+  },
+  {
+    id: 'shopify',
+    title: 'تطوير متاجر Shopify المخصصة',
+    subtitle: 'التوسع العالمي والمرونة المطلقة',
+    description: 'برمجة وتصميم متاجر شوبيفاي احترافية مخصصة للعلامات التجارية الطموحة التي تستهدف التوسع الإقليمي والعالمي بمزايا مرنة لا محدودة.',
+    badge: 'توسع وعالمية 🌍',
+    iconName: 'Globe',
+    platformColor: 'text-[#96bf48]',
+    features: [
+      'برمجة وتخصيص قوالب شوبيفاي المتقدمة Liquid / React',
+      'ربط بوابات الدفع الدولية والمحلية (Moyasar, Stripe, Tabby)',
+      'تكامل تطبيقات الموردين وسلاسل الإمداد العالمية للدروبشيبنج',
+      'تحسين سرعة التصفح وتوافقها مع الجوال بأعلى معايير SEO',
+      'تهيئة أنظمة متعدد اللغات والعملات للمتجر بدقة وبساطة',
+      'برمجة صفحات تتبع الشحنات المخصصة وحسابات الزبائن'
+    ],
+    duration: '١٠ - ١٥ يوم عمل'
+  },
+  {
+    id: 'branding',
+    title: 'تصميم الهوية البصرية والبراندنج',
+    subtitle: 'شخصية بصرية متكاملة تنافس الكبار',
+    description: 'نبني لعلامتك التجارية هوية فريدة وفخمة تجعلها تعلق بذهن عملائك، ونرسخ ملامح فخمة تشمل تصميم الشعار الفاخر وكود الألوان والخطوط بدليل البراند.',
+    badge: 'فخامة وتميز ✨',
+    iconName: 'Sparkles',
+    platformColor: 'text-primary',
+    features: [
+      'تصميم شعار مبتكر فخم بـ ٣ مفاهيم ونماذج عمل هندسية',
+      'تحديد لوحة الألوان السيكولوجية والخطوط الرسمية بدقة',
+      'تصميم بطاقات المنتجات وملصقات التغليف العصرية للعلب والمطبوعات'
+    ],
+    duration: '٥ - ٨ أيام عمل'
+  }
+];
+
+export const PORTFOLIO: PortfolioItem[] = [
+  {
+    id: 'arvana',
+    title: 'أرافانا للأثاث (ARVANA FURNITURE) — معارض ومتاجر الأثاث الراقي المبتكر',
+    category: 'تصميم الهوية البصرية الفخمة + متجر سلة برو المتكامل بكود مخصص',
+    platform: 'سلة',
+    image: PORTFOLIO_IMAGES.arvana.main,
+    linkText: 'تصفح تفاصيل المتجر',
+    results: [
+      { label: 'نسبة زيادة المبيعات السنوية', value: '+١٨٨٪' },
+      { label: 'متوسط قيمة سلة المشتريات', value: '٢,٨٥٠ ر.س' },
+      { label: 'سرعة تحسين تحميل الجوال', value: '٠.٧ ثانية' }
+    ],
+    isFeatured: true,
+    clientDescription: 'براند أثاث سعودي فاخر طموح ركّز على تقديم قطع أثاث وتوليفات معيشة راقية تجمع بين البساطة الهندسية والجمال الخلاب، يستهدف عشاق الفخامة والتميز.',
+    problemStatement: 'كان المتجر يواجه قصوراً في توجيه العملاء لاستكمال شراء قطع أثاث راقية تتجاوز قيمتها آلاف الريالات نظراً لاعتماده على تصميم سلة كلاسيكي معتاد لا يعبر عن عراقة وهوية الأثاث المنزلي الفاخر.',
+    solutionExecuted: 'قمنا بإعداد استراتيجية وهندسة الهوية الرقمية كاملة بألوان عصرية هادئة تعكس فخامة صالات العرض الفسيحة، وصممنا صفحات هبوط مخصصة لعرض مكونات الأخشاب والجلود والمنسوجات بميزات تفاعلية ساحرة وتطوير متقدم على سلة بكود CSS مخصص أدى لتسريع التحميل والتصفح بشكل ثوري.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.arvana.additional1,
+      PORTFOLIO_IMAGES.arvana.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.arvana.mobile,
+    technologies: ['سلة برو (Salla Pro)', 'تطوير كود تخصيص CSS مخصص ومتقدم', 'تصميم واجهات وتفاعل كامل Figma', 'تحليلات سلوك المتسوقين الفعالة'],
+    demoUrl: 'https://arvana.ventaria.studio',
+    brandLogoText: 'ARVANA',
+    brandLogoTagline: 'Modern Dwelling Masterpieces',
+    brandColors: [
+      { hex: '#1E3A2F', name: 'الأخضر الصنوبري الفخم' },
+      { hex: '#F3EFE0', name: 'العاجي العتيق الشيفون' },
+      { hex: '#222222', name: 'الرمادي الفحمي الحالك' }
+    ],
+    brandTypography: { heading: 'Playfair Display / Space Grotesk', bodyStyle: 'Tajawal Bold' },
+    brandPackagingImage: PORTFOLIO_IMAGES.arvana.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'صفحة المنتجات وتفاصيل واجهات الأثاث الفخم', image: PORTFOLIO_IMAGES.arvana.showcase1, type: 'شاشة متكاملة' },
+      { title: 'بطاقات المنتجات والخطوط التيبوغرافية المعتمدة', image: PORTFOLIO_IMAGES.arvana.showcase2, type: 'تطبيقات الهوية والبراندنج' },
+      { title: 'واجهة المتجر متوافقة بالكامل مع شاشات الجوال والدفع السريع', image: PORTFOLIO_IMAGES.arvana.showcase3, type: 'تطبيق ويب الجوال' }
     ]
   },
   {
-    id: "growth",
-    name: "Growth Engine",
-    tagline: "Our flagship package engineered to aggressively scale revenue & maximize conversion rates.",
-  price: "EGP 8,500",
-    timeline: "5 - 6 Weeks",
-    deliverables: [
-      "Everything in Starter plus highly optimized sales features",
-      "Complete Conversion Rate Optimization (CRO) storefront audit",
-      "Interactive Product Configurator / Shading custom layouts",
-      "Tactile Premium Packaging & Die-Line Print Guidelines",
-      "Comprehensive digital brand manual & interactive design tokens",
-      "1 Month of full-access post-launch optimization"
+    id: 'elysee',
+    title: 'إليزيه باريس (ÉLYSÉE PARIS) — دار الأزياء والملابس النسائية الفارهة',
+    category: 'بناء وتطوير الهوية السريالية البسيطة + متجر شوبيفاي بلس فائق الجمال والسرعة',
+    platform: 'Shopify',
+    image: PORTFOLIO_IMAGES.elysee.main,
+    linkText: 'عرض تفاصيل المشروع',
+    results: [
+      { label: 'نسبة عميلات العودة والشراء المتكرر', value: '٤٨٪' },
+      { label: 'نمو وتنامي المبيعات العضوية بالمتجر', value: '+٢٤٥٪' },
+      { label: 'تقييم تجربة الموبايل وسرعة الشراء', value: '٤.٩/٥' }
     ],
-    features: [
-      { text: "Bespoke UI/UX Design (No templates)", included: true },
-      { text: "Shopify / Salla / Zid Theme Development", included: true },
-      { text: "Brand Logo & Typographic Identity System", included: true },
-      { text: "Full Mobile Optimization Certification", included: true },
-      { text: "Localized Dual-Language Alignment", included: true },
-      { text: "A/B Testing & dedicated CRO analysis", included: true },
-      { text: "Custom Interactive upsell & checkout components", included: true },
-      { text: "Tactile Premium Packaging Blueprints", included: true },
-      { text: "Advanced Headless custom integrations", included: false }
+    isFeatured: false,
+    clientDescription: 'بوتيك أزياء نسائية راقية مستوحاة من تفاصيل الأزياء الباريسية الفاخرة، يركّز على فساتين سهرة وعباءات حصرية تبرز الأناقة البسيطة والراحة المتميزة.',
+    problemStatement: 'كانت العلامة تدرج مبيعاتها يدوياً عبر إنستغرام وتفقد الكثير من طاقات الطلب والدفع، وتكتفي بتصميمات جاهزة لا ترسي ثقل وقيمة قطع الأزياء الحصرية المصنعة تدار بعناية فائقة.',
+    solutionExecuted: 'قمنا بصياغة هوية متفردة بأسلوب Silent Luxury يعتمد على التباينات الفخمة والمساحات البيضاء المريحة مع تيبوغرافي فخم. قمنا ببرمجة متجر ذكي على شوبيفاي بلس يعرض صوراً عريضة تبرز خبايا وتفاصيل الأقمشة والخيوط بدقة، بلمسة شحن سريعة ودفع مرن بضغطة زر واحدة لكافة العملات لضمان التميز المطلق.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.elysee.additional1,
+      PORTFOLIO_IMAGES.elysee.additional2
     ],
-    recommendation: true
+    mobileImage: PORTFOLIO_IMAGES.elysee.mobile,
+    technologies: ['Shopify Plus Engine', 'Liquid Coding & Custom CSS styles', 'Framer Motion Web Effects', 'تحسين معدلات التحويل سيو والتتبع الذكي للبيكسلز'],
+    demoUrl: 'https://elysee.ventaria.studio',
+    brandLogoText: 'ÉLYSÉE',
+    brandLogoTagline: 'Pure Elite Silent Luxury',
+    brandColors: [
+      { hex: '#0B0B0C', name: 'الفحم الصخري الباريسي' },
+      { hex: '#E2D8C9', name: 'البيج المخملي الحريري' },
+      { hex: '#FFFFFF', name: 'العاجي الأبيض النقي' }
+    ],
+    brandTypography: { heading: 'Cormorant Garamond Serif / Playfair', bodyStyle: 'Tajawal Regular' },
+    brandPackagingImage: PORTFOLIO_IMAGES.elysee.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'صفحات الهبوط المخصصة لعرض طراز الملابس والأزياء', image: PORTFOLIO_IMAGES.elysee.showcase1, type: 'تفاصيل الواجهات' },
+      { title: 'أكياس وصناديق التعبئة والتغليف مع لوجو الدار المذهّب', image: PORTFOLIO_IMAGES.elysee.showcase2, type: 'براند وصناديق الطلب' },
+      { title: 'سهولة الحجز وسرعة التصفح بالكامل عبر الجوال', image: PORTFOLIO_IMAGES.elysee.showcase3, type: 'تصميم فائق الدقة ومتناسق' }
+    ]
+  },
+    {
+    id: 'lumiere',
+    title: 'لوميير للمجوهرات (LUMIÈRE JEWELRY) — صياغة وتصميم المجوهرات النفيسة والذهب',
+    category: 'تصميم استراتيجية البراندنج الفخم + عبوات التغليف المخصصة + متجر زد متكامل',
+    platform: 'زد',
+    image: PORTFOLIO_IMAGES.lumiere.main,
+    linkText: 'عرض معرض صور المشروع',
+    results: [
+      { label: 'تفوق وتنامي المبيعات الإجمالية', value: '+٢١٠٪' },
+      { label: 'نسبة زيادة تكرار عودة عملاء الذهب', value: '٤٢٪' },
+      { label: 'سرعة استجابة المتجر المذهلة', value: '٠.٦ ثانية' }
+    ],
+    isFeatured: false,
+    clientDescription: 'براند مجوهرات وحلي ذهبية فاخرة، يركز على صياغة المجوهرات الفريدة المرصعة بالألماس والأحجار الكريمة، مستهدفاً الباحثين عن التفرد والجمال الدائم.',
+    problemStatement: 'كان براند لوميير يواجه صعوبة في منافسة متاجر الذهب الكبيرة لعدم توفر متجر إلكتروني يضمن الأمان والمصداقية ونقل البريق الفعلي والفخامة لكل قطعة من المجوهرات.',
+    solutionExecuted: 'قمنا ببناء وتأسيس هوية بصرية مذهلة تعتمد على الألوان البيج الكلاسيكية والخطوط الرفيعة المرتبطة بالفخامة. برمجنا ثيم متجر زد المطور وحسننا صفحات وتفاصيل المنتجات مع إضافة ميزة حاسبة مقاسات الأصابع وإبراز شهادات الضمان الموثقة مع كل طلب تضامناً مع بوابات شحن وتأمين دولية آمنة.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.lumiere.additional1,
+      PORTFOLIO_IMAGES.lumiere.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.lumiere.mobile,
+    technologies: ['منظومة زد المتكاملة (Zid Theme)', 'Figma Interface Engineering', 'توجيه وصناعة كتالوج الموديلز الاحترافي', 'ربط بوابات دفع مخصصة مدى وفيزا وماستركارد'],
+    demoUrl: 'https://lumiere.ventaria.studio',
+    brandLogoText: 'LUMIÈRE',
+    brandLogoTagline: 'Where Gold Tells Forever Stories',
+    brandColors: [
+      { hex: '#1D1D1F', name: 'الفحم الصخري البسيط' },
+      { hex: '#D5A459', name: 'الذهبي اللامع الفوسفوري' },
+      { hex: '#F9F7F2', name: 'الأوف وايت العاجي الساحر' }
+    ],
+    brandTypography: { heading: 'Didot Serif / Cormorant Garamond', bodyStyle: 'Tajawal Bold' },
+    brandPackagingImage: PORTFOLIO_IMAGES.lumiere.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'واجهة متجر لوميير على الويب وعرض الخواتم والأساور', image: PORTFOLIO_IMAGES.lumiere.showcase1, type: 'شاشات الويب والتصفح الفخم' },
+      { title: 'علب الملمس والفتحات المبطنة للمجوهرات الفاخرة المطبوعة', image: PORTFOLIO_IMAGES.lumiere.showcase2, type: 'التعبئة ومواد البراندنج الملموس' },
+      { title: 'واجهة الجوال المصممة كلياً لسهولة التصفح السريع والدفع المباشر Apple Pay', image: PORTFOLIO_IMAGES.lumiere.showcase3, type: 'شاشات توافق الهاتف' }
+    ]
   },
   {
-    id: "premium",
-    name: "Enterprise Headless",
-    tagline: "Bespoke industry-redefining digital experiences built on ultra-fast headless tech.",
-  price: "EGP 16,000",
-    timeline: "8 - 10 Weeks",
-    deliverables: [
-      "Fully headless custom storefront (React/Hydrogen/Next.js)",
-      "Infinite design components catalog & animation schemas",
-      "Ultimate database APIs & custom order integrations",
-      "All-inclusive branding, packaging, video directions, and copywriting",
-      "Full ongoing speed-audit certification (Lighthouse score 98+ guaranteed)",
-      "3 Months of dedicated slack support with primary developer allocation"
+    id: 'al-hayat',
+    title: 'عيادات الحياة (AL HAYAT CLINICS) — خدمات الرعاية الطبية الشاملة والمتقدمة',
+    category: 'تصميم الواجهات UI/UX لـ ٧ أقسام + منصة حجز المواعيد والاستشارات الطبية المتكاملة',
+    platform: 'موقع مخصص',
+    image: PORTFOLIO_IMAGES.alHayat.main,
+    linkText: 'تصفح موقع العيادات',
+    results: [
+      { label: 'إجمالي مواعيد وتأكيدات الحجز الطبي الإلكتروني', value: '+٣٤٠٪' },
+      { label: 'انخفاض في نسبة تغيب المرضى عن المواعيد', value: '-٦٨٪' },
+      { label: 'سرعة التنقل وحجز عيادتك المفضلة', value: '٠.٤ ثانية' }
     ],
-    features: [
-      { text: "Bespoke UI/UX Design (No templates)", included: true },
-      { text: "Shopify / Salla / Zid Theme Development", included: true },
-      { text: "Brand Logo & Typographic Identity System", included: true },
-      { text: "Full Mobile Optimization Certification", included: true },
-      { text: "Localized Dual-Language Alignment", included: true },
-      { text: "A/B Testing & dedicated CRO analysis", included: true },
-      { text: "Custom Interactive upsell & checkout components", included: true },
-      { text: "Tactile Premium Packaging Blueprints", included: true },
-      { text: "Headless Web-App (Hydrogen / Next.js Node)", included: true },
-      { text: "Bespoke 3D Graphics / Interactive Models", included: true },
-      { text: "Lighthouse 98+ Page Speed Guarantee", included: true }
+    isFeatured: false,
+    clientDescription: 'مجمع عيادات ومراكز طبية رائدة في المملكة العربية السعودية، تقدم باقة من الحلول لعيادات الأسنان والجلدية وعيادات الأطفال لضمان رعاية ذات جودة وثقة متناهية.',
+    problemStatement: 'كانت العيادات تستقبل اتصالات تفوق طاقتها الهاتفية مما أدى لضياع ٤٥٪ من المواعيد مع عجز المستعرضين عن فهم خدمات وأقسام الطبيب المفضل لديهم وتوزيع أوقات المعاينة.',
+    solutionExecuted: 'صممنا وابتكرنا واجهات استخدام هادئة ومقنعة بألوان التركواز والأبيض الطبي لتوجيه المريض بسهولة. قمنا ببرمجة موقع مخصص ذي سرعة عالية يضم نظام جدولة مواعيد الطبيب التلقائي الفوري، مع إرسال رسائل تذكير تلقائية عبر الواتساب للمرضى ومؤشرات حجز تفاعلية مذهلة.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.alHayat.additional1,
+      PORTFOLIO_IMAGES.alHayat.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.alHayat.mobile,
+    technologies: ['React Web Architecture', 'جدولة وتزامن API المواعيد', 'Framer Motion Smooth Animations', 'تحسين سيو محلي للعيادة Google Maps Local SEO'],
+    demoUrl: 'https://alhayat.ventaria.studio',
+    brandLogoText: 'AL HAYAT',
+    brandLogoTagline: 'Professional Medical Care Standard',
+    brandColors: [
+      { hex: '#0A7A75', name: 'التركواز والأخضر العلاجي' },
+      { hex: '#FFFFFF', name: 'الأبيض الطبي المعقم' },
+      { hex: '#2A3439', name: 'الرمادي المعدني والصلب' }
+    ],
+    brandTypography: { heading: 'Inter UI / Space Grotesk', bodyStyle: 'Tajawal Bold' },
+    brandPackagingImage: PORTFOLIO_IMAGES.alHayat.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'صفحة تفاصيل العيادات وحجز الطبيب في ثوانٍ معدودة', image: PORTFOLIO_IMAGES.alHayat.showcase1, type: 'واجهات حجز المواقيت' },
+      { title: 'نماذج الكروت والملصقات والشعارات للأطباء والمجمع', image: PORTFOLIO_IMAGES.alHayat.showcase2, type: 'تطبيقات الهوية والعلامة' },
+      { title: 'واجهة الحجز متوافقة تماماً وسلسة على شاشات الجوال', image: PORTFOLIO_IMAGES.alHayat.showcase3, type: 'شاشات متوافقة للجوال' }
+    ]
+  },
+  {
+    id: 'nova-estate',
+    title: 'نوفا العقارية (NOVA ESTATE) — منصة وبوابة الاستثمار والتسويق العقاري الذكي',
+    category: 'تصميم الواجهات المذهلة كلياً + بوابة الويب السريعة المتوافقة والموثقة بالكامل',
+    platform: 'موقع مخصص',
+    image: PORTFOLIO_IMAGES.novaEstate.main,
+    linkText: 'تصفح تفاصيل الهوية المعروضة',
+    results: [
+      { label: 'طلبات وحجوزات معاينة الوحدات', value: '+٣١٢٪' },
+      { label: 'أداء وتقييم البوابة السريعة بالكامل', value: '١٠٠٪' },
+      { label: 'انخفاض تكلفة الحصول على العميل الاستثماري', value: '-٥١٪' }
+    ],
+    isFeatured: false,
+    clientDescription: 'مطور عقاري ومسوق مشاريع فخمة في مدينة الرياض ومحافظة جدة، يختص بإنشاء مجمعات سكنية وبنتهاوس بمميزات معمارية راقية وتصاميم هندسية حصرية كليا.',
+    problemStatement: 'كانت منصة التسويق تعتمد على تصفح PDF بطيء للغاية ومنفر للمستثمرين الراغبين في حجز الوحدات والاستثمار، مع فقد ملموس للتفاصيل والعثور على المواقع المفضلة.',
+    solutionExecuted: 'قمنا بتصميم وبناء بوابة عقارية متطورة ومكتملة تمنح المستثمرين تجربة البحث بفلترة سريعة تظهر جغرافيا الوحدات بالتكامل التام مع خرائط دقيقة. وفرنا ميزة الحجز المباشر ومقاطع تفاعلية للوصف ثلاثي الأبعاد تمكن الزائر من العثور على شقته وحجز موعد استشارتها بسرعة فتح لا تضاهى.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.novaEstate.additional1,
+      PORTFOLIO_IMAGES.novaEstate.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.novaEstate.mobile,
+    technologies: ['React Development Framework', 'Mapbox Custom API', 'Framer Motion Animated Elements', 'رسم ومعاينة المخططات العقارية الفاخرة'],
+    demoUrl: 'https://novaestate.ventaria.studio',
+    brandLogoText: 'NOVA ESTATE',
+    brandLogoTagline: 'Defining the Luxury Dwelling Standard',
+    brandColors: [
+      { hex: '#0B2545', name: 'الأزرق البحري العميق النادر' },
+      { hex: '#134074', name: 'أزرق نوفا الاستراتيجي الحديدي' },
+      { hex: '#F0F4F8', name: 'الأبيض الثلجي المطفي الرائع' }
+    ],
+    brandTypography: { heading: 'Outfit Display / Space Grotesk', bodyStyle: 'Tajawal Regular' },
+    brandPackagingImage: PORTFOLIO_IMAGES.novaEstate.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'واجهة بوابة العقارات المستهدفة واستكشاف المجمعات السكنية', image: PORTFOLIO_IMAGES.novaEstate.showcase1, type: 'شاشة متصفح كاملة' },
+      { title: 'المخططات وصور البانرات التسويقية مع الألوان المعتمدة للبراند', image: PORTFOLIO_IMAGES.novaEstate.showcase2, type: 'خطوة دليل الهوية وابعادها' },
+      { title: 'لوحة التحكم لممثلي المبيعات وجدولة اتصالات المعاينة الفورية', image: PORTFOLIO_IMAGES.novaEstate.showcase3, type: 'لوحات تحكم Dashboard دقيقة' }
+    ]
+  },
+  {
+    id: 'roasta',
+    title: 'روستا كافيه (ROASTA COFFEE) — محمصة وحاضنة القهوة المختصة',
+    category: 'تصميم استراتيجية العلامة + عبوات التغليف الفخمة + متجر زد متكامل كلياً',
+    platform: 'زد',
+    image: PORTFOLIO_IMAGES.roasta.main,
+    linkText: 'عرض تفاصيل المتجر',
+    results: [
+      { label: 'متوسط قيمة سلة ومشتريات العميل (AOV)', value: '+٤٥٪' },
+      { label: 'معدل بقاء وتحويل متسوقي القهوة', value: '٥.٤٪' },
+      { label: 'سرعة استجابة المتجر بالكامل', value: '٠.٨ ثانية' }
+    ],
+    isFeatured: false,
+    clientDescription: 'محمصة قهوة مختصة سعودية معاصرة، تهدف لاستيراد وتحميص البُن النبيل الفاخر من جبال أمريكا الجنوبية وأفريقيا وتوزيعه بنكهة حماسية وثقافة واعية.',
+    problemStatement: 'كانت المحمصة تعاني من ضعف الطلبات المباشرة وضياع التميز وسط خيارات المحامص التقليدية التي تستخدم خطوطاً بنية مكررة لا تجذب أعين المتسوقين الرقميين الطموحين.',
+    solutionExecuted: 'صممت علامتنا لهم استراتيجية هوية متكاملة تدمج الأخضر الصنوبري المختص مع البرتقالي المحروق للإشعاع. قمنا بتصميم ورسم عبوات التغليف الكرتونية الفاخرة للحبوب وتفعيل متجر زد برو بالكامل بفرز ذكي يتيح تصفية البن حسب النكهة والسلالة وملاءمة الترشيح لسرعة اختيار خارقة.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.roasta.additional1,
+      PORTFOLIO_IMAGES.roasta.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.roasta.mobile,
+    technologies: ['تخصيص ثيم زد (Zid Template Code)', 'تصميم التعبئة والتغليف الملموس للمنتجات ورسم النماذج المطبوعة', 'استراتيجية وتنسيق الألوان وهوية العلامة الرائدة'],
+    demoUrl: 'https://roasta.ventaria.studio',
+    brandLogoText: 'ROASTA',
+    brandLogoTagline: 'Pure Origin Specialty Coffee',
+    brandColors: [
+      { hex: '#1C3A27', name: 'الأخضر الداكن العريق' },
+      { hex: '#FAF7F0', name: 'الكريم الشيفوني الداعم' },
+      { hex: '#E6A15C', name: 'البرتقالي المحروق الفاتح للشهية' }
+    ],
+    brandTypography: { heading: 'Space Grotesk / Cabinet Grotesk', bodyStyle: 'Tajawal Bold' },
+    brandPackagingImage: PORTFOLIO_IMAGES.roasta.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'أكياس وحزم حبوب البن المختص المعتمدة للبراند', image: PORTFOLIO_IMAGES.roasta.showcase1, type: 'تغليف المنتجات المخصصة' },
+      { title: 'واجهة متصفح الويب وتفاصيل الفلترة المخصصة بالمتجر', image: PORTFOLIO_IMAGES.roasta.showcase2, type: 'واجهات تسوق فريدة' },
+      { title: 'الأكواب الورقية وملصقات الهوية البصرية من روستا كافيه', image: PORTFOLIO_IMAGES.roasta.showcase3, type: 'تطبيقات الهوية بذكاء' }
+    ]
+  },
+  {
+    id: 'al-hadath',
+    title: 'الحدث (AL HADATH NEWS) — المنصة والصحيفة الإخبارية المتكاملة',
+    category: 'تصميم وبناء الهوية البصرية الإعلامية + تطوير البوابة الإخبارية والتحليلات بالكامل',
+    platform: 'موقع تعريفي',
+    image: PORTFOLIO_IMAGES.alHadath.main,
+    linkText: 'عرض تفاصيل العمل',
+    results: [
+      { label: 'متوسط عدد الزوار النشطين شهرياً بداخل البوابة', value: '+٢.٤ مليون' },
+      { label: 'سرعة تسليم الخادم وسرعة القراءة تحت الحمل الثقيل', value: '٠.٢ ثانية' },
+      { label: 'معدل البقاء بداخل الصحيفة ومقالات الأخبار', value: '٤.٥ دقيقة' }
+    ],
+    isFeatured: false,
+    clientDescription: 'صحيفة وبوابة إخبارية رقمية كبرى تقدم الأخبار العاجلة والتحليلات الإقليمية وتتبع المستجدات لحظة بلحظة، وتستهدف ملايين القراء بمقالات خفيفة وسريعة.',
+    problemStatement: 'كانت البوابة القديمة تنهار تماماً عند فترات الإعلانات العاجلة وتواجه تأخراً ثقيلاً في تحميل الفيديوهات والصور وتفتقر لخطوط عربية واضحة تجعل القراءة مريحة.',
+    solutionExecuted: 'قمنا بإعادة هندسة وتعمير البوابة بالكامل بكود نظيف وتطوير وتعيين تصميم فخم بلون داكن وتباين أحمر عازل للأخبار الطارئة والعاجلة. وفرنا خطوط تيبوغرافي مخصصة سهلة القراءة ونظام تخزين خادم مؤقت يضمن عدم توقف البوابة في ظل وجود أحمال ثقيلة من الزوار المتزامنين.',
+    additionalImages: [
+      PORTFOLIO_IMAGES.alHadath.additional1,
+      PORTFOLIO_IMAGES.alHadath.additional2
+    ],
+    mobileImage: PORTFOLIO_IMAGES.alHadath.mobile,
+    technologies: ['React SSR / High performance node caching APIs', 'تطوير كود تحرير واجهات الاستخدام Figma', 'تنسيق الخطوط والمسافات تيبوغرافي مقروء', 'تحليلات بقاء وجدولة المستخدمين المتقدمة'],
+    demoUrl: 'https://alhadath.ventaria.studio',
+    brandLogoText: 'AL HADATH',
+    brandLogoTagline: 'Where Truth Speaks instantly',
+    brandColors: [
+      { hex: '#111113', name: 'الرمادي المعتم والحبر الفحمي' },
+      { hex: '#DC2626', name: 'الأحمر العاجل المتوهج' },
+      { hex: '#FFFDF9', name: 'الأوف وايت العاجي الساحر' }
+    ],
+    brandTypography: { heading: 'Cormorant Garamond / Cairo Display', bodyStyle: 'Tajawal Bold' },
+    brandPackagingImage: PORTFOLIO_IMAGES.alHadath.brandPackaging,
+    brandShowcaseItems: [
+      { title: 'واجهة الصفحة الرئيسية للمنصة وصور الشريط العاجل الإخباري', image: PORTFOLIO_IMAGES.alHadath.showcase1, type: 'شاشات الويب والبوابات الكبرى' },
+      { title: 'دليل الهوية وأقسام الألوان المستخدمة لتمييز الأخبار العلوية', image: PORTFOLIO_IMAGES.alHadath.showcase2, type: 'دليل الهوية والبراندنج' },
+      { title: 'سهولة قراءة الأخبار والتجاوب الفائق مع جميع الهواتف الذكية', image: PORTFOLIO_IMAGES.alHadath.showcase3, type: 'تصميم فائق الدقة للجوال' }
     ]
   }
 ];
 
-export const TESTIMONIALS_DATA: Testimonial[] = [
+export const TESTIMONIALS: TestimonialItem[] = [
   {
-    id: "khalid-suliman",
-    name: "Khalid Bin Suliman",
-    role: "Founder & Creative Director",
-    company: "Luna Gazing Cosmetics (Saudi Arabia)",
-    content: "Nexora Studio completely transformed our online presence. By utilizing the Salla Twilight engine and designing a completely custom Arabic luxury layout, our average order value skyrocketed to SAR 340. They didn't just write theme code—they understood our regional luxury audience on a cellular level.",
-    avatar: "KS",
+    id: '1',
+    name: 'المهندس مراد العتيبي',
+    title: 'المدير التنفيذي',
+    storeName: 'براند ريزن للعطور',
+    platform: 'salla',
+    avatar: TESTIMONIAL_AVATARS.murad,
+    content: 'فينتاريا كانت النقلة النوعية لعلامتنا التجارية. لم يقوموا فقط ببناء المتجر تقنياً، بل صمموا هوية بصرية جعلت عطورنا تبدو كماركة عالمية بأسعار مذهلة. المبيعات تضاعفت منذ الشهر الأول ونوصي بشدة بالعمل معهم لضميرهم اليقظ لمبيعات عملائهم!',
     rating: 5
   },
   {
-    id: "marcus-voss",
-    name: "Marcus Voss",
-    role: "VP of Digital E-commerce",
-    company: "Aether Apparel (London & USA)",
-    content: "An elite technical outfit. They custom-developed a Shopify layout with absolute styling discipline, lightning-fast pages (0.9s), and custom 3D fabric selectors. Our sales jumped over 340% in our first quarter post-launch. If you charge premium prices, you need Nexora to design your store.",
-    avatar: "MV",
+    id: '2',
+    name: 'الأستاذة سارة الشمري',
+    title: 'مؤسسة علامة تجارية',
+    storeName: 'مجوهرات تالين الترفيهية',
+    platform: 'custom',
+    avatar: TESTIMONIAL_AVATARS.sara,
+    content: 'أهم ميزة وجدتها في فينتاريا هي الفهم الفائق لمتطلبات قطاع الخدمات والأعمال الفخم في السعودية والخليج. حاسبة الأرباح الدقيقة بموقعهم كانت دافعاً كبيراً لي لتأمين استشارتي والبدء في برمجة موقع شركتنا التعريفي لديهم، وكانت أفضل تجربة إطلاق الإطلاق.',
     rating: 5
   },
   {
-    id: "sophia-alvarez",
-    name: "Sophia Alvarez",
-    role: "Chief Operating Officer",
-    company: "Elysian Swiss S.A. (Geneva)",
-  content: "We hired Nexora for our Shopify Plus Headless migration. They built a custom React/Hydrogen timepiece salon that loaded instantaneously. The conversion rate of 2.89% for products retailing over five thousand EGP is flat out unheard of in timepieces horology history.",
-    avatar: "SA",
+    id: '3',
+    name: 'المستشار شريف علام',
+    title: 'مدير النمو والتسويق الرقمي',
+    storeName: 'أورجانيك هيرب لتجارة التجزئة',
+    platform: 'shopify',
+    avatar: TESTIMONIAL_AVATARS.sherif,
+    content: 'قمنا بنقل متجرنا بالكامل إلى شوبيفاي وبناء صفحة هبوط مخصصة لكل منتج تريند مع فينتاريا بهدف تحسين سرعة الأداء وزيادة معدل التحويل وسيو. النتائج فاقت توقعاتنا بكثير، فسرعة التصفح وتماسك الهوية زادا من معدلات الثراء والولاء.',
     rating: 5
   }
 ];
 
-export const BLOG_POSTS: BlogPost[] = [
+export const FAQS: FAQItem[] = [
   {
-    id: "shopify-page-speed",
-    title: "The Silent Conversion Killer: Achieving sub-1s load times on Shopify Plus",
-    excerpt: "Discover why template bloat is ruining your checkout conversions, and exactly how to optimize your script loads and image frameworks for premium margins.",
-    category: "Shopify",
-    readTime: "5 min read",
-    date: "June 2, 2026",
-    author: {
-      name: "Tariq Farooq",
-      role: "Lead E-commerce Architect",
-      avatar: "TF"
-    },
-    image: "speed",
-    content: "In the high-end retail ecosystem, latency is directly proportional to brand erosion. If your storefront takes more than three seconds to bootstrap on a luxury buyer's iPhone, you have lost them. This article lays down our proprietary protocol for eliminating heavy scripts, optimizing modern WebP and AVIF assets, implementing localized custom lazy-loaders, and why you should absolutely avoid heavy page-builder plugins."
+    id: 'q1',
+    question: 'كم يستغرق بناء موقع تعريفي للشركة أو صفحة هبوط؟',
+    answer: 'صفحات الهبوط المجهزة للبيع عادة ما تستغرق ٣ إلى ٥ أيام عمل لتصميمها وبرمجتها على أحدث التقنيات. بينما المواقع التعريفية المتكاملة للشركات التي تشمل عرض الخدمات واللوحة ومميزات الأمان الاستراتيجية تستغرق ما بين ١٠ إلى ١٥ يوم عمل تبعا لتنوع الأقسام وعدد الصفحات المطلوبة بداخلها.'
   },
   {
-    id: "salla-twilight-guide",
-    title: "Mastering the Salla Twilight Engine for Dual-Language Arabic & English Luxury Stores",
-    excerpt: "How our agency completely bypasses standard Salla limitations to implement high-end international typography and custom RTL (Right-to-Left) animations.",
-    category: "Salla Growth",
-    readTime: "7 min read",
-    date: "May 28, 2026",
-    author: {
-      name: "Yasmine Al-Azhar",
-      role: "Senior UI/UX Designer Strategy",
-      avatar: "YA"
-    },
-    image: "salla",
-    content: "The Saudi e-commerce demographic demands unmatched premium feels and local localized trust. Historically, Salla themes felt flat. By programming within the raw Salla Twilight Developer framework, we can inject bespoke React sheets, micro-interactions, custom interactive Mada forms, and beautiful Arabic calligraphy blocks that render harmoniously alongside Latin styles."
+    id: 'q2',
+    question: 'هل توفر منصة فينتاريا باقات واشتراكات سلة وزد وشوبيفاي أم يجب شراؤها؟',
+    answer: 'الاشتراكات الشهرية أو السنوية للباقات والترقيات تدفع مباشرة للمنصات (سلة، زد، شوبيفاي) وتكون باسمك وتحت ملكيتك وحسابك البنكي المباشر بنسبة ١٠٠٪. نحن في فينتاريا نتكفل بكافة مهام حجز الدومين، ربط السجل أو الهوية، تفعيل الدفع والشحن، وبرمجة الواجهات وتخصيص القوالب والربط دون أي عبء أو عناء من طرفك.'
   },
   {
-    id: "unboxing-tactile-magic",
-    title: "Packaging Psychology: Turning the unboxing ceremony into your strongest retention loop",
-  excerpt: "Why spending an additional EGP on embossing, spot UV patterns, and custom boxes can reduce your cost per acquisition (CAC) and drive recurring sales.",
-    category: "Branding",
-    readTime: "4 min read",
-    date: "May 15, 2026",
-    author: {
-      name: "Jean-Pierre Durand",
-      role: "Director of Packaging",
-      avatar: "JD"
-    },
-    image: "packaging",
-    content: "E-commerce doesn't end when the user clicks 'Checkout'. The packaging is your brand's only physical touchpoint. We discuss how high-density rigid secondary boxes, custom embossed linen paper, fragrance-sprayed paper slips, and targeted interactive cards create a luxury unboxing experience that prompts organic social shares and locks in customers for years."
+    id: 'q3',
+    question: 'ما الذي يجعل حاسبة أرباح المتاجر الإلكترونية لديكم دقيقة وخارجة عن المألوف؟',
+    answer: 'لأننا لا نقوم فقط بجمع التكلفة التقليدية وطرحها، بل نطبق القواعد الفورية وعمولات بوابات الدفع الرسمية المعتمدة في السعودية والخليج (مدى، فيزا، Apple Pay، تابي، تمارا) وعمولات منصات سلة وزد وتأثير ميزانية الإعلان وتأثير تكرار الطلب، مما يزودك بأرقام محاسبية دقيقة تماثل تماما تقارير المحاسبين الماليين.'
   },
   {
-    id: "conversion-rate-psychology",
-    title: "Micro-Copy and Trust: How tiny visual cues boosted AOV by 28% for technical apparel",
-    excerpt: "Our recent CRO case study analyzing exactly which checkout trust-badges, value propositions, and payment options drive massive high-ticket buyer action.",
-    category: "E-commerce Marketing",
-    readTime: "6 min read",
-    date: "April 30, 2026",
-    author: {
-      name: "Amara Okoye",
-      role: "Head of CRO & Growth Analytics",
-      avatar: "AO"
-    },
-    image: "cro",
-    content: "High-ticket consumers require absolute clarity. By evaluating user session replays, we found three major friction zones: unclear vat rules, ambiguous global returns processes, and slow Apple Pay layouts. Learn how micro-copy modifications and custom structural security placement resolved all three instantly."
+    id: 'q4',
+    question: 'هل أحتاج لسجل تجاري لكي تتمكنوا من بناء موقعي أو متجري الإلكتروني؟',
+    answer: 'لصناعة موقع تعريفي للشركة أو صفحة هبوط، لا يشترط وجود سجل تجاري إلا لتفعيل بوابات الدفع الرسمية المباشرة بأسماء الشركات. بينما في سلة وزد، يكتفي المواطن السعودي بوثيقة العمل الحر المجانية لتفعيل بوابات الدفع وبدء البيع فوراً، وسنكون بجانبك لإرشادك خطوة بخطوة للحصول عليها في ثوانٍ.'
   }
 ];
 
-export const FAQS_DATA: FAQItem[] = [
+export const SAUDI_PRESETS = [
   {
-    id: "faq-1",
-    question: "Why should we hire Nexora instead of a standard local web freelancer?",
-    answer: "Nexora Studio does not compile raw websites; we engineer revenue-generating e-commerce machines with custom design and absolute styling discipline. Every line of code is handwritten for premium performance, and our team integrates elite regional localization (Saudi, GCC) alongside international luxury standard branding. Standard developers rarely understand average order value, conversion funnels, and unboxing logistics.",
-    category: "General"
+    name: '⚙️ تخصيص يدوي كلي',
+    description: 'تحكم يدوي كامل في كافة مدخلات الأرباح والتكلفة لتجربة حرة',
+    values: {
+      sellingPrice: 150,
+      productCost: 45,
+      shippingCost: 25,
+      packagingCost: 5,
+      platformFeeType: 'percentage' as const,
+      platformFeePercent: 0,
+      platformFeeFixed: 0,
+      paymentGateway: 'mada' as const,
+      gatewayFeePercent: 1.75,
+      gatewayFeeFixed: 1.0,
+      advertisingCost: 2000
+    }
   },
   {
-    id: "faq-2",
-    question: "Do you build international stores with dual-language and multi-currency support?",
-    answer: "Yes. Every single custom Shopify, Salla, or Zid store we build is configured to support flawless multi-language typography (smooth native RTL and LTR) and automatic regional currency/VAT configurations tailored to local regulations.",
-    category: "Technical"
+    name: '👕 متجر أزياء وملابس (سلة برو + مدى السعودي)',
+    description: 'سعر بيع للقطعة متوسط، شحن رخيص، الدفع الأسهل بالسعودية عبر مدى وسلة برو',
+    values: {
+      sellingPrice: 199,
+      productCost: 60,
+      shippingCost: 22,
+      packagingCost: 6,
+      platformFeeType: 'salla_pro' as const,
+      platformFeePercent: 0,
+      platformFeeFixed: 0,
+      paymentGateway: 'mada' as const,
+      gatewayFeePercent: 1.75,
+      gatewayFeeFixed: 0,
+      advertisingCost: 3500
+    }
   },
   {
-    id: "faq-3",
-    question: "How long is a typical project cycle, and what are the pricing parameters?",
-  answer: "Our project timelines run from 3 weeks for ambitious launches up to 10 weeks for highly integrated custom headless environments. Our structures are clear and flat-rate, starting at EGP 4,500 and climbing to EGP 16,000 for enterprise custom builds. We never hide costs.",
-    category: "Financial"
+    name: '💎 عطور ومستحضرات تجميل (زد برو + دفع فيزا)',
+    description: 'براند فاخر ذو هوية راقية، تكلفة منتج مع تغليف فاخر وشحن مخصص مع عملاء فيزا ودفع إلكتروني متكرر',
+    values: {
+      sellingPrice: 340,
+      productCost: 85,
+      shippingCost: 28,
+      packagingCost: 15,
+      platformFeeType: 'zid_pro' as const,
+      platformFeePercent: 0,
+      platformFeeFixed: 0,
+      paymentGateway: 'visa' as const,
+      gatewayFeePercent: 2.2,
+      gatewayFeeFixed: 1.0,
+      advertisingCost: 6000
+    }
   },
   {
-    id: "faq-4",
-    question: "Do you assist with physical products printing, manufacturer sourcing, and shipping setup?",
-    answer: "We deliver industry-certified vectors, structured files, material maps, and direct physical box die-lines. We then make direct warm introductions to top luxury suppliers and print factories globally and across the GCC to ensure your final physical quality is flawless.",
-    category: "Packaging"
+    name: '📦 دروب شيبنج دولي (شوبيفاي أساسي + شحن مجاني)',
+    description: 'سعر بيع شامل الشحن، وتكلفة منتج دولي من علي إكسبرس، وعمولة شوبيفاي بنسبة 2%',
+    values: {
+      sellingPrice: 250,
+      productCost: 110,
+      shippingCost: 0,
+      packagingCost: 3,
+      platformFeeType: 'shopify_basic' as const,
+      platformFeePercent: 2.0,
+      platformFeeFixed: 0,
+      paymentGateway: 'visa' as const,
+      gatewayFeePercent: 2.9,
+      gatewayFeeFixed: 1.25,
+      advertisingCost: 5000
+    }
   }
 ];

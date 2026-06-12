@@ -1,74 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-  
-  --color-accent: #5ee1b5;
-  --color-accent-hover: #4cd1a4;
-  --color-dark-bg: #000000;
-  --color-dark-secondary: #0f0f0f;
-  --color-dark-card: #0f0f0f;
-  --color-dark-border: #1f1f1f;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #9ca3af;
+  --font-sans: "IBM Plex Sans Arabic", "Alexandria", system-ui, sans-serif;
+  --font-display: "Alexandria", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --color-primary: #00bc7d;
+  --color-primary-hover: #009e68;
+  --color-secondary: #111111;
+  --color-brand-bg: #ffffff;
+  --color-brand-text: #111111;
+  --color-brand-card: #f8f9fa;
 }
 
-[dir="rtl"] {
-  --font-sans: "Cairo", sans-serif;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+  }
 }
 
-/* Custom scrollbar and luxury gradients */
+/* Custom scrollbars and styling */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f1f1f;
+  background: #ddd;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #5ee1b5;
-}
-
-html {
-  scroll-behavior: smooth;
-  font-family: var(--font-sans);
-  background-color: #000000;
-  color: #ffffff;
-}
-
-/* Glassmorphism glass card */
-.glass {
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-panel {
-  background: rgba(15, 15, 15, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.glass-panel-accent {
-  background: rgba(94, 225, 181, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(94, 225, 181, 0.15);
-}
-
-.accent-glow {
-  box-shadow: 0 0 30px rgba(94, 225, 181, 0.15);
-}
-
-.ambient-glow {
-  filter: blur(150px);
-  opacity: 0.15;
-  pointer-events: none;
+  background: #ccc;
 }
