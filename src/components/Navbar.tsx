@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { UI_TRANSLATIONS } from "../translations";
 
@@ -11,7 +11,6 @@ interface NavbarProps {
 
 export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const navRef = useRef<HTMLElement | null>(null);
   const logoUrl = new URL('../../assets/ventaria-logo.png', import.meta.url).href;
 
   // helper to force pointer cursor in cases where an overlay/global rule prevents it
@@ -21,7 +20,20 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
 
   // ensure cursor is reset when component unmounts
   useEffect(() => {
+    // Debug: log element under mouse on navbar hover
+    const handleMouseMove = (e: MouseEvent) => {
+      const nav = document.querySelector('nav');
+      if (nav && nav.contains(e.target as Node)) {
+        const topElement = document.elementFromPoint(e.clientX, e.clientY);
+        if (topElement?.id === 'nav-contact-btn' || topElement?.id === 'desktop-cta-btn') {
+          console.log('Hovering CTA button:', topElement.id, 'z-index:', getComputedStyle(topElement).zIndex);
+        }
+      }
+    };
+    document.addEventListener('mousemove', handleMouseMove);
+    
     return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
       if (typeof document !== 'undefined') document.body.style.cursor = '';
     };
   }, []);
@@ -50,33 +62,8 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Debug helper: log top element under cursor to detect overlays blocking pointer
-  const handleDebugMouseMove = (e: React.MouseEvent) => {
-    try {
-      const x = e.clientX;
-      const y = e.clientY;
-      const el = document.elementFromPoint(x, y) as HTMLElement | null;
-      if (!el) return;
-      const btn = document.getElementById('nav-contact-btn');
-      // if the top element is the button (or inside it) do nothing
-      if (btn && (el === btn || btn.contains(el))) return;
-      // otherwise log info to console to help debugging
-      const cs = window.getComputedStyle(el);
-      console.warn('[Navbar debug] top element under cursor:', {
-        tag: el.tagName,
-        id: el.id || null,
-        classes: el.className || null,
-        pointerEvents: cs.pointerEvents,
-        cursor: cs.cursor,
-        zIndex: cs.zIndex,
-      });
-    } catch (err) {
-      // ignore
-    }
-  };
-
   return (
-    <nav ref={navRef} onMouseMove={handleDebugMouseMove} className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}

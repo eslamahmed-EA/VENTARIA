@@ -21,6 +21,20 @@
     text-align: right;
     overflow-x: hidden;
   }
+
+  /* Force pointer cursor on navbar CTA buttons */
+  #nav-contact-btn,
+  #desktop-cta-btn,
+  #mobile-nav-cta-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+  }
+
+  #nav-contact-btn:hover,
+  #desktop-cta-btn:hover,
+  #mobile-nav-cta-btn:hover {
+    cursor: pointer !important;
+  }
 }
 
 /* Custom scrollbars and styling */
