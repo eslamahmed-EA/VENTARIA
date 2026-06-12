@@ -455,9 +455,11 @@ export default function App() {
             <div className="hidden md:flex items-center gap-4" id="nav-cta-group">
               <span className="text-zinc-300">|</span>
               <button 
+                type="button"
                 onClick={() => openWhatsApp('+201014046106')}
-                className="bg-[#111111] hover:bg-zinc-800 text-white hover:text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/50"
+                className="bg-[#111111] hover:bg-zinc-800 text-white hover:text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/50 cursor-pointer"
                 id="btn-nav-start"
+                aria-label="تواصل معانا"
               >
                 تواصل معانا
               </button>
