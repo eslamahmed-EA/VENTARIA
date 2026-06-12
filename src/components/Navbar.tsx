@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { UI_TRANSLATIONS } from "../translations";
 
@@ -11,7 +11,20 @@ interface NavbarProps {
 
 export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
   const logoUrl = new URL('../../assets/ventaria-logo.png', import.meta.url).href;
+
+  // helper to force pointer cursor in cases where an overlay/global rule prevents it
+  const setBodyCursor = (val: '' | 'pointer') => {
+    if (typeof document !== 'undefined') document.body.style.cursor = val;
+  };
+
+  // ensure cursor is reset when component unmounts
+  useEffect(() => {
+    return () => {
+      if (typeof document !== 'undefined') document.body.style.cursor = '';
+    };
+  }, []);
 
   const navLinks = lang === "ar" ? [
     { label: "الرئيسية", value: "home" },
@@ -37,8 +50,33 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Debug helper: log top element under cursor to detect overlays blocking pointer
+  const handleDebugMouseMove = (e: React.MouseEvent) => {
+    try {
+      const x = e.clientX;
+      const y = e.clientY;
+      const el = document.elementFromPoint(x, y) as HTMLElement | null;
+      if (!el) return;
+      const btn = document.getElementById('nav-contact-btn');
+      // if the top element is the button (or inside it) do nothing
+      if (btn && (el === btn || btn.contains(el))) return;
+      // otherwise log info to console to help debugging
+      const cs = window.getComputedStyle(el);
+      console.warn('[Navbar debug] top element under cursor:', {
+        tag: el.tagName,
+        id: el.id || null,
+        classes: el.className || null,
+        pointerEvents: cs.pointerEvents,
+        cursor: cs.cursor,
+        zIndex: cs.zIndex,
+      });
+    } catch (err) {
+      // ignore
+    }
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+    <nav ref={navRef} onMouseMove={handleDebugMouseMove} className="fixed top-0 left-0 w-full z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -77,6 +115,8 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
+              onMouseEnter={() => setBodyCursor('pointer')}
+              onMouseLeave={() => setBodyCursor('')}
               className="px-4 py-2 bg-accent hover:bg-accent-hover text-black font-bold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-105 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
               id="nav-contact-btn"
               aria-label={lang === "ar" ? "تواصل معنا" : "Contact"}
@@ -101,6 +141,8 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
+              onMouseEnter={() => setBodyCursor('pointer')}
+              onMouseLeave={() => setBodyCursor('')}
               className="px-6 py-2.5 bg-accent hover:bg-accent-hover text-black font-extrabold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-102 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
               id="desktop-cta-btn"
               aria-label={UI_TRANSLATIONS[lang].bookCall}
@@ -154,9 +196,13 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             })}
           </div>
           <button
+            type="button"
             onClick={() => handleNavClick("contact")}
+            onMouseEnter={() => setBodyCursor('pointer')}
+            onMouseLeave={() => setBodyCursor('')}
             className="flex items-center justify-center space-x-2 w-full h-12 rounded-lg bg-accent text-black font-extrabold hover:bg-accent-hover transition-colors duration-300 shadow-md cursor-pointer"
             id="mobile-nav-cta-btn"
+            style={{ cursor: 'pointer', pointerEvents: 'auto' }}
           >
             <span>{UI_TRANSLATIONS[lang].startProject}</span>
             <ArrowUpRight className="w-4 h-4" />
