@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { UI_TRANSLATIONS } from "../translations";
 
@@ -12,31 +12,6 @@ interface NavbarProps {
 export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const logoUrl = new URL('../../assets/ventaria-logo.png', import.meta.url).href;
-
-  // helper to force pointer cursor in cases where an overlay/global rule prevents it
-  const setBodyCursor = (val: '' | 'pointer') => {
-    if (typeof document !== 'undefined') document.body.style.cursor = val;
-  };
-
-  // ensure cursor is reset when component unmounts
-  useEffect(() => {
-    // Debug: log element under mouse on navbar hover
-    const handleMouseMove = (e: MouseEvent) => {
-      const nav = document.querySelector('nav');
-      if (nav && nav.contains(e.target as Node)) {
-        const topElement = document.elementFromPoint(e.clientX, e.clientY);
-        if (topElement?.id === 'nav-contact-btn' || topElement?.id === 'desktop-cta-btn') {
-          console.log('Hovering CTA button:', topElement.id, 'z-index:', getComputedStyle(topElement).zIndex);
-        }
-      }
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      if (typeof document !== 'undefined') document.body.style.cursor = '';
-    };
-  }, []);
 
   const navLinks = lang === "ar" ? [
     { label: "الرئيسية", value: "home" },
@@ -102,12 +77,9 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
-              onMouseEnter={() => setBodyCursor('pointer')}
-              onMouseLeave={() => setBodyCursor('')}
-              className="px-4 py-2 bg-accent hover:bg-accent-hover text-black font-bold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-105 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
+              className="px-4 py-2 bg-accent hover:bg-accent-hover text-black font-bold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-105 shadow-[0_0_20px_rgba(94,225,181,0.2)] cursor-pointer hover:cursor-pointer active:cursor-pointer focus:cursor-pointer"
               id="nav-contact-btn"
               aria-label={lang === "ar" ? "تواصل معنا" : "Contact"}
-              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
               {lang === "ar" ? "تواصل معنا" : "Contact"}
             </button>
@@ -128,12 +100,9 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
             <button
               type="button"
               onClick={() => handleNavClick("contact")}
-              onMouseEnter={() => setBodyCursor('pointer')}
-              onMouseLeave={() => setBodyCursor('')}
-              className="px-6 py-2.5 bg-accent hover:bg-accent-hover text-black font-extrabold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-102 cursor-pointer shadow-[0_0_20px_rgba(94,225,181,0.2)]"
+              className="px-6 py-2.5 bg-accent hover:bg-accent-hover text-black font-extrabold text-xs tracking-widest uppercase rounded-full transition-transform hover:scale-102 shadow-[0_0_20px_rgba(94,225,181,0.2)] cursor-pointer hover:cursor-pointer active:cursor-pointer focus:cursor-pointer"
               id="desktop-cta-btn"
               aria-label={UI_TRANSLATIONS[lang].bookCall}
-              style={{ cursor: 'pointer', pointerEvents: 'auto' }}
             >
               {UI_TRANSLATIONS[lang].bookCall}
             </button>
@@ -185,11 +154,8 @@ export default function Navbar({ currentPage, setCurrentPage, lang, setLang }: N
           <button
             type="button"
             onClick={() => handleNavClick("contact")}
-            onMouseEnter={() => setBodyCursor('pointer')}
-            onMouseLeave={() => setBodyCursor('')}
-            className="flex items-center justify-center space-x-2 w-full h-12 rounded-lg bg-accent text-black font-extrabold hover:bg-accent-hover transition-colors duration-300 shadow-md cursor-pointer"
+            className="flex items-center justify-center space-x-2 w-full h-12 rounded-lg bg-accent text-black font-extrabold hover:bg-accent-hover transition-colors duration-300 shadow-md cursor-pointer hover:cursor-pointer active:cursor-pointer focus:cursor-pointer"
             id="mobile-nav-cta-btn"
-            style={{ cursor: 'pointer', pointerEvents: 'auto' }}
           >
             <span>{UI_TRANSLATIONS[lang].startProject}</span>
             <ArrowUpRight className="w-4 h-4" />
