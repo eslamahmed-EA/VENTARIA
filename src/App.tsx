@@ -404,14 +404,6 @@ export default function App() {
     }
   };
 
-  // Open WhatsApp chat helper
-  const openWhatsApp = (phone: string, message?: string) => {
-    const text = encodeURIComponent(message || 'مرحبا، أريد التواصل معكم بخصوص مشروع.');
-    const cleaned = phone.replace(/[^0-9+]/g, '');
-    const url = `https://wa.me/${cleaned.replace(/^\+/, '')}?text=${text}`;
-    window.open(url, '_blank');
-  };
-
   return (
     <div id="ventaria-app" className="min-h-screen bg-white text-[#111111] antialiased selection:bg-primary selection:text-white overflow-x-hidden font-sans">
       
@@ -455,11 +447,11 @@ export default function App() {
             <div className="hidden md:flex items-center gap-4" id="nav-cta-group">
               <span className="text-zinc-300">|</span>
               <button 
-                onClick={() => openWhatsApp('+201014046106')}
+                onClick={() => navigateToSection('#contact')}
                 className="bg-[#111111] hover:bg-zinc-800 text-white hover:text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-lg hover:shadow-zinc-200/50"
                 id="btn-nav-start"
               >
-                تواصل معانا
+                ابدأ مشروعك
               </button>
             </div>
 
@@ -535,7 +527,7 @@ export default function App() {
             
             <div className="pt-4 flex flex-col gap-3">
               <button 
-                onClick={() => openWhatsApp('+201014046106')}
+                onClick={() => navigateToSection('#contact')}
                 className="w-full bg-primary hover:bg-[#009e68] text-white py-3 rounded-xl font-bold text-center transition-all"
                 id="btn-mobile-nav-cta-primary"
               >
@@ -1578,10 +1570,62 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
             
-            {/* Context Sidebar removed per request; form expanded to full width below */}
+            {/* Context Sidebar (5 cols) */}
+            <div className="lg:col-span-5 flex flex-col justify-between" id="contact-context-panel">
+              <div className="space-y-6">
+                <span className="text-primary text-xs sm:text-sm font-black tracking-widest uppercase bg-primary/10 px-4 py-2 rounded-full">
+                  احجز استشارتك المجانية خلال دقائق
+                </span>
+                <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-zinc-900 leading-tight">
+                  دعنا نحول فكرتك التجارية إلى نجاح رقمي متكامل!
+                </h2>
+                <p className="text-zinc-600 text-sm sm:text-base leading-relaxed">
+                  احصل على مكالمة تشخيصية مجانية مدتها ٢٥ دقيقة مع خبير تطوير الأعمال والمواقع لدينا لمراجعة متطلباتك ورسم الهيكل البرمجي والمالي لشركتك.
+                </p>
 
-            {/* Leading Form block (full width) */}
-            <div className="lg:col-span-12" id="contact-form-panel">
+                {/* Bullet advantages of booking */}
+                <div className="space-y-3 pt-4" id="booking-points">
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3" />
+                    </div>
+                    <span className="text-xs sm:text-sm text-zinc-700 font-semibold text-right">تحليل فني وهندسي كامل مجاني لمشروعك</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3" />
+                    </div>
+                    <span className="text-xs sm:text-sm text-zinc-700 font-semibold text-right">تسليم حزمة تسعير وخطة زمنية للمهام</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3" />
+                    </div>
+                    <span className="text-xs sm:text-sm text-zinc-700 font-semibold text-right">لا التزام بالشراء - استشارة حرة للمنفعة</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Verified Contact Details Cards */}
+              <div className="space-y-2.5 pt-8 border-t border-zinc-200 mt-8" id="verified-direct-contacts">
+                <span className="text-[10px] text-zinc-400 uppercase font-black tracking-wider block">تواصل مباشر فوري</span>
+                <div className="flex items-center gap-4 text-xs font-semibold text-zinc-700">
+                  <a href="mailto:hello@ventaria.com" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Mail className="w-4 h-4 text-primary shrink-0" id="icon-contact-mail" />
+                    hello@ventaria.com
+                  </a>
+                  <span className="text-zinc-300">|</span>
+                  <a href="tel:+96650000000" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Phone className="w-4 h-4 text-primary shrink-0" id="icon-contact-phone" />
+                    +966 500 000 000
+                  </a>
+                </div>
+                <span className="block text-[11px] text-zinc-400">ساعات العمل: من الأحد إلى الخميس، من ٩ ص حتى ٥ م (موقيت مكة المكرمة)</span>
+              </div>
+            </div>
+
+            {/* Leading Form block (7 cols) */}
+            <div className="lg:col-span-7" id="contact-form-panel">
               <div className="bg-white border border-zinc-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-zinc-200/50 relative">
                 
                 {submitSuccess ? (
@@ -1777,7 +1821,9 @@ export default function App() {
             setActivePage('home');
             window.location.hash = '';
           }}
-          onContactClick={() => openWhatsApp('+201014046106')}
+          onContactClick={() => {
+            navigateToSection('#contact');
+          }}
         />
       )}
 
@@ -1789,7 +1835,7 @@ export default function App() {
             {/* Column 1: Brand Info */}
             <div className="space-y-4" id="footer-col-1">
               <div className="flex items-center gap-3">
-                <img src={logo} alt="Ventaria Logo" className="w-8 h-8 object-contain" />
+                <VentariaLogo className="w-8 h-8 text-primary" />
                 <span className="font-display font-extrabold text-xl text-white">Ventaria</span>
               </div>
               <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
@@ -1852,11 +1898,11 @@ export default function App() {
               <p className="text-xs text-zinc-400">نحن مسجلون ومرخصون بالكامل لخدمة أصحاب الأعمال في السعودية والخليج.</p>
               <div className="pt-2">
                 <button 
-                  onClick={() => openWhatsApp('+201014046106')}
+                  onClick={() => navigateToSection('#contact')}
                   className="bg-primary hover:bg-[#009e68] text-zinc-950 font-black text-xs px-4 py-2.5 rounded-lg w-full text-center transition-all cursor-pointer"
                   id="btn-footer-start-now"
                 >
-                  تواصل معانا
+                  احجز استشارة مع فينتاريا
                 </button>
               </div>
             </div>
