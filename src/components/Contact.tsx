@@ -48,7 +48,7 @@ export default function Contact({ lang }: ContactProps) {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: FormEvent) => {
+  const handleFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!(formData.name && formData.email)) {
       setSubmitError("Please provide name and email.");
@@ -57,45 +57,66 @@ export default function Contact({ lang }: ContactProps) {
 
     // Read webhook URL from Vite env var: VITE_SHEETS_WEBHOOK
     // If not provided, fall back to the Apps Script URL you supplied.
-    const SHEETS_WEBHOOK = (((import.meta as any).env && (import.meta as any).env.VITE_SHEETS_WEBHOOK) as string | undefined)
-  || 'https://script.google.com/macros/library/d/12JSQJEYQ1I7i_uK5LC4uah-bj8JadiOewRSEU3i2bzRMZLh4aLWS0dd5/2';
+    const SHEETS_WEBHOOK =
+      (((import.meta as any).env && (import.meta as any).env.VITE_SHEETS_WEBHOOK) as string | undefined) ||
+      'https://script.google.com/macros/s/AKfycbyIckXK2YnYPyNwZ2SJQZ22roujZAswibMdwdJhYNiYz7fPTJ4Zi8lBLSbG9mT4QTfe/exec';
+
+    // Use local proxy automatically during development to avoid CORS issues
+    const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    const LOCAL_PROXY = 'http://localhost:4000/api/sheets';
+    const endpoint = isLocal ? LOCAL_PROXY : SHEETS_WEBHOOK;
 
     setIsLoading(true);
     setSubmitError(null);
 
-    // Prepare payload for a simple Google Apps Script / webhook that writes to Sheets
     const payload = {
       timestamp: new Date().toISOString(),
       name: formData.name,
-  phone: formData.phone,
+      phone: formData.phone,
       email: formData.email,
-  website: formData.website,
-  // Apps Script expects `service` and `details` (matching your Sheet columns)
-  service: formData.platform,
+      website: formData.website,
+      // Apps Script expects `service` and `details` (matching your Sheet columns)
+      service: formData.platform,
       budget: formData.budget,
-  details: formData.message
+      details: formData.message
     };
 
-    fetch(SHEETS_WEBHOOK, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    })
-      .then(async (res) => {
-        setIsLoading(false);
-        if (!res.ok) {
-          const txt = await res.text().catch(() => "");
-          throw new Error(`Webhook response ${res.status} ${txt}`);
-        }
-  setIsSubmitSuccess(true);
-  // Optionally clear form
-  setFormData({ name: "", phone: "", email: "", website: "", platform: "shopify", budget: "8500", message: "" });
-      })
-      .catch((err) => {
-        console.error("Failed to submit intake form:", err);
-        setIsLoading(false);
-        setSubmitError("Failed to send. Please try again later.");
+    try {
+  console.log('Submitting intake payload to', endpoint, ' (local proxy used?)', isLocal, payload);
+  const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
+
+      const text = await res.text().catch(() => '');
+      let json: any = null;
+      try { json = text ? JSON.parse(text) : null; } catch (err) { /* not JSON */ }
+
+      console.log('Webhook response status', res.status, 'body', text, 'parsed', json);
+
+      if (!res.ok) {
+        // Show response body if present for debugging
+        setSubmitError(`Server returned ${res.status}: ${text || res.statusText}`);
+        setIsLoading(false);
+        return;
+      }
+
+      // If server returns JSON success flag, verify it
+      if (json && json.success === false) {
+        setSubmitError(json.error || json.message || 'Server reported failure');
+        setIsLoading(false);
+        return;
+      }
+
+      setIsSubmitSuccess(true);
+      setFormData({ name: '', phone: '', email: '', website: '', platform: 'shopify', budget: '8500', message: '' });
+      setIsLoading(false);
+    } catch (err: any) {
+      console.error('Failed to submit intake form:', err);
+      setSubmitError(err?.message || 'Failed to send. Please try again later.');
+      setIsLoading(false);
+    }
   };
 
   const handleTimeSlotSelect = (slot: string) => {
