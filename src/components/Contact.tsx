@@ -58,7 +58,7 @@ export default function Contact({ lang }: ContactProps) {
     // Read webhook URL from Vite env var: VITE_SHEETS_WEBHOOK
     // If not provided, fall back to the Apps Script URL you supplied.
     const SHEETS_WEBHOOK = (((import.meta as any).env && (import.meta as any).env.VITE_SHEETS_WEBHOOK) as string | undefined)
-  || 'https://script.google.com/macros/s/AKfycbyNKT3_C9-kAwcD2S9Ag6dWtDpUFo3Km8KcNIvDhsJs1v5reGWeuaxe0jqjce8ey7AM/exec';
+  || 'https://script.google.com/macros/s/AKfycbyIckXK2YnYPyNwZ2SJQZ22roujZAswibMdwdJhYNiYz7fPTJ4Zi8lBLSbG9mT4QTfe/exec';
 
     setIsLoading(true);
     setSubmitError(null);
@@ -69,10 +69,11 @@ export default function Contact({ lang }: ContactProps) {
       name: formData.name,
   phone: formData.phone,
       email: formData.email,
-      website: formData.website,
-      platform: formData.platform,
+  website: formData.website,
+  // Apps Script expects `service` and `details` (matching your Sheet columns)
+  service: formData.platform,
       budget: formData.budget,
-      message: formData.message
+  details: formData.message
     };
 
     fetch(SHEETS_WEBHOOK, {
