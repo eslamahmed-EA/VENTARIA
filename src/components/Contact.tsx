@@ -11,6 +11,7 @@ export default function Contact({ lang }: ContactProps) {
   // Contact Form States
   const [formData, setFormData] = useState({
     name: "",
+  phone: "",
     email: "",
     website: "",
     platform: "shopify",
@@ -18,6 +19,8 @@ export default function Contact({ lang }: ContactProps) {
     message: ""
   });
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Calendly Mock States
   const [selectedCalendarDate, setSelectedCalendarDate] = useState<string>("June 8, 2026");
@@ -47,9 +50,51 @@ export default function Contact({ lang }: ContactProps) {
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.email) {
-      setIsSubmitSuccess(true);
+    if (!(formData.name && formData.email)) {
+      setSubmitError("Please provide name and email.");
+      return;
     }
+
+    // Read webhook URL from Vite env var: VITE_SHEETS_WEBHOOK
+    // If not provided, fall back to the Apps Script URL you supplied.
+    const SHEETS_WEBHOOK = (((import.meta as any).env && (import.meta as any).env.VITE_SHEETS_WEBHOOK) as string | undefined)
+  || 'https://script.google.com/macros/s/AKfycbyNKT3_C9-kAwcD2S9Ag6dWtDpUFo3Km8KcNIvDhsJs1v5reGWeuaxe0jqjce8ey7AM/exec';
+
+    setIsLoading(true);
+    setSubmitError(null);
+
+    // Prepare payload for a simple Google Apps Script / webhook that writes to Sheets
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: formData.name,
+  phone: formData.phone,
+      email: formData.email,
+      website: formData.website,
+      platform: formData.platform,
+      budget: formData.budget,
+      message: formData.message
+    };
+
+    fetch(SHEETS_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(async (res) => {
+        setIsLoading(false);
+        if (!res.ok) {
+          const txt = await res.text().catch(() => "");
+          throw new Error(`Webhook response ${res.status} ${txt}`);
+        }
+  setIsSubmitSuccess(true);
+  // Optionally clear form
+  setFormData({ name: "", phone: "", email: "", website: "", platform: "shopify", budget: "8500", message: "" });
+      })
+      .catch((err) => {
+        console.error("Failed to submit intake form:", err);
+        setIsLoading(false);
+        setSubmitError("Failed to send. Please try again later.");
+      });
   };
 
   const handleTimeSlotSelect = (slot: string) => {
@@ -102,7 +147,7 @@ export default function Contact({ lang }: ContactProps) {
                     <p className="text-xs text-zinc-400">{UI_TRANSLATIONS[lang].expectedLatency}</p>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 gap-6">
+                  <div className="grid sm:grid-cols-3 gap-6">
                     <div className="space-y-1.5 text-left">
                       <label className={`text-[10px] font-mono text-zinc-500 uppercase block font-bold tracking-widest ${lang === "ar" ? "text-right" : "text-left"}`}>{UI_TRANSLATIONS[lang].clientName}</label>
                       <input
@@ -115,6 +160,19 @@ export default function Contact({ lang }: ContactProps) {
                         className={`w-full bg-zinc-950 border border-zinc-800 rounded-lg h-12 px-4 text-sm focus:border-accent focus:outline-none text-white font-sans ${lang === "ar" ? "text-right" : "text-left"}`}
                       />
                     </div>
+
+                    <div className="space-y-1.5 text-left">
+                      <label className={`text-[10px] font-mono text-zinc-500 uppercase block font-bold tracking-widest ${lang === "ar" ? "text-right" : "text-left"}`}>{lang === "ar" ? "الجوال" : "Phone"}</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleFormInputChange}
+                        placeholder={lang === "ar" ? "مثال: 059xxxxxxx" : "e.g. +9665xxxxxxxx"}
+                        className={`w-full bg-zinc-950 border border-zinc-800 rounded-lg h-12 px-4 text-sm focus:border-accent focus:outline-none text-white font-sans ${lang === "ar" ? "text-right" : "text-left"}`}
+                      />
+                    </div>
+
                     <div className="space-y-1.5 text-left">
                       <label className={`text-[10px] font-mono text-zinc-500 uppercase block font-bold tracking-widest ${lang === "ar" ? "text-right" : "text-left"}`}>{UI_TRANSLATIONS[lang].directMail}</label>
                       <input
