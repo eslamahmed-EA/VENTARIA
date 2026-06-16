@@ -58,7 +58,7 @@ export default function Contact({ lang }: ContactProps) {
     // Read webhook URL from Vite env var: VITE_SHEETS_WEBHOOK
     // If not provided, fall back to the Apps Script URL you supplied.
     const SHEETS_WEBHOOK = (((import.meta as any).env && (import.meta as any).env.VITE_SHEETS_WEBHOOK) as string | undefined)
-  || 'https://script.google.com/macros/s/AKfycbyIckXK2YnYPyNwZ2SJQZ22roujZAswibMdwdJhYNiYz7fPTJ4Zi8lBLSbG9mT4QTfe/exec';
+  || 'https://script.google.com/macros/library/d/12JSQJEYQ1I7i_uK5LC4uah-bj8JadiOewRSEU3i2bzRMZLh4aLWS0dd5/2';
 
     setIsLoading(true);
     setSubmitError(null);
