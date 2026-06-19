@@ -1,133 +1,162 @@
-import { UI_TRANSLATIONS } from "../translations";
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Sparkles, Send, CheckCircle, Github, Linkedin, Twitter, Globe } from 'lucide-react';
+import { Language } from '../types';
 
 interface FooterProps {
-  currentPage: string;
-  setCurrentPage: (page: string) => void;
-  lang: "en" | "ar";
+  lang: Language;
+  t: any;
+  setCurrentNav: (nav: string) => void;
 }
 
-export default function Footer({ currentPage, setCurrentPage, lang }: FooterProps) {
-  const handleNavClick = (page: string) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+export default function Footer({ lang, t, setCurrentNav }: FooterProps) {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubscribed(true);
+    setEmail('');
   };
 
-  const disciplines = lang === "ar" ? [
-    "متاجر شوبيفاي المخصصة",
-    "ثيمات سلة الإقليمية",
-    "تجهيز متاجر زيد للأعمال",
-    "هندسة التغليف الملموس",
-    "تدقيق معدل التحويل وسرعته"
-  ] : [
-    "Shopify Store Blueprints",
-    "Salla Regional Themes",
-    "Zid Omni Setup Cores",
-    "Tactile Package Engineering",
-    "Conversion Rate Audits"
+  const navLinks = [
+    { id: 'home', label: t.navHome },
+    { id: 'services', label: t.navServices },
+    { id: 'portfolio', label: t.navPortfolio },
+    { id: 'case-studies', label: t.navCaseStudies },
+    { id: 'pricing', label: t.navPricing },
+    { id: 'about', label: t.navAbout },
+    { id: 'blog', label: t.navBlog },
+    { id: 'tools', label: t.navTools },
+    { id: 'contact', label: t.navContact }
   ];
 
-  const dirLabels: Record<string, string> = lang === "ar" ? {
-    "home": "الرئيسية",
-    "services": "الخدمات",
-    "portfolio": "أعمالنا",
-    "case-studies": "دراسات الحالة",
-    "about": "من نحن",
-    "pricing": "الأسعار",
-    "blog": "المدونة",
-    "contact": "تواصل معنا"
-  } : {
-    "home": "Home",
-    "services": "Services",
-    "portfolio": "Portfolio",
-    "case-studies": "Case Studies",
-    "about": "About",
-    "pricing": "Pricing",
-    "blog": "Blog",
-    "contact": "Contact"
-  };
-
   return (
-    <footer className="border-t border-zinc-900 bg-black text-white py-16 px-6 lg:px-12 relative overflow-hidden" id="global-footer">
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-accent/2 rounded-full blur-3xl pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 text-sm">
-        {/* Pitch Branding Left column */}
-        <div className="md:col-span-4 space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-accent/10 border border-accent/20">
-              <span className="text-accent font-bold font-mono text-xs tracking-tighter">V</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-extrabold text-md tracking-wider font-sans">{UI_TRANSLATIONS[lang].brandName}</span>
-              <span className="text-[8px] text-accent tracking-[0.3em] uppercase -mt-0.5">{UI_TRANSLATIONS[lang].studio}</span>
+    <footer 
+      style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
+      className="relative z-10 bg-[#030712] border-t border-gray-900 pt-20 pb-8 text-right font-sans overflow-hidden"
+    >
+      {/* Accent glow corner */}
+      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#63D6B5]/5 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
+        
+        {/* Top Segment: Brand & Newsletters */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-gray-900">
+          
+          {/* Brand details */}
+          <div className="lg:col-span-5 space-y-6">
+            <a href="#home" onClick={() => setCurrentNav('home')} className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-[#63D6B5] flex items-center justify-center">
+                <Sparkles className="w-4 h-4 text-gray-950" />
+              </div>
+              <span className="text-lg font-bold text-white tracking-tight">{t.brandName}</span>
+            </a>
+            
+            <p className="text-xs md:text-sm text-gray-400 leading-relaxed max-w-md text-justify">
+              {t.footerDesc}
+            </p>
+
+            {/* Social media icons */}
+            <div className="flex gap-3 justify-start">
+              {[
+                { icon: Twitter, url: "https://twitter.com" },
+                { icon: Linkedin, url: "https://linkedin.com" },
+                { icon: Github, url: "https://github.com" }
+              ].map((soc, idx) => {
+                const SocIcon = soc.icon;
+                return (
+                  <a
+                    key={idx}
+                    href={soc.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="p-2.5 rounded-full bg-gray-950 border border-gray-900 text-gray-500 hover:text-[#89FFE1] hover:border-[#63D6B5] transition-all"
+                  >
+                    <SocIcon className="w-4 h-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
-          <p className="text-xs text-zinc-400 leading-relaxed font-normal">
-            {UI_TRANSLATIONS[lang].heroSub}
-          </p>
-          <div className="text-[10px] font-mono text-accent font-bold tracking-widest uppercase">
-            {UI_TRANSLATIONS[lang].escrowSecurity}
+
+          {/* Navigation Links Hub */}
+          <div className="lg:col-span-3 space-y-6">
+            <h4 className="text-xs uppercase font-mono tracking-widest text-[#63D6B5] font-black">
+              {lang === 'ar' ? 'الربط السريع للموقع' : 'Site Blueprint'}
+            </h4>
+            
+            <div className="grid grid-cols-2 gap-3.5">
+              {navLinks.map((link) => (
+                <a
+                  key={link.id}
+                  href={`#${link.id}`}
+                  onClick={() => setCurrentNav(link.id)}
+                  className="text-xs text-gray-400 hover:text-white transition-all font-semibold"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Newsletter Subscribe */}
+          <div className="lg:col-span-4 space-y-6">
+            <h4 className="text-xs uppercase font-mono tracking-widest text-[#63D6B5] font-black">
+              {t.footerNewsletterTitle}
+            </h4>
+            <p className="text-xs text-gray-400">
+              {lang === 'ar' 
+                ? 'اشترك بالنشرة الدورية الفنية لشركائنا لاستقبال أحدث دراسات السيو والأكواد.' 
+                : 'Subscribe to our periodic intelligence briefings for secure coding insights.'}
+            </p>
+
+            {subscribed ? (
+              <div className="flex items-center gap-2 text-[#89FFE1] text-xs font-mono py-2">
+                <CheckCircle className="w-4 h-4 text-emerald-400" />
+                <span>{lang === 'ar' ? 'تم الاشتراك بنجاح!' : 'Subscription active! Thank you.'}</span>
+              </div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex gap-2">
+                <input
+                  type="email"
+                  required
+                  placeholder={t.footerNewsletterPlaceholder}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`flex-1 bg-gray-950 border border-gray-900 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-[#63D6B5] ${
+                    lang === 'ar' ? 'text-right' : 'text-left'
+                  }`}
+                />
+                <button
+                  type="submit"
+                  className="py-3 px-4 rounded-xl bg-gradient-to-r from-[#63D6B5] to-[#46C6A5] text-gray-950 font-bold text-xs"
+                  aria-label="Confirm newsletter subscription"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+
+        {/* Lower Segment: Copywriting & security badge */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 text-[11px] font-mono text-gray-600">
+          <div>
+            <span>{t.footerCopyright}</span>
+          </div>
+
+          {/* Trust and certifications markers */}
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            <span>ISO 27001 SECURE</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#63D6B5] block" />
+            <span>GDPR DATA PROTECTION</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#63D6B5] block" />
+            <span>PCI-DSS ENCRYPTED</span>
           </div>
         </div>
 
-        {/* Categories center column */}
-        <div className="md:col-span-3 space-y-4">
-          <h4 className="text-xs font-mono tracking-widest text-zinc-500 uppercase font-bold">{UI_TRANSLATIONS[lang].coreDisciplines}</h4>
-          <div className="flex flex-col space-y-2 text-xs">
-            {disciplines.map((disc, idx) => (
-              <button 
-                key={idx} 
-                onClick={() => handleNavClick("services")} 
-                className="text-left hover:text-accent text-zinc-400 transition-colors cursor-pointer font-medium"
-              >
-                {disc}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Directory links */}
-        <div className="md:col-span-2 space-y-4">
-          <h4 className="text-xs font-mono tracking-widest text-zinc-500 uppercase font-bold">{UI_TRANSLATIONS[lang].directory}</h4>
-          <div className="flex flex-col space-y-2 text-xs">
-            {["home", "services", "portfolio", "case-studies", "about", "pricing", "blog", "contact"].map((page) => (
-              <button
-                key={page}
-                onClick={() => handleNavClick(page)}
-                className="text-left uppercase text-[10px] font-mono tracking-widest text-zinc-400 hover:text-accent transition-colors cursor-pointer font-bold"
-                id={`footer-nav-${page}`}
-              >
-                {dirLabels[page] || page}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Global Offices */}
-        <div className="md:col-span-3 space-y-4">
-          <h4 className="text-xs font-mono tracking-widest text-zinc-500 uppercase font-bold">{UI_TRANSLATIONS[lang].globalHq}</h4>
-          <div className="space-y-3 text-[11px] text-zinc-400 font-normal leading-normal">
-            <div>
-              <strong className="text-white font-mono uppercase text-[9px] tracking-widest block font-bold mb-1">{UI_TRANSLATIONS[lang].saHqLabel}</strong>
-              {UI_TRANSLATIONS[lang].riyadhAddr}
-            </div>
-            <div>
-              <strong className="text-white font-mono uppercase text-[9px] tracking-widest block font-bold mb-1">{UI_TRANSLATIONS[lang].euOffLabel}</strong>
-              {UI_TRANSLATIONS[lang].genevaAddr}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Under copyright bar */}
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 gap-4 font-mono">
-        <div className="font-bold tracking-wider text-[10px]">
-          {UI_TRANSLATIONS[lang].allRights.replace("2026", new Date().getFullYear().toString())}
-        </div>
-        <div className="flex space-x-6 text-[10px] font-bold">
-          <span className="text-accent tracking-widest">// {UI_TRANSLATIONS[lang].compSpeeds}</span>
-          <span className="tracking-widest">{UI_TRANSLATIONS[lang].accuracySecured}</span>
-        </div>
       </div>
     </footer>
   );
