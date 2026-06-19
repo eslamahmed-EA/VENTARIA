@@ -210,7 +210,7 @@ export default function PortfolioGrid({ lang, t }: PortfolioGridProps) {
                     <div>
                       <div className="text-xs text-gray-400 font-mono mb-2 flex items-center gap-1.5">
                         <AlertCircle className="w-3.5 h-3.5 text-[#63D6B5]" />
-                        {lang === 'ar' ? 'اسحب لمقارنة المظهر القديم بالسرعة والأناقة الجديدة:' : 'Slide to compare legacy look vs Nexus performance:'}
+                        {lang === 'ar' ? 'اسحب لمقارنة المظهر القديم بالسرعة والأناقة الجديدة:' : 'Slide to compare legacy look vs VENTARIA performance:'}
                       </div>
 
                       <div 
@@ -247,7 +247,7 @@ export default function PortfolioGrid({ lang, t }: PortfolioGridProps) {
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                           <div className={`absolute bottom-3 text-[10px] font-mono px-2 py-1 bg-emerald-950/80 border border-emerald-800 text-[#89FFE1] uppercase rounded ${lang === 'ar' ? 'left-3' : 'right-3'}`}>
-                            {lang === 'ar' ? 'مظهري نكسس الجديد' : 'Nexus Ultra React (0.4s)'}
+                            {lang === 'ar' ? 'المظهر الجديد المطور من فينتاريا' : 'VENTARIA Ultra React (0.4s)'}
                           </div>
                         </div>
 

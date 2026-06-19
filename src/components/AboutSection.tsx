@@ -73,7 +73,7 @@ export default function AboutSection({ lang, t }: AboutSectionProps) {
     {
       year: "2020",
       titleEn: "Creative Lab Founded",
-      titleAr: "تأسيس مختبر نكسس التقني",
+      titleAr: "تأسيس مختبر فينتاريا التقني",
       descEn: "Launched as a specialized boutique cloud engineering lab focusing on custom APIs routing.",
       descAr: "بدأنا كمختبر مالي وهندسي لتطوير وتوفير واجهات برمجة التطبيقات APIs والحلول السحابية المعقدة في القاهرة."
     },
@@ -112,10 +112,10 @@ export default function AboutSection({ lang, t }: AboutSectionProps) {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#63D6B5]/10 border border-[#63D6B5]/30 text-[#89FFE1] text-xs font-mono uppercase tracking-wide mb-4">
             <Compass className="w-3.5 h-3.5 text-[#63D6B5]" />
-            {lang === 'ar' ? 'من نحن وقيم البناء نكسس' : 'Elite Engineering Persona'}
+            {lang === 'ar' ? 'من نحن وقيم البناء فينتاريا' : 'Elite Engineering Persona'}
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-            {lang === 'ar' ? 'استوديو نكسس.. هندسة برمجية بلا حدود' : 'Nexus.. Engineering Beyond Borders'}
+            {lang === 'ar' ? 'استوديو فينتاريا.. هندسة برمجية بلا حدود' : 'VENTARIA.. Engineering Beyond Borders'}
           </h2>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
             {lang === 'ar' 
@@ -137,8 +137,8 @@ export default function AboutSection({ lang, t }: AboutSectionProps) {
             </h3>
             <p className="text-xs md:text-sm text-gray-400 leading-relaxed text-justify">
               {lang === 'ar' 
-                ? 'تأسست شركة نكسس للبرمجيات على يد نخبة من المطورين ومهندسي الأنظمة لتغيير الصورة النمطية السائدة لمواقع الويب المعطلة والبطيئة والمليئة بالثغرات في المنطقة العربية. أخذنا على عاتقنا تقديم برمجيات ممتازة فائقة السرعة، مصممة خصيصاً بلغة React فائقة التجاوب وبنيات مستخدم UX تخلب الألباب وتدعو للشراء وحسم العمل.'
-                : 'Nexus Software was founded by elite distributed systems architects to redefine web standards across the Middle East. By replacing generic, bottlenecked PHP sites with blistering-fast React systems, we help corporations protect active conversions. Today, our regional clusters power thousands of real-time transactions daily with perfect uptime.'}
+                ? 'تأسست شركة فينتاريا للحلول الرقمية على يد نخبة من المطورين ومهندسي الأنظمة لتغيير الصورة النمطية السائدة لمواقع الويب المعطلة والبطيئة والمليئة بالثغرات في المنطقة العربية. أخذنا على عاتقنا تقديم برمجيات ممتازة فائقة السرعة، مصممة خصيصاً بلغة React فائقة التجاوب وبنيات مستخدم UX تخلب الألباب وتدعو للشراء وحسم العمل.'
+                : 'VENTARIA was founded by elite distributed systems architects to redefine web standards across the Middle East. By replacing generic, bottlenecked PHP sites with blistering-fast React systems, we help corporations protect active conversions. Today, our regional clusters power thousands of real-time transactions daily with perfect uptime.'}
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-gray-900 font-mono text-center">
@@ -191,7 +191,7 @@ export default function AboutSection({ lang, t }: AboutSectionProps) {
         <div className="mb-24">
           <h3 className="text-center text-lg font-mono text-[#89FFE1] mb-12 flex items-center justify-center gap-1.5 uppercase tracking-wider">
             <Milestone className="w-4 h-4 text-[#63D6B5]" />
-            <span>{lang === 'ar' ? 'خط رحلة التطور والنجاح التقني لنيكسس' : 'Nexus Historical Project milestones'}</span>
+            <span>{lang === 'ar' ? 'خط رحلة التطور والنجاح التقني لفينتاريا' : 'VENTARIA Historical Project milestones'}</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
@@ -221,7 +221,7 @@ export default function AboutSection({ lang, t }: AboutSectionProps) {
         <div>
           <h3 className="text-center text-lg font-mono text-[#89FFE1] mb-12 flex items-center justify-center gap-1.5 uppercase tracking-wider">
             <Users className="w-4 h-4 text-[#63D6B5]" />
-            <span>{lang === 'ar' ? 'فريق المهندسين ومدراء نكسس النخبة' : 'Our Board of Directors & Architects'}</span>
+            <span>{lang === 'ar' ? 'فريق المهندسين ومدراء فينتاريا النخبة' : 'Our Board of Directors & Architects'}</span>
           </h3>
 
           <div 

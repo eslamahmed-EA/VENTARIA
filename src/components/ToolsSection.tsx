@@ -1,7 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Calculator, ShieldAlert, Sparkles, TrendingUp, CheckCircle, ArrowRight, Loader2, RefreshCw } from 'lucide-react';
+import { 
+  Calculator, 
+  ShieldAlert, 
+  Sparkles, 
+  TrendingUp, 
+  CheckCircle, 
+  ArrowRight, 
+  Loader2, 
+  RefreshCw,
+  Layers,
+  Zap,
+  Globe,
+  ShoppingBag,
+  Database,
+  HelpCircle,
+  Code,
+  Layout,
+  Lock,
+  PlusCircle,
+  FileText,
+  Check
+} from 'lucide-react';
 import { Language, CurrencyConfig } from '../types';
+
+// Animated Number Counter Sub-component for Premium Look & Feel
+function AnimatedNumber({ value }: { value: number }) {
+  const [displayValue, setDisplayValue] = useState(value);
+  
+  useEffect(() => {
+    let start = displayValue;
+    const end = value;
+    if (start === end) return;
+    
+    const duration = 650; // ms
+    const startTime = performance.now();
+    
+    let animationFrameId: number;
+    
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing out quad
+      const easeProgress = progress * (2 - progress);
+      
+      const nextValue = Math.round(start + (end - start) * easeProgress);
+      setDisplayValue(nextValue);
+      
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+    
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [value]);
+  
+  return <>{displayValue.toLocaleString()}</>;
+}
 
 interface ToolsSectionProps {
   lang: Language;
@@ -13,11 +70,114 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
   const [activeTab, setActiveTab ] = useState<'cost' | 'seo' | 'roi'>('cost');
 
   // --- WEBSITE COST CALCULATOR STATE ---
-  const [projectType, setProjectType] = useState<'business' | 'store' | 'saas' | 'custom'>('business');
+  const [projectType, setProjectType] = useState<'company' | 'business' | 'news' | 'store' | 'saas'>('company');
   const [pageCount, setPageCount] = useState<number>(5);
-  const [features, setFeatures] = useState<string[]>(['multilingual']);
+  const [features, setFeatures] = useState<string[]>(['bilingual', 'seo']);
   const [deliverySpeed, setDeliverySpeed] = useState<'standard' | 'express'>('standard');
-  const [calculatedCost, setCalculatedCost] = useState<number>(0);
+
+  // --- NEW VENTARIA PRICING DEFINITIONS ---
+  const BASE_PRICES = {
+    company: { EGP: 7500, SAR: 650, USD: 180, AED: 640 },
+    business: { EGP: 17500, SAR: 1500, USD: 420, AED: 1480 },
+    news: { EGP: 14900, SAR: 1250, USD: 350, AED: 1225 },
+    store: { EGP: 29500, SAR: 2500, USD: 700, AED: 2450 },
+    saas: { EGP: 59500, SAR: 5000, USD: 1400, AED: 4900 }
+  };
+
+  const convertEgpValue = (egpVal: number) => {
+    if (currency.code === 'EGP') return egpVal;
+    if (currency.code === 'SAR') return egpVal / 11.5;
+    if (currency.code === 'AED') return (egpVal / 11.5) * 0.98;
+    if (currency.code === 'USD') return egpVal / 50;
+    return egpVal * (currency.rate / 50);
+  };
+
+  const getPageCountAdjustmentEGP = (pages: number): number => {
+    if (pages <= 5) return 0;
+    if (pages <= 10) {
+      const ratio = (pages - 5) / 5;
+      return ratio * 2500;
+    }
+    if (pages <= 15) {
+      const ratio = (pages - 10) / 5;
+      return 2500 + ratio * 2500;
+    }
+    if (pages <= 20) {
+      const ratio = (pages - 15) / 5;
+      return 5000 + ratio * 3000;
+    }
+    if (pages <= 30) {
+      const ratio = (pages - 20) / 10;
+      return 8000 + ratio * 7000;
+    }
+    return 15000;
+  };
+
+  const optionalFeatures = [
+    { id: 'bilingual', nameAr: 'موقع ثنائي اللغة (عربي / إنجليزي)', nameEn: 'Bilingual Website (Arabic / English)', priceEgp: 3500 },
+    { id: 'seo', nameAr: 'تهيئة سيو متقدمة (Advanced SEO)', nameEn: 'Advanced SEO Optimizations', priceEgp: 3000 },
+    { id: 'analytics', nameAr: 'لوحة تحليلات تفاعلية متقدمة', nameEn: 'Advanced Analytics Dashboard', priceEgp: 4000 },
+    { id: 'payment', nameAr: 'ربط بوابة دفع إلكتروني آمنة', nameEn: 'Payment Gateway Integration', priceEgp: 5000 },
+    { id: 'booking', nameAr: 'نظام حجز مواعيد وجدولة ذكي', nameEn: 'Interactive Booking System', priceEgp: 4500 },
+    { id: 'membership', nameAr: 'نظام اشتراك وبوابة مستخدمين', nameEn: 'Membership & User Portal', priceEgp: 7500 },
+    { id: 'marketplace', nameAr: 'منظومة متعددة البائعين (Marketplace)', nameEn: 'Multi-Vendor Marketplace Pack', priceEgp: 20000 },
+    { id: 'admin', nameAr: 'لوحة تحكم إدارية مخصصة للعمليات', nameEn: 'Custom Operations Admin Panel', priceEgp: 10000 },
+    { id: 'mobile_api', nameAr: 'واجهات برمجية لتطبيق الجوال (API)', nameEn: 'Mobile App API Endpoints', priceEgp: 8000 },
+    { id: 'ai', nameAr: 'تكامل خدمات ذكاء اصطناعي ونصوص', nameEn: 'Full AI Model & Cognitive Integration', priceEgp: 12000 },
+  ];
+
+  // Base raw calculated EGP costs
+  const baseCostEgp = BASE_PRICES[projectType]?.EGP || 7500;
+  const pageAdjustEgp = getPageCountAdjustmentEGP(pageCount);
+  
+  // Features sum
+  const featuresEgp = features.reduce((sum, fId) => {
+    const feat = optionalFeatures.find(f => f.id === fId);
+    return sum + (feat ? feat.priceEgp : 0);
+  }, 0);
+
+  // Total raw EGP cost with delivery speed booster
+  let totalRawEgp = baseCostEgp + pageAdjustEgp + featuresEgp;
+  const speedMultiplier = deliverySpeed === 'express' ? 1.25 : 1.0;
+  totalRawEgp = totalRawEgp * speedMultiplier;
+
+  // Range conversion (SAR approx, otherwise EGP translation rates)
+  const rawMinConverted = convertEgpValue(totalRawEgp);
+  const rawMaxConverted = rawMinConverted * 1.20; // 20% span margin
+
+  // Round dynamically per currency standard
+  let minFormatted = 0;
+  let maxFormatted = 0;
+
+  if (currency.code === 'EGP') {
+    minFormatted = Math.round(rawMinConverted / 500) * 500;
+    maxFormatted = Math.round(rawMaxConverted / 500) * 500;
+  } else if (currency.code === 'SAR') {
+    minFormatted = Math.round(rawMinConverted / 50) * 50;
+    maxFormatted = Math.round(rawMaxConverted / 50) * 50;
+  } else if (currency.code === 'AED') {
+    minFormatted = Math.round(rawMinConverted / 50) * 50;
+    maxFormatted = Math.round(rawMaxConverted / 50) * 50;
+  } else {
+    minFormatted = Math.round(rawMinConverted / 10) * 10;
+    maxFormatted = Math.round(rawMaxConverted / 10) * 10;
+  }
+
+  // Starts From
+  const startsFromPrice = BASE_PRICES[projectType][currency.code as keyof typeof BASE_PRICES['company']] || BASE_PRICES[projectType].EGP / 11.5;
+
+  const formatFeaturePrice = (egpVal: number) => {
+    const converted = convertEgpValue(egpVal);
+    if (currency.code === 'EGP') {
+      return `+${Math.round(converted).toLocaleString()} EGP`;
+    } else if (currency.code === 'SAR') {
+      return `+${Math.round(converted).toLocaleString()} SAR`;
+    } else if (currency.code === 'AED') {
+      return `+${Math.round(converted).toLocaleString()} AED`;
+    } else {
+      return `+${Math.round(converted).toLocaleString()} ${currency.code}`;
+    }
+  };
 
   // --- SEO AUDIT STATE ---
   const [auditUrl, setAuditUrl] = useState<string>('');
@@ -31,27 +191,6 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
   const [currentConvRate, setCurrentConvRate] = useState<number>(1.2);
   const [avgOrderValue, setAvgOrderValue] = useState<number>(150);
   const [projectedLift, setProjectedLift] = useState<number>(2.5); // Boost in conversion rate %
-
-  // Calculate project cost instantly
-  useEffect(() => {
-    let base = 0;
-    if (projectType === 'business') base = 1500;
-    else if (projectType === 'store') base = 3500;
-    else if (projectType === 'saas') base = 6000;
-    else if (projectType === 'custom') base = 8500;
-
-    let pageCost = (pageCount - 1) * 120;
-    if (pageCount > 15) pageCost = 14 * 120 + (pageCount - 15) * 80;
-
-    let featuresCost = features.length * 400;
-    if (features.includes('e-payment')) featuresCost += 500;
-    if (features.includes('custom-systems')) featuresCost += 1000;
-
-    let speedMultiplier = deliverySpeed === 'express' ? 1.4 : 1.0;
-
-    const totalUSD = (base + pageCost + featuresCost) * speedMultiplier;
-    setCalculatedCost(Math.round(totalUSD * currency.rate));
-  }, [projectType, pageCount, features, deliverySpeed, currency]);
 
   // Handle SEO simulation
   const startSeoAudit = (e: React.FormEvent) => {
@@ -184,119 +323,180 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
               <div className="lg:col-span-7 space-y-8">
                 {/* Project Category Selection */}
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#63D6B5]" />
-                    {lang === 'ar' ? 'تصنيف وحجم النظام الرقمي' : 'System Category'}
+                  <h3 className="text-sm font-semibold font-mono text-gray-400 mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#63D6B5] animate-ping" />
+                    {lang === 'ar' ? 'تصنيف وحجم النظام الرقمي المستهدف' : 'Target System Architecture Level'}
                   </h3>
-                  <div className="grid grid-cols-2 gap-3.5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                     {[
-                      { id: 'business', label: lang === 'ar' ? 'موقع شركة تعريفي' : 'Business Page', desc: 'Representative UX' },
-                      { id: 'store', label: lang === 'ar' ? 'متجر إلكتروني فاخر' : 'Luxury eCommerce', desc: 'High conversions' },
-                      { id: 'saas', label: lang === 'ar' ? 'منصة سحابية SaaS' : 'SaaS Application', desc: 'Secure metrics' },
-                      { id: 'custom', label: lang === 'ar' ? 'برنامج و نظام مخصص' : 'Custom Software', desc: 'Bespoke logic' }
-                    ].map((opt) => (
-                      <button
-                        key={opt.id}
-                        onClick={() => setProjectType(opt.id as any)}
-                        className={`text-right p-4 rounded-xl border transition-all duration-300 text-left ${
-                          projectType === opt.id 
-                            ? 'border-[#63D6B5] bg-[#63D6B5]/5 shadow-inner' 
-                            : 'border-gray-800 bg-gray-900/40 hover:border-gray-700'
-                        }`}
-                      >
-                        <div className={`text-sm font-bold ${projectType === opt.id ? 'text-[#89FFE1]' : 'text-gray-300'}`}>
-                          {opt.label}
-                        </div>
-                        <div className="text-xs text-gray-500 mt-1">{opt.desc}</div>
-                      </button>
-                    ))}
+                      { id: 'company', labelAr: 'موقع تعريفي (Starter)', labelEn: 'Starter Website', descAr: 'مثالي للتعريف ونشاط الهوية الرئيسي', descEn: 'Bespoke corporate identity design', icon: Layout },
+                      { id: 'business', labelAr: 'موقع أعمال احترافي', labelEn: 'Business Website', descAr: 'للشركات المتوسطة والباحثين عن مبيعات', descEn: 'Fully custom client portal config', icon: Layers },
+                      { id: 'news', labelAr: 'رواق منصة إخبارية صحفية', labelEn: 'News Portal Setup', descAr: 'توافق كامل مع أخبار جوجل للأرشفة', descEn: 'Google News compatible system', icon: FileText },
+                      { id: 'store', labelAr: 'متجر إلكتروني فاخر', labelEn: 'eCommerce Hub', descAr: 'بطاقات دفع متصلة وسلال غنية وشحن', descEn: 'Ultimate conversion retail funnel', icon: ShoppingBag },
+                      { id: 'saas', labelAr: 'منظومة SaaS / نظام مخصص', labelEn: 'Custom SaaS & ERP Platform', descAr: 'لوحات تحكم وقواعد بيانات عملاقة', descEn: 'Elastic custom enterprise server flow', icon: Database }
+                    ].map((opt) => {
+                      const Icon = opt.icon;
+                      const active = projectType === opt.id;
+                      return (
+                        <motion.button
+                          key={opt.id}
+                          whileHover={{ scale: 1.01, y: -2 }}
+                          whileTap={{ scale: 0.99 }}
+                          onClick={() => setProjectType(opt.id as any)}
+                          className={`text-right p-4.5 rounded-2xl border transition-all duration-300 text-left relative overflow-hidden group/opt flex gap-3.5 items-start ${
+                            active 
+                              ? 'border-[#63D6B5] bg-gradient-to-tr from-[#63D6B5]/10 to-[#46C6A5]/5 shadow-[0_0_20px_rgba(99,214,181,0.06)]' 
+                              : 'border-gray-800 bg-gray-900/30 hover:border-gray-700/80 hover:bg-gray-900/50'
+                          }`}
+                          style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
+                        >
+                          <div className={`p-2.5 rounded-xl border shrink-0 transition-colors ${
+                            active ? 'bg-[#63D6B5]/20 border-[#63D6B5]/30 text-[#89FFE1]' : 'bg-gray-950 border-gray-800 text-gray-500 group-hover/opt:text-white'
+                          }`}>
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <div className={`text-sm font-bold tracking-tight ${active ? 'text-[#89FFE1]' : 'text-gray-200 group-hover/opt:text-white'}`}>
+                              {lang === 'ar' ? opt.labelAr : opt.labelEn}
+                            </div>
+                            <div className="text-[11px] text-gray-500 mt-1 leading-relaxed">{lang === 'ar' ? opt.descAr : opt.descEn}</div>
+                          </div>
+                        </motion.button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Page Count Slider */}
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-sm font-bold font-mono text-gray-400">
-                      {lang === 'ar' ? 'عدد واجهات العرض / الصفحات المصممة' : 'Estimated Designed Pages'}
-                    </h3>
-                    <span className="text-lg font-bold text-[#89FFE1] border border-[#63D6B5]/30 px-3 py-1 rounded bg-[#63D6B5]/10 font-mono">
+                <div className="p-6 bg-gray-950/40 border border-gray-800/80 rounded-2xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#63D6B5]/2 rounded-full blur-2xl pointer-events-none" />
+                  <div className="flex justify-between items-center mb-5">
+                    <div>
+                      <h3 className="text-sm font-bold font-mono text-gray-400">
+                        {lang === 'ar' ? 'تقدير عدد صفحات واجهات ومميزات العرض' : 'Estimated Designed Pages'}
+                      </h3>
+                      <p className="text-[11px] text-gray-500 mt-0.5">
+                        {lang === 'ar' ? 'تعديل السلايدر لتغيير كثافة وعدد واجهات النظام' : 'Dynamically adjust system density views'}
+                      </p>
+                    </div>
+                    <span className="text-xl font-black text-[#89FFE1] border border-[#63D6B5]/30 px-4 py-1.5 rounded-xl bg-[#63D6B5]/10 font-mono shadow-inner">
                       {pageCount}
                     </span>
                   </div>
-                  <input
-                    type="range"
-                    min="1"
-                    max="40"
-                    value={pageCount}
-                    onChange={(e) => setPageCount(parseInt(e.target.value))}
-                    className="w-full accent-[#63D6B5] h-2 bg-gray-800 rounded-lg cursor-pointer"
-                  />
-                  <div className="flex justify-between text-xs text-gray-500 mt-2 font-mono">
-                    <span>1</span>
-                    <span>10</span>
-                    <span>20</span>
-                    <span>30</span>
-                    <span>40+</span>
+
+                  <div className="px-1 py-4">
+                    <input
+                      type="range"
+                      min="1"
+                      max="40"
+                      value={pageCount}
+                      onChange={(e) => setPageCount(parseInt(e.target.value))}
+                      className="w-full h-2 rounded-lg cursor-pointer bg-gray-900 accent-[#63D6B5] hover:accent-[#89FFE1] transition-all duration-150"
+                      style={{
+                        background: `linear-gradient(to ${lang === 'ar' ? 'left' : 'right'}, #63D6B5 0%, #63D6B5 ${(pageCount / 40) * 100}%, #111827 ${(pageCount / 40) * 100}%, #111827 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-[11px] font-mono text-gray-500 mt-3 px-1">
+                      <span>1</span>
+                      <span>5 ({lang === 'ar' ? 'افتراضي' : 'Starter'})</span>
+                      <span>10</span>
+                      <span>20</span>
+                      <span>30</span>
+                      <span>40+ ({lang === 'ar' ? 'نظام ضخم' : 'Enterprise'})</span>
+                    </div>
+                  </div>
+
+                  {/* Micro breakdown page adjustment indicator */}
+                  <div className="mt-3 pt-3 border-t border-gray-900 flex justify-between items-center text-xs">
+                    <span className="text-gray-500">{lang === 'ar' ? 'رسوم تعديل عدد الواجهات:' : 'Page density adjustment cost:'}</span>
+                    <span className="font-bold text-[#63D6B5] font-mono">
+                      {pageAdjustEgp === 0 ? (
+                        lang === 'ar' ? 'أول 5 صفحات مجانية' : 'First 5 pages free'
+                      ) : (
+                        `+ ${Math.round(convertEgpValue(pageAdjustEgp)).toLocaleString()} ${currency.code}`
+                      )}
+                    </span>
                   </div>
                 </div>
 
                 {/* Micro Inclusions / Custom Features */}
                 <div>
-                  <h3 className="text-sm font-bold font-mono text-gray-400 mb-4">
-                    {lang === 'ar' ? 'المزايا الإضافية والمزامنات المطلوبة' : 'Custom Inclusions & Additions'}
+                  <h3 className="text-sm font-semibold font-mono text-gray-400 mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#63D6B5]" />
+                    {lang === 'ar' ? 'المزايا الإضافية والمزامنات المطلوبة لمضاعفة عملك' : 'Custom Functional Additions & API Integrations'}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {[
-                      { id: 'multilingual', labelText: lang === 'ar' ? 'بنائية ثنائية اللغة (عربي/إنجليزي)' : 'Full Multi-Language (Ar/En)' },
-                      { id: 'e-payment', labelText: lang === 'ar' ? 'بوابة سداد إلكتروني معقدة' : 'Secure API Merchant Gateways' },
-                      { id: 'custom-systems', labelText: lang === 'ar' ? 'لوحة إحصائيات متكاملة ومؤشرات' : 'Advanced Analytics Telemetry' },
-                      { id: 'seo-optimized', labelText: lang === 'ar' ? 'تهيئة تامة لمحركات البحث (SEO)' : 'Core Lighthouse SEO Tuning' }
-                    ].map((f) => (
-                      <label 
-                        key={f.id}
-                        className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer select-none transition-all ${
-                          features.includes(f.id) 
-                            ? 'border-[#63D6B5]/60 bg-[#63D6B5]/5 text-[#89FFE1]' 
-                            : 'border-gray-800 bg-gray-900/20 text-gray-400 hover:border-gray-700'
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={features.includes(f.id)}
-                          onChange={() => handleFeatureToggle(f.id)}
-                          className="w-4 h-4 rounded text-[#63D6B5] bg-gray-800 border-gray-700 focus:ring-0 cursor-pointer"
-                        />
-                        <span className="text-xs font-semibold">{f.labelText}</span>
-                      </label>
-                    ))}
+                    {optionalFeatures.map((f) => {
+                      const selected = features.includes(f.id);
+                      return (
+                        <motion.label 
+                          key={f.id}
+                          whileHover={{ scale: 1.01, border: '1px solid rgba(99, 214, 181, 0.4)' }}
+                          className={`flex items-center gap-3.5 p-4 rounded-2xl border cursor-pointer select-none transition-all duration-300 relative ${
+                            selected 
+                              ? 'border-[#63D6B5]/60 bg-[#63D6B5]/5 text-[#89FFE1]' 
+                              : 'border-gray-800 bg-gray-900/10 text-gray-400 hover:border-gray-700 hover:bg-gray-900/20'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selected}
+                            onChange={() => handleFeatureToggle(f.id)}
+                            className="w-4 h-4 rounded text-[#63D6B5] bg-gray-950 border-gray-800 focus:ring-0 cursor-pointer"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <span className={`text-xs font-bold block ${selected ? 'text-white' : 'text-gray-300'}`}>
+                              {lang === 'ar' ? f.nameAr : f.nameEn}
+                            </span>
+                            <span className="text-[10px] text-gray-500 mt-1 font-semibold font-mono block">
+                              {formatFeaturePrice(f.priceEgp)}
+                            </span>
+                          </div>
+                        </motion.label>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Delivery Priority speed */}
-                <div>
-                  <h3 className="text-sm font-bold font-mono text-gray-400 mb-3">
-                    {lang === 'ar' ? 'سرعة الإنجاز والجدول الزمني للهندسة' : 'Delivery Timeline Requirement'}
+                <div className="p-6 bg-gray-950/20 border border-gray-900 rounded-2xl">
+                  <h3 className="text-sm font-semibold font-mono text-gray-400 mb-4">
+                    {lang === 'ar' ? 'سرعة الإنجاز والجدول الزمني للهندسة البرمجية' : 'Engineering Delivery Priority & Schedule'}
                   </h3>
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       onClick={() => setDeliverySpeed('standard')}
-                      className={`flex-1 py-3 px-4 rounded-xl border text-xs font-bold transition-all ${
+                      className={`flex-1 py-4 px-4 rounded-2xl border text-xs font-bold transition-all duration-350 text-right ${
                         deliverySpeed === 'standard' 
                           ? 'border-[#63D6B5] bg-[#63D6B5]/5 text-[#89FFE1]' 
-                          : 'border-gray-800 text-gray-400 hover:bg-gray-900/40'
+                          : 'border-gray-800 text-gray-400 hover:bg-gray-900/40 hover:border-gray-700'
                       }`}
+                      style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
                     >
-                      {lang === 'ar' ? 'قياسي (ضمان الجودة والدقة القصوى)' : 'Standard Elite Quality (Rigid Audits)'}
+                      <div className="font-bold flex items-center gap-1.5 mb-1 text-xs text-white">
+                        <Check className="w-3.5 h-3.5 text-[#63D6B5]" />
+                        {lang === 'ar' ? 'مجدول قياسي (السرعة الطبيعية)' : 'Standard Development'}
+                      </div>
+                      <p className="text-[10px] text-gray-500 font-medium">
+                        {lang === 'ar' ? 'إطلاق حذر وآمن خاضع لاختبار مراجعة دقيق بكامل التكلفة القياسية.' : 'Includes standard code sanity check & automated CI reviews details.'}
+                      </p>
                     </button>
                     <button
                       onClick={() => setDeliverySpeed('express')}
-                      className={`flex-1 py-3 px-4 rounded-xl border text-xs font-bold transition-all ${
+                      className={`flex-1 py-4 px-4 rounded-2xl border text-xs font-bold transition-all duration-350 text-right ${
                         deliverySpeed === 'express' 
                           ? 'border-amber-500/50 bg-amber-500/5 text-amber-200' 
-                          : 'border-gray-800 text-gray-400 hover:bg-gray-900/40'
+                          : 'border-gray-800 text-gray-400 hover:bg-gray-900/40 hover:border-gray-700'
                       }`}
+                      style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
                     >
-                      ⚡ {lang === 'ar' ? 'مستعجل (تخصيص طاقم كامل فوري)' : 'Express Launch (Fully Dedicated Squad)'}
+                      <div className="font-bold flex items-center gap-1.5 mb-1 text-xs text-amber-300">
+                        <Zap className="w-3.5 h-3.5 text-amber-400 fill-amber-400 animate-pulse" />
+                        {lang === 'ar' ? 'تطوير مستعجل وسريع (تسجيل أولوية)' : 'Priority Express Delivery (+25%)'}
+                      </div>
+                      <p className="text-[10px] text-gray-500 font-medium">
+                        {lang === 'ar' ? 'تخصيص كامل لفريق المهندسين الفردي ومضاعفة سرعة البناء والتحميل.' : 'Triages full engineering team bandwidth to launch your project on speed schedule.'}
+                      </p>
                     </button>
                   </div>
                 </div>
@@ -304,57 +504,75 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
 
               {/* Estimate Receipt Panel */}
               <div className="lg:col-span-5">
-                <div className="sticky top-4 border border-[#63D6B5]/30 bg-gradient-to-b from-gray-900/70 to-[#07111D] rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                  
+                <motion.div 
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  className="sticky top-4 border border-[#63D6B5]/30 bg-gradient-to-b from-[#091523]/90 to-[#050B14]/90 rounded-3xl p-6 md:p-8 shadow-[0_15px_35px_rgba(0,0,0,0.5)] backdrop-blur-xl relative overflow-hidden group/receipt text-right"
+                  style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
+                >
                   {/* Decorative corner lines */}
                   <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#63D6B5]/75" />
                   <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#63D6B5]/75" />
                   
-                  <div className="flex items-center gap-2 mb-6">
+                  <div className={`flex items-center gap-2 mb-6 ${lang === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
                     <Calculator className="w-5 h-5 text-[#63D6B5]" />
-                    <span className="text-xs font-mono uppercase tracking-widest text-[#89FFE1]">
-                      {lang === 'ar' ? 'تقدير أولي مبدئي' : 'Provisional Quotation'}
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#89FFE1]">
+                      {lang === 'ar' ? 'تسعير أولي مرن مقترح' : 'PROVISIONAL PREMIUM QUOTATION'}
                     </span>
                   </div>
 
-                  <div className="space-y-4 text-xs font-mono border-b border-gray-800 pb-6 text-gray-400">
+                  {/* Breakdown Specifications */}
+                  <div className="space-y-4 text-xs font-mono border-b border-gray-900 pb-5 text-gray-400">
                     <div className="flex justify-between">
-                      <span>{lang === 'ar' ? 'صنف البرمجة:' : 'System Base:'}</span>
-                      <span className="text-white font-bold">{projectType.toUpperCase()}</span>
+                      <span>{lang === 'ar' ? 'صنف البرمجة الأساسي:' : 'Platform Base Architecture:'}</span>
+                      <span className="text-white font-bold capitalize">{projectType}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{lang === 'ar' ? 'الواجهات المقدرة:' : 'Interfaces Count:'}</span>
-                      <span className="text-white font-bold">{pageCount}</span>
+                      <span>{lang === 'ar' ? 'الواجهات والمنصات المصممة:' : 'Interfaces Count:'}</span>
+                      <span className="text-white font-bold">{pageCount} {lang === 'ar' ? 'صفحة' : 'Pages'}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{lang === 'ar' ? 'الميزات النشطة:' : 'Selected Extras:'}</span>
-                      <span className="text-white font-bold">{features.length}</span>
+                      <span>{lang === 'ar' ? 'الإضافات وخدمات المزامنة:' : 'Inclusions Selected:'}</span>
+                      <span className="text-white font-bold">{features.length} / 10</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>{lang === 'ar' ? 'جدول الهندسة:' : 'Delivery Model:'}</span>
+                      <span>{lang === 'ar' ? 'جدول الهندسة:' : 'Priority Line:'}</span>
                       <span className="text-white font-bold">{deliverySpeed.toUpperCase()}</span>
                     </div>
                   </div>
 
-                  <div className="py-6 text-center">
-                    <div className="text-xs text-gray-500 font-mono mb-1">{lang === 'ar' ? 'التكلفة الاستثمارية المتوقعة' : 'Estimated Capital Investment'}</div>
-                    <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#63D6B5] via-teal-300 to-[#89FFE1] font-mono leading-none py-2">
-                        {calculatedCost.toLocaleString()} <span className="text-lg text-white font-sans">{currency.code}</span>
+                  {/* Starts From Box (Prompt Constraint) */}
+                  <div className="mt-5 py-3 px-4 bg-gray-950/80 border border-gray-900 rounded-xl flex items-center justify-between">
+                    <span className="text-gray-400 text-xs font-mono">{lang === 'ar' ? 'يبدأ من (Starts From):' : 'Starts From:'}</span>
+                    <span className="text-[#89FFE1] font-extrabold font-mono text-sm leading-none">
+                      <AnimatedNumber value={Math.round(startsFromPrice)} /> {currency.code}
+                    </span>
+                  </div>
+
+                  {/* Main Estimated Cost Range Display (Prompt Constraint: Never show exact price, show starting/estimated ranges) */}
+                  <div className="py-6 text-center space-y-1.5 mt-4 border border-teal-500/10 bg-[#63D6B5]/3 rounded-2xl">
+                    <div className="text-[11px] text-gray-400 font-mono font-bold uppercase tracking-wider">{lang === 'ar' ? 'التكلفة الإجمالية التقديرية' : 'ESTIMATED STARTING COST'}</div>
+                    
+                    <div className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#63D6B5] via-teal-300 to-[#89FFE1] font-mono leading-none py-2.5">
+                      <AnimatedNumber value={minFormatted} /> - <AnimatedNumber value={maxFormatted} /> 
+                      <span className="text-sm text-white font-bold ml-1.5 uppercase font-sans">{currency.code}</span>
                     </div>
-                    <p className="text-[10px] text-gray-400 mt-2 px-4 leading-relaxed">
+                    
+                    <p className="text-[10px] text-gray-500 px-4 leading-relaxed font-semibold">
                       {lang === 'ar' 
-                        ? 'ملاحظة: هذا تقدير تقريبي آلي خاضع للمراجعة الهندسية الفردية لمتطلبات السيرفرات.' 
-                        : 'Note: Automated estimation subject to individual review depending on dynamic storage models.'}
+                        ? 'ملاحظة: هذا تقدير مرن خاضع لمراجعة هندسية فردية لمتطلبات السيرفر وقواعد البيانات.' 
+                        : 'Note: Automated range built to secure flexibility dependent on individual server redundancies.'}
                     </p>
                   </div>
 
+                  {/* CTA Engagement Button */}
                   <a 
                     href="#contact"
-                    className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-gradient-to-r from-[#63D6B5] to-[#46C6A5] text-gray-950 font-bold text-sm tracking-wide text-center transition-all duration-300 hover:shadow-lg hover:shadow-[#63D6B5]/20 hover:scale-[1.02]"
+                    className="w-full inline-flex items-center justify-center gap-2 py-4 px-6 mt-6 rounded-xl bg-gradient-to-r from-[#63D6B5] to-[#46C6A5] text-gray-950 font-extrabold text-sm tracking-wide text-center transition-all duration-300 hover:shadow-lg hover:shadow-[#63D6B5]/20 hover:scale-[1.01]"
                   >
-                    {lang === 'ar' ? 'احجز استشارة لتأكيد السعر ↗' : 'Book Session to Lock Estimation ↗'}
+                    {lang === 'ar' ? 'احجز استشارة وراجع المقايسة المخصصة ↗' : 'Claim Complimentary Consultation ↗'}
                   </a>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -444,7 +662,7 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
                   <div className="space-y-4">
                     <h4 className="text-sm font-bold text-white flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-emerald-400" />
-                      {lang === 'ar' ? 'توصيات مهندسي نكسس لتسريع موقعك:' : 'Direct Engineering Recommendations:'}
+                      {lang === 'ar' ? 'توصيات مهندسي فينتاريا لتسريع موقعك:' : 'Direct Engineering Recommendations:'}
                     </h4>
                     <div className="space-y-2 text-xs md:text-sm text-gray-300">
                       <p>• {lang === 'ar' ? 'سيرفر الاستضافة بطيء: خوادمك السابقة تزيد زمن تحميل أول بايت (TTFB).' : 'High Host Latency: Your server increases TTFB times.'}</p>
@@ -538,7 +756,7 @@ export default function ToolsSection({ lang, currency, t }: ToolsSectionProps) {
                 {/* Conversion Boost Expected */}
                 <div className="p-4 bg-[#63D6B5]/5 border border-[#63D6B5]/20 rounded-xl">
                   <div className="flex justify-between items-center mb-2 font-mono text-xs text-gray-400">
-                    <span className="text-[#89FFE1] font-bold">{lang === 'ar' ? 'التحسن المتوقع بموقع نكسس:' : 'Projected Boost with Nexus:'}</span>
+                    <span className="text-[#89FFE1] font-bold">{lang === 'ar' ? 'التحسن المتوقع بموقع فينتاريا:' : 'Projected Boost with VENTARIA:'}</span>
                     <span className="text-[#63D6B5] font-black font-mono">+{projectedLift}%</span>
                   </div>
                   <input

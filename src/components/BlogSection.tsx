@@ -39,10 +39,10 @@ export default function BlogSection({ lang, t }: BlogSectionProps) {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#63D6B5]/10 border border-[#63D6B5]/30 text-[#89FFE1] text-xs font-mono uppercase tracking-wide mb-4">
             <BookOpen className="w-3.5 h-3.5 text-[#63D6B5]" />
-            {lang === 'ar' ? 'البوابة المعرفية ونشرات نكسس' : 'Intellectual Publishing Hub'}
+            {lang === 'ar' ? 'البوابة المعرفية ونشرات فينتاريا' : 'Intellectual Publishing Hub'}
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">
-            {lang === 'ar' ? 'مدونة نكسس.. ثقافة تقنية متفوقة' : 'Nexus Digital Intelligence Reports'}
+            {lang === 'ar' ? 'مدونة فينتاريا.. ثقافة تقنية متفوقة' : 'Ventaria Digital Intelligence Reports'}
           </h2>
           <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
             {lang === 'ar' 

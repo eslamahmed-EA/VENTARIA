@@ -10,6 +10,7 @@ import BlogSection from './components/BlogSection';
 import ToolsSection from './components/ToolsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ConversionOverlay from './components/ConversionOverlay';
 
 import { Language, CountryConfig, CurrencyConfig } from './types';
 import { translations, countries, currencies } from './data/translations';
@@ -150,6 +151,9 @@ export default function App() {
 
       {/* Global interactive Footer */}
       <Footer lang={lang} t={t} setCurrentNav={setCurrentNav} />
+
+      {/* Core Conversion Optimization Triggers & Overlay */}
+      <ConversionOverlay lang={lang} />
 
     </div>
   );

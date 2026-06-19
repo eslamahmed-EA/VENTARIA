@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+// Use the provided image from src/photo (filename contains a space)
+import logo from '../photo/1.png';
 import { Menu, X, Globe, Sparkles, ChevronDown } from 'lucide-react';
 import { Language, CurrencyConfig, CountryConfig } from '../types';
 import { countries, currencies } from '../data/translations';
@@ -75,9 +77,8 @@ export default function Header({
           onClick={() => setCurrentNav('home')} 
           className="flex items-center gap-2.5 group"
         >
-          <div className="relative w-9 h-9 rounded-full bg-gradient-to-tr from-[#63D6B5] to-[#46C6A5] flex items-center justify-center shadow-lg shadow-[#63D6B5]/25 group-hover:scale-105 transition-transform">
-            <Sparkles className="w-4 h-4 text-gray-950 animate-pulse" />
-            <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-25" />
+          <div className="relative w-9 h-9 rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden bg-transparent">
+            <img src={logo} alt="Ventaria logo" className="w-9 h-9 object-cover" />
           </div>
           <div>
             <span className="text-lg font-bold text-white tracking-tight group-hover:text-[#89FFE1] transition-all">

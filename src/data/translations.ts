@@ -18,8 +18,8 @@ export const countries = [
 
 export const translations = {
   ar: {
-    brandName: "نكسس للبرمجيات",
-    brandSubtitle: "استوديو إبداعي عالمي لتصميم وتطوير الحلول السحابية والأنظمة الرقمية الفاخرة.",
+    brandName: "فينتاريا",
+    brandSubtitle: "فينتاريا للحلول الرقمية - استوديو إبداعي عالمي لتصميم وتطوير الحلول السحابية والأنظمة الرقمية الفاخرة.",
     
     // Navigation
     navHome: "الرئيسية",
@@ -27,7 +27,7 @@ export const translations = {
     navPortfolio: "أعمالنا",
     navCaseStudies: "دراسات الحالة",
     navPricing: "الأسعار",
-    navAbout: "عن نكسس",
+    navAbout: "عن فينتاريا",
     navBlog: "المدونة",
     navTools: "أدوات مجانية",
     navContact: "اتصل بنا",
@@ -55,8 +55,8 @@ export const translations = {
     heroStatSupport: "فريق دعم هندسي متكامل",
 
     // Hosting Info
-    hostingTitle: "البنية التحتية والاستضافة الفاخرة",
-    hostingText: "نحن نساعد عملاءنا النخبة في الحصول على خوادم فائقة السرعة، وتسجيل النطاقات المتميزة، وترحيل الأنظمة المعقدة وإدارة البنية التحتية السحابية بالشراكة مع أفضل مزودي الخدمات السحابية العالميين (AWS, Cloudflare, Google Cloud). نوفر هذه الإعانات اللوجستية كخدمة اختيارية لضمان أقصى مستويات الأداء والأمان.",
+    hostingTitle: "الاستضافة وحجز النطاقات والبريد المهني",
+    hostingText: "نحن نساعد شركاءنا النخبة في حجز خوادم الاستضافة السحابية وإعداد وتوثيق النطاقات (Domain)، ترحيل ونقل البيانات والأنظمة، تهيئة وتفعيل البريد الإلكتروني الرسمي للأعمال وحلول البنية التحتية السحابية من خلال شبكتنا من الشركاء التقنيين الموثوقين. نوفر هذه التسهيلات التقنية كخيارات مضافة وخدمات اختيارية لضمان استقرار المشاريع.",
 
     // Services Overview Section
     servicesSectionTitle: "منظومة الخدمات الرقمية الاستشارية",
@@ -76,7 +76,7 @@ export const translations = {
     whyCard4Desc: "ربط فوري وموثوق مع بوابات الدفع، مزودي الشحن، أنظمة المحاسبة، والذكاء الاصطناعي.",
 
     // Process Section
-    processTitle: "رحلة البناء الهندسي نكسس",
+    processTitle: "رحلة البناء الهندسي فينتاريا",
     processSubtitle: "دورة عمل منهجية واحترافية تمر بـ 6 مراحل رئيسية لضمان تحويل الفكرة والاحتياجات لواقع رقمي فريد.",
     step1Title: "1. الاكتشاف والتحليل",
     step1Desc: "ورش عمل تفصيلية لدراسة الأهداف، متطلبات السوق وجدوى المشروع الفنية والتجارية.",
@@ -123,11 +123,11 @@ export const translations = {
     footerDesc: "نصمم ونطور البرمجيات المعمارية الأكثر تطوراً في الوطن العربي والعالم. نحن بوابة تحولك الرقمي المتفوق.",
     footerNewsletterTitle: "الاشتراك في النشرة الفنية",
     footerNewsletterPlaceholder: "أدخل بريدك الإلكتروني الاحترافي",
-    footerCopyright: "© 2026 نكسس للبرمجيات. جميع الحقوق الفكرية والهندسية محفوظة."
+    footerCopyright: "© 2026 فينتاريا للحلول الرقمية. جميع الحقوق الفكرية والهندسية محفوظة."
   },
   en: {
-    brandName: "Nexus Software",
-    brandSubtitle: "An elite international creative studio designing and engineering luxury cloud solutions and customized digital systems.",
+    brandName: "VENTARIA",
+    brandSubtitle: "Ventaria Digital Solutions. An elite international creative studio designing and engineering luxury cloud solutions and customized digital systems.",
     
     // Navigation
     navHome: "Home",
@@ -163,8 +163,8 @@ export const translations = {
     heroStatSupport: "Dedicated Engineering Support",
 
     // Hosting Info
-    hostingTitle: "Luxury Domain & Server Operations",
-    hostingText: "We assist our elite clientele in procuring high-frequency hosting services, premium domain names, zero-downtime micro-migrations, and advanced elastic setups. Partnering closely with premier web vendors (AWS, Cloudflare, Google Cloud), this hosting is presented as an optional logistical utility to keep projects fast and bulletproof.",
+    hostingTitle: "Hosting, Domain & Infrastructure Assistance",
+    hostingText: "We assist clients with hosting, domain registration, website migration, business email setup, and infrastructure services through our trusted technology partners. These are presented as optional services only to ensure seamless operations.",
 
     // Services Overview Section
     servicesSectionTitle: "Our Comprehensive Digital Solutions",
@@ -231,6 +231,6 @@ export const translations = {
     footerDesc: "Designing and developing the most high-performance digital architectures in the world. Your portal to advanced software supremacy.",
     footerNewsletterTitle: "Subscribe to Intel Reports",
     footerNewsletterPlaceholder: "Enter your professional email",
-    footerCopyright: "© 2026 Nexus Software Agency. All engineering and intellectual assets are reserved."
+    footerCopyright: "© 2026 VENTARIA. All engineering and intellectual assets are reserved."
   }
 };

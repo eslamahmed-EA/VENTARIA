@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from '../photo/1.png';
 import { Mail, Phone, MapPin, Sparkles, Send, CheckCircle, Github, Linkedin, Twitter, Globe } from 'lucide-react';
 import { Language } from '../types';
 
@@ -47,8 +48,8 @@ export default function Footer({ lang, t, setCurrentNav }: FooterProps) {
           {/* Brand details */}
           <div className="lg:col-span-5 space-y-6">
             <a href="#home" onClick={() => setCurrentNav('home')} className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-[#63D6B5] flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-gray-950" />
+              <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden bg-transparent">
+                <img src={logo} alt="Ventaria logo" className="w-8 h-8 object-cover" />
               </div>
               <span className="text-lg font-bold text-white tracking-tight">{t.brandName}</span>
             </a>

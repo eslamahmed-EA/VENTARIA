@@ -140,7 +140,7 @@ export default function CaseStudiesSection({ lang, t }: CaseStudiesSectionProps)
                   <div className="space-y-2">
                     <h4 className="text-sm font-bold text-white flex items-center gap-2 mb-2">
                       <Lightbulb className="w-4 h-4 text-[#63D6B5]" />
-                      <span>{lang === 'ar' ? 'حل نكسس المبتكر' : 'Nexus Solution'}</span>
+                      <span>{lang === 'ar' ? 'حل فينتاريا المبتكر' : 'Ventaria Solution'}</span>
                     </h4>
                     <p className="text-xs md:text-sm text-gray-400 leading-relaxed text-justify">
                       {lang === 'ar' ? activeCS.solutionAr : activeCS.solution}

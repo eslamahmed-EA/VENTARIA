@@ -37,7 +37,7 @@ export default function ContactSection({ lang, t }: ContactSectionProps) {
     const textMessage = `Hello Nexus! My name is ${name} from ${company || 'Individual'}. I am looking to build a ${projectScope}. Message: ${message}. Phone: ${phone}. Email: ${email}`;
     // Encode
     const enc = encodeURIComponent(textMessage);
-    const whatsappUrl = `https://wa.me/201200000000?text=${enc}`; // Mock phone number
+  const whatsappUrl = `https://wa.me/201014046106?text=${enc}`;
     setTimeout(() => {
       window.open(whatsappUrl, '_blank');
     }, 1500);
@@ -93,7 +93,7 @@ export default function ContactSection({ lang, t }: ContactSectionProps) {
                   </div>
                   <div>
                     <div className="text-gray-600 text-[10px]">{lang === 'ar' ? 'البريد الإلكتروني:' : 'ELECTRONIC MAIL:'}</div>
-                    <span className="text-white">directors@nexus-software.agency</span>
+                    <span className="text-white">directors@ventaria.agency</span>
                   </div>
                 </div>
 
@@ -103,7 +103,7 @@ export default function ContactSection({ lang, t }: ContactSectionProps) {
                   </div>
                   <div>
                     <div className="text-gray-600 text-[10px]">{lang === 'ar' ? 'رقم الهاتف والواتساب ومكالمات:' : 'DIRECT TELEPHONY WHATSAPP:'}</div>
-                    <span className="text-white">+966 500 000 000 / +20 120 000 000</span>
+                    <span className="text-white">+20 101 404 6106</span>
                   </div>
                 </div>
 
@@ -233,7 +233,7 @@ export default function ContactSection({ lang, t }: ContactSectionProps) {
                       type="text"
                       value={company}
                       onChange={(e) => setCompany(e.target.value)}
-                      placeholder={lang === 'ar' ? 'مثال: نكسس الاستثمارية' : 'e.g. Acme Corp'}
+                      placeholder={lang === 'ar' ? 'مثال: شركة فينتاريا الاستثمارية' : 'e.g. Ventaria Corp'}
                       className="w-full bg-gray-950 border border-gray-800 p-3 rounded-xl text-white focus:outline-none focus:border-[#63D6B5]"
                     />
                   </div>
