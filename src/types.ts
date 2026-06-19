@@ -1,95 +1,75 @@
-export interface ServiceItem {
+export type Language = 'ar' | 'en';
+
+export interface CurrencyConfig {
+  code: string;
+  symbol: string;
+  rate: number; // Conversion rate relative to USD
+}
+
+export interface CountryConfig {
+  code: string;
+  nameEn: string;
+  nameAr: string;
+  currency: string;
+  flag: string;
+}
+
+export interface ServiceDetail {
   id: string;
+  icon: string;
   title: string;
-  subtitle: string;
   description: string;
-  badge?: string;
+  benefits: string[];
   features: string[];
-  duration: string;
-  iconName: string;
-  platformColor: string;
 }
 
-export interface PortfolioItem {
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
+export interface PortfolioProject {
   id: string;
   title: string;
+  titleAr: string;
   category: string;
-  platform: string;
-  image: string;
-  linkText: string;
-  results: {
-    label: string;
-    value: string;
-  }[];
-  // Detailed case study fields
-  clientDescription?: string;
-  problemStatement?: string;
-  solutionExecuted?: string;
-  additionalImages?: string[];
-  mobileImage?: string;
-  technologies?: string[];
-  demoUrl?: string;
-  isFeatured?: boolean;
-  // Dynamic brand customization properties for Awwwards style presentation
-  brandLogoText?: string;
-  brandLogoTagline?: string;
-  brandColors?: { hex: string; name: string }[];
-  brandTypography?: { heading: string; bodyStyle: string };
-  brandPackagingImage?: string;
-  brandShowcaseItems?: { title: string; image: string; type: string }[];
-}
-
-export interface TestimonialItem {
-  id: string;
-  name: string;
-  title: string;
-  storeName: string;
-  platform: 'salla' | 'zid' | 'shopify' | 'custom';
-  avatar: string;
-  content: string;
-  rating: number;
-}
-
-export interface CalculatorInputs {
-  sellingPrice: number;
-  productCost: number;
-  shippingCost: number;
-  packagingCost: number;
-  platformFeeType: 'percentage' | 'fixed' | 'salla_pro' | 'salla_special' | 'zid_pro' | 'shopify_basic';
-  platformFeeFixed: number;
-  platformFeePercent: number;
-  paymentGateway: 'mada' | 'visa' | 'tamara' | 'tabby' | 'cod' | 'custom';
-  gatewayFeePercent: number;
-  gatewayFeeFixed: number;
-  advertisingCost: number;
-}
-
-export interface CalculatorOutputs {
-  netProfit: number;
-  profitMargin: number;
-  breakEvenOrders: number;
-  breakEvenSales: number;
-  profit100: number;
-  profit1000: number;
-  costBreakdown: {
-    category: string;
-    amount: number;
-    percent: number;
-    color: string;
-  }[];
-  roi: number; // Return on Ad Spend/Investment
-}
-
-export interface Recommendation {
-  type: 'success' | 'warn' | 'danger' | 'info';
-  title: string;
+  categoryAr: string;
   description: string;
-  actionText: string;
-  actionTarget: string;
+  descriptionAr: string;
+  metrics: ProjectMetric[];
+  tech: string[];
+  image: string;
+  beforeImage?: string;
+  afterImage?: string;
 }
 
-export interface FAQItem {
+export interface CaseStudy {
   id: string;
-  question: string;
-  answer: string;
+  client: string;
+  clientAr: string;
+  industry: string;
+  industryAr: string;
+  challenge: string;
+  challengeAr: string;
+  solution: string;
+  solutionAr: string;
+  results: string[];
+  resultsAr: string[];
+  metrics: { label: string; labelAr: string; value: string }[];
+  technologies: string[];
+  image: string;
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  titleAr: string;
+  excerpt: string;
+  excerptAr: string;
+  category: string;
+  categoryAr: string;
+  date: string;
+  readTime: string;
+  readTimeAr: string;
+  image: string;
 }
